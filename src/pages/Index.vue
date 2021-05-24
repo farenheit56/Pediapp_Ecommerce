@@ -7,14 +7,6 @@
                 SLIDERIMAGE<br>
                 SLIDERIMAGE<br>
                 SLIDERIMAGE<br>
-
-                </div>
-                <div  class="col-md-2 col-lg-2 q-pl-none categories-grid borders-grid" :class="`${screenSm ? 'hidden': ''}`">
-                    <q-scroll-area class="fit">
-                    <div class="q-pa-sm">
-                        <div v-for="n in 50" :key="n">Drawer {{ n }} / 50</div>
-                    </div>
-                    </q-scroll-area>
                 </div>
                 <div class="col whiteSpace-grid" :class="`${screenSm ? 'hidden': ''}`">
                     <!-- Add WhiteSpace When Screen is Medium or Large -->

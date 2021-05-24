@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fff">
+  <q-layout view="hHh LpR fff">
 
     <q-header elevated class="bg-primary text-white">
       <q-toolbar>
@@ -11,6 +11,14 @@
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
+
+    <q-drawer show-if-above v-model="left" side="left" bordered :width="200">
+        <q-scroll-area class="fit">
+            <div class="q-pa-sm">
+                <div v-for="n in 50" :key="n">Drawer {{ n }} / 50</div>
+            </div>
+        </q-scroll-area>    
+    </q-drawer>
 
     <q-page-container>
       <router-view />
@@ -34,6 +42,7 @@
 export default {
   data () {
     return {
+        left:true
     }
   }
 }
