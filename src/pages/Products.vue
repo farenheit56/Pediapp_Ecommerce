@@ -43,7 +43,7 @@ export default {
       this.SetSelectedCategory(2)
   },
   methods:{
-      ...mapMutations('example', ['SetSelectedCategory']),
+      ...mapMutations('categories', ['SetSelectedCategory']),
   },
   computed: {
     screenSm(){

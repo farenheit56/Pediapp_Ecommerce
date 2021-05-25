@@ -3,6 +3,7 @@
 
     <q-header elevated class="bg-primary text-white">
       <q-toolbar>
+        <q-btn v-if="true" dense flat round icon="menu" @click="openProductLeftDrawer = !openProductLeftDrawer" />
         <q-toolbar-title>
           <q-avatar>
             <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
@@ -12,13 +13,8 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer show-if-above v-model="left" side="left" bordered :width="200">
-        <q-scroll-area class="fit">
-            <div class="q-pa-sm">
-                <div v-for="n in 50" :key="n">Drawer {{ n }} / 50</div>
-            </div>
-        </q-scroll-area>    
-    </q-drawer>
+    <!-- Drawers -->
+    <product-left-drawer v-model="openProductLeftDrawer"/>
 
     <q-page-container>
       <router-view />
@@ -39,11 +35,16 @@
 </template>
 
 <script>
+import ProductLeftDrawer from 'components/Products/ProductLeftDrawer'
+
 export default {
-  data () {
+    data () {
     return {
-        left:true
+        openProductLeftDrawer: false
     }
-  }
+    },
+    components:{
+        ProductLeftDrawer
+    }
 }
 </script>
