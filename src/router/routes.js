@@ -1,5 +1,4 @@
-import pathAlias from './pathAlias'
-
+import pathAlias from './pathAlias/pathAliasEs'
 
 const routes = [
   {
@@ -7,7 +6,7 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') },
-      { path: `/${pathAlias.products}/`, component: () => import('pages/Products.vue') } 
+      { path: pathAlias.products, component: () => import('pages/Products.vue') } 
     ]
   },
 

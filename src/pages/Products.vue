@@ -1,19 +1,15 @@
 <template>
     <q-page class="q-pa-sm">
-            <div class= "row full-width q-col-gutter-sm" :class="`${screenSm ? 'justify-center': ''}`">
-                <div class="col-12 slider-grid q-pa-none">
-                SLIDERIMAGE<br>
-                SLIDERIMAGE<br>
-                SLIDERIMAGE<br>
-                SLIDERIMAGE<br>
-                SLIDERIMAGE<br>
+            <div class= "row full-width q-col-gutter-sm q-pr-sm" :class="`${$q.screen.lt.md ? 'justify-center': ''}`">
+                <div class="col-12">
+                    <section-portrait :sectionName="'Productos'" :scopedCategory="['Instrumentos de hogar','Calefonesa']" />
                 </div>
-                <div class="col whiteSpace-grid" :class="`${screenSm ? 'hidden': ''}`">
+                <div class="col whiteSpace-grid" :class="`${$q.screen.lt.md ? 'hidden': ''}`">
                     <!-- Add WhiteSpace When Screen is Medium or Large -->
                 </div>
-                <div class="col-xs-12 col-sm-11 col-md-9 col-lg-9 products-grid borders-grid">
+                <div class="col-xs-12 col-sm-11 col-md-9 col-lg-9">
                     <div class= "row">
-                        <div v-for="n in 12" :key="n" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 q-pa-sm q-pa-sm product-grid borders-grid">
+                        <div v-for="n in 12" :key="n" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 q-pa-sm q-pa-sm">
                             <q-card class="my-card">
                             <img src="https://cdn.quasar.dev/img/mountains.jpg">
                             <q-card-section>
@@ -28,17 +24,28 @@
                     </div>
 
                 </div>
-                <div class="col q-pl-none whiteSpace-grid" :class="`${screenSm ? 'hidden': ''}`">
+                <div class="col q-pl-none whiteSpace-grid" :class="`${$q.screen.lt.md ? 'hidden': ''}`">
                     <!-- Add WhiteSpace When Screen is Medium or Large -->
                 </div>
             </div>
+            <!-- Append extra element when reached certain scroll offset-->
+<!--             <q-page-scroller expand position="top" :scroll-offset="250" :offset="[0, 0]">
+                <div class="bg-grey full-width text-center">Up</div>
+            </q-page-scroller> -->
   </q-page>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
+import sectionPortrait from '../components/reusable/sectionPortrait.vue'
 export default {
+  components: { sectionPortrait },
   name: 'PageIndex',
+  data(){
+      return {
+          slide:1
+      }
+  },
   mounted(){
       this.SetSelectedCategory(2)
   },
@@ -46,21 +53,7 @@ export default {
       ...mapMutations('categories', ['SetSelectedCategory']),
   },
   computed: {
-    screenSm(){
-        if(this.$q.screen.sm || this.$q.screen.xs){
-            return true
-        }else {
-            return false
-        }
-    },
-    screenMd(){
-        if(this.$q.screen.md || this.$q.screen.lg){
-        return true
-        }else {
-        return false
-        }
     }
-}
 }
 </script>
 
