@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import routes from './routes'
+//import routes from './routes'
+import makeRoutes from './routes'
 
 Vue.use(VueRouter)
 
@@ -14,7 +15,9 @@ Vue.use(VueRouter)
  * with the Router instance.
  */
 
-export default function (/* { store, ssrContext } */) {
+export default async function ( { store, /*ssrContext */} ) {
+  await store.dispatch('internalSections/actionInternalSections')
+  const routes = makeRoutes(store)
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
     routes,

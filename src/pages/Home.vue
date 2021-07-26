@@ -43,15 +43,13 @@
 </template>
 
 <script>
-
 export default {
     name: 'PageIndex',
+
     data(){
         return {
             slide: 1,
             lorem: 'Lorem ipe volupta',
-
-            
         }
     },
     methods:{

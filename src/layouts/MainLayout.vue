@@ -13,7 +13,7 @@
         <q-space />
 
         <q-btn to= '/' flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Home" class="q-ml-sm q-px-md" />
-        <q-btn :to="$t('pathAlias.products')" flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Productos" class="q-ml-sm q-px-md" />
+        <q-btn to="/productos" flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Productos" class="q-ml-sm q-px-md" />
         <q-btn flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Quienes Somos" class="q-ml-sm q-px-md" />
         <q-btn flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Contacto" class="q-ml-sm q-px-md" />
 
@@ -22,7 +22,7 @@
 
         <!-- Mobile Mode Toolbar -->
         <q-toolbar v-if="!$q.screen.gt.xs" style="height:64px">
-            <q-btn dense flat round class="q-mx-md" icon="home"  @click="openProductLeftDrawer = !openProductLeftDrawer" >
+            <q-btn dense flat round class="q-mx-md" icon="home"  @click="openMenuLeftDrawer = !openMenuLeftDrawer" >
                 <div class="text-subtitle1">{{$t('nav.home')}}</div>
             </q-btn>
             <q-space />
@@ -30,7 +30,7 @@
                 <div class="text-subtitle1">{{$t('nav.products')}}</div>
             </q-btn>
             <q-space />
-            <q-btn dense flat round class="q-mx-md" icon="shopping_cart"  @click="openProductLeftDrawer = !openProductLeftDrawer" >
+            <q-btn dense flat round class="q-mx-md" icon="shopping_cart"  @click="openCartLeftDrawer = !openCartLeftDrawer" >
                 <div class="text-subtitle1">{{$t('nav.cart')}}</div>
             </q-btn>
            
@@ -39,6 +39,7 @@
 
     <!-- Drawers -->
     <product-left-drawer v-model="openProductLeftDrawer"/>
+    <home-left-drawer v-model="openMenuLeftDrawer"/>
 
     <q-page-container>
       <router-view />
@@ -59,11 +60,16 @@
 
 <script>
 import ProductLeftDrawer from 'components/Products/ProductLeftDrawer'
+import HomeLeftDrawer from 'components/Home/homeLeftDrawer.vue'
+import pathAlias from 'src/router/pathAlias/pathAliasEs.js'
 
 export default {
     data () {
     return {
-        openProductLeftDrawer: false
+        aliasPath: pathAlias,
+        openMenuLeftDrawer:false,
+        openProductLeftDrawer: false,
+        openCartLeftDrawer: false
     }
     },
     computed:{
@@ -76,7 +82,8 @@ export default {
         } */
     },
     components:{
-        ProductLeftDrawer
+        ProductLeftDrawer,
+        HomeLeftDrawer
     }
 }
 </script>
