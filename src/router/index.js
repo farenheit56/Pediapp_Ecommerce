@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import axios from 'axios'
 
 //import routes from './routes'
 import makeRoutes from './routes'
@@ -16,8 +17,10 @@ Vue.use(VueRouter)
  */
 
 export default async function ( { store, /*ssrContext */} ) {
-  await store.dispatch('internalSections/actionInternalSections')
-  const routes = makeRoutes(store)
+  //await store.dispatch('internalSections/actionInternalSections') //Only works in SPA 
+  //const routes = makeRoutes(store) // Only works in SPA
+  const internalSections = await axios.get('http://localhost:3000/api/internalSections')
+  const routes = makeRoutes(internalSections.data)
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
     routes,
@@ -25,7 +28,7 @@ export default async function ( { store, /*ssrContext */} ) {
     // Leave these as they are and change in quasar.conf.js instead!
     // quasar.conf.js -> build -> vueRouterMode
     // quasar.conf.js -> build -> publicPath
-    mode: process.env.VUE_ROUTER_MODE,
+    mode: process.env.VUE_ROUTER_MODE,  
     base: process.env.VUE_ROUTER_BASE
   })
 

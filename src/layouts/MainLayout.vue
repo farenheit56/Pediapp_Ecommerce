@@ -12,6 +12,7 @@
         </q-toolbar-title>
         <q-space />
 
+        
         <q-btn to= '/' flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Home" class="q-ml-sm q-px-md" />
         <q-btn to="/productos" flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Productos" class="q-ml-sm q-px-md" />
         <q-btn flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Quienes Somos" class="q-ml-sm q-px-md" />
@@ -63,6 +64,10 @@ import ProductLeftDrawer from 'components/Products/ProductLeftDrawer'
 import HomeLeftDrawer from 'components/Home/homeLeftDrawer.vue'
 import pathAlias from 'src/router/pathAlias/pathAliasEs.js'
 
+//Store Mixins
+import mapCategories from 'src/mixins/mapCategories.js'
+import mapInternalSections from 'src/mixins/mapInternalSections.js'
+
 export default {
     data () {
     return {
@@ -72,8 +77,13 @@ export default {
         openCartLeftDrawer: false
     }
     },
+    mounted(){
+      console.log(this.internalSections)
+      console.log(this.categories)
+    },
+    mixins: [mapCategories, mapInternalSections],
     computed:{
-        //To render some Element if especific path is achived.
+      //To render some Element if especific path is achived.
 /*         renderSomeElement(){
             //E.g: products
             if(this.$route.fullPath == this.$t('pathAlias.products') ){

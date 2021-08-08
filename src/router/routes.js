@@ -8,9 +8,10 @@ const mapInternalSections = (internalSectionData)=>{
 }
 //------------
 
-const makeRoutes = (store) => {
+const makeRoutes = (internalSectionsData) => {
   //Now I can create routes using store data.
-  let mappedInternalSections = mapInternalSections(store._modulesNamespaceMap["internalSections/"].state.internalSections.data)
+  //let mappedInternalSections = mapInternalSections(store._modulesNamespaceMap["internalSections/"].state.internalSections.data)
+  let mappedInternalSections = mapInternalSections(internalSectionsData)
   //Routes
   const routes = [
     { //---routes[0]---

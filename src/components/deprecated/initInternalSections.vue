@@ -1,6 +1,8 @@
 
 <template>
-    
+    <div>
+    <!--   COMPONENT DEPRECATED, NOW I INIT CATEGORIES USING PREFETCH METHOD IN APP.VUE -->
+    </div>
 </template>
 <script>
 import {mapMutations} from 'vuex'
@@ -9,6 +11,7 @@ export default {
     mounted(){
         this.getInternalSections()
     },
+    
     methods: {
         ...mapMutations('internalSections', ['SetInternalSections', 'SetInternalSectionsNames']),
         getInternalSections(){
@@ -24,3 +27,5 @@ export default {
     },
 }
 </script>
+
+//DEPRECATED METHOD.
