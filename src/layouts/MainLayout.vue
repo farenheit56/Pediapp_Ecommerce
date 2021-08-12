@@ -5,19 +5,12 @@
 
         <!-- Desktop Mode Toolbar -->
        <q-toolbar v-if="$q.screen.gt.xs" style="height: 64px">
-           <q-btn dense flat round class="q-mx-md" icon="menu" @click="openProductLeftDrawer = !openProductLeftDrawer" />
         <q-toolbar-title v-if="$q.screen.gt.sm" shrink class="row items-center no-wrap">
           <img src="https://cdn.quasar.dev/img/layout-gallery/logo-google.svg">
           <span class="q-ml-sm">PediApp</span>
         </q-toolbar-title>
-        <q-space />
-
-        
-        <q-btn to= '/' flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Home" class="q-ml-sm q-px-md" />
-        <q-btn to="/productos" flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Productos" class="q-ml-sm q-px-md" />
-        <q-btn flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Quienes Somos" class="q-ml-sm q-px-md" />
-        <q-btn flat dense no-wrap color="primary" icon="cloud_upload" no-caps label="Contacto" class="q-ml-sm q-px-md" />
-
+        <q-space />        
+        <q-btn v-for="internalSection in internalSections" :key="internalSection.id" :to="internalSection.path" :label="internalSection.title" flat dense no-wrap color="primary" icon="cloud_upload" no-caps class="q-ml-sm q-px-md"></q-btn>
         <q-space />
        </q-toolbar>
 
@@ -34,7 +27,7 @@
             <q-btn dense flat round class="q-mx-md" icon="shopping_cart"  @click="openCartLeftDrawer = !openCartLeftDrawer" >
                 <div class="text-subtitle1">{{$t('nav.cart')}}</div>
             </q-btn>
-           
+
         </q-toolbar> 
     </q-header>
 
@@ -67,6 +60,7 @@ import pathAlias from 'src/router/pathAlias/pathAliasEs.js'
 //Store Mixins
 import mapCategories from 'src/mixins/mapCategories.js'
 import mapInternalSections from 'src/mixins/mapInternalSections.js'
+import mapProducts from 'src/mixins/mapProducts.js'
 
 export default {
     data () {
@@ -74,14 +68,15 @@ export default {
         aliasPath: pathAlias,
         openMenuLeftDrawer:false,
         openProductLeftDrawer: false,
-        openCartLeftDrawer: false
+        openCartLeftDrawer: false,
     }
     },
     mounted(){
       console.log(this.internalSections)
       console.log(this.categories)
+      console.log(this.products)
     },
-    mixins: [mapCategories, mapInternalSections],
+    mixins: [mapCategories, mapInternalSections, mapProducts],
     computed:{
       //To render some Element if especific path is achived.
 /*         renderSomeElement(){

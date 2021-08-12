@@ -3,9 +3,9 @@
         <q-scroll-area class="fit">
             <div style="max-width: 350px">
                 <q-list class="menu-list">
-                <q-item :to="internalSections[index].path" clickable v-ripple v-for="(section,index) in internalSections" :key="index + 10" class="q-pl-sm"> 
+                <q-item :to="section.path" clickable v-ripple v-for="(section,index) in internalSections" :key="index + 17" class="q-pl-sm"> 
                     <q-item-section class= "text-h6" >
-                        {{internalSections[index].title}}
+                        {{section.title}}
                     </q-item-section>
                 </q-item>
                 </q-list>
@@ -15,18 +15,15 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+
+//Store Modules
+import mapInternalSections from 'src/mixins/mapInternalSections.js'
 
 export default {
     name: 'homeLeftDrawer',
-    mounted(){
-        console.log(this.internalSections)
-    },
+    mixins:[mapInternalSections],
     props:{
         value:Boolean
-    },
-    computed: {
-    ...mapState('internalSections', ['internalSections','internalSectionsNames']),
     },
 }
 </script>

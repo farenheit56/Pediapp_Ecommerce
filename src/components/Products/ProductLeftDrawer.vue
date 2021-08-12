@@ -1,25 +1,66 @@
 
 <template>
-    <q-drawer show-if-above side="left" bordered :width="200" :value="value" @input="$emit('input', $event)">
+    <q-drawer
+        :value="value"
+        :width="200"
+        @input="$emit('input', $event)"
+        side="left"
+        bordered
+        show-if-above
+    >
+<!--         <q-scroll-area class="fit">
+            <q-list>
+                <q-expansion-item
+                    v-for="(categorie,index) in categories"
+                    :key="index + 117"
+                    v-ripple
+                    icon="mail"
+                    :label="categorie.name"
+                    expand-separator
+                >                    
+                </q-expansion-item>
+
+            </q-list>
+        </q-scroll-area> -->  
         <q-scroll-area class="fit">
-            <div class="q-pa-sm">
-                <div v-for="n in 50" :key="n">Drawer {{ n }} / 50</div>
-                {{selectedCategory}}
-            </div>
-        </q-scroll-area>    
+            <q-list padding class="menu-list">
+                <q-item to="productos" active-class="q-item-no-link-highlighting">
+                    <q-item-section avatar>
+                    <q-icon name="forward"/>
+                    </q-item-section>
+                    <q-item-section>
+                    <q-item-label>Productos</q-item-label>
+                    </q-item-section>
+                </q-item>
+                <q-expansion-item
+                v-for="(categorie, index) in categories"
+                :key="index"
+                :label="categorie.name"
+                >
+                    <q-list class="q-pl-lg">
+                        <q-item :v-if="categorie.subcategories" v-for="(subcategorie,index) in categorie.subcategories" :key="index" to="/Map" active-class="q-item-no-link-highlighting">
+                            <q-item-section>
+                                <q-item-label>{{categorie.name}}</q-item-label>
+                            </q-item-section>
+                        </q-item>
+                    </q-list>
+                </q-expansion-item>            
+            </q-list>
+        </q-scroll-area>  
     </q-drawer>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import mapCategories from 'src/mixins/mapCategories.js'
 
 export default {
     name: 'ProductLeftDrawer',
     props:{
         value:Boolean
     },
-    computed: {
+    mixins:[mapCategories]
+/*     computed: {
     ...mapState('categories', ['selectedCategory']),
-    },
+    }, */
 }
 </script>

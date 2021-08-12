@@ -19,7 +19,10 @@ export default {
     // Return a Promise if you are running an async job
     return Promise.all([
       store.dispatch('internalSections/actionInternalSections'),
-      store.dispatch('categories/actionCategories')])
+      store.dispatch('categories/actionCategories'),
+      store.dispatch('products/actionProducts')
+      ])
+      
     },
 
 }

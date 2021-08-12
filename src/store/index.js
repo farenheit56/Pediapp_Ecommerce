@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import categories from './categories'
 import internalSections from './internalSections'
+import products from './products'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,8 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
         categories,
-        internalSections
+        internalSections,
+        products
     },
 
     // enable strict mode (adds overhead!)

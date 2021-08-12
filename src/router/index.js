@@ -20,6 +20,7 @@ export default async function ( { store, /*ssrContext */} ) {
   //await store.dispatch('internalSections/actionInternalSections') //Only works in SPA 
   //const routes = makeRoutes(store) // Only works in SPA
   const internalSections = await axios.get('http://localhost:3000/api/internalSections')
+  //const categoriesAndSub = await axios.get('http://localhost:3000/api/categories')
   const routes = makeRoutes(internalSections.data)
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),

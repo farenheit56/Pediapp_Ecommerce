@@ -6,6 +6,7 @@ const mapInternalSections = (internalSectionData)=>{
   }
   return internalSections
 }
+
 //------------
 
 const makeRoutes = (internalSectionsData) => {
@@ -31,6 +32,13 @@ const makeRoutes = (internalSectionsData) => {
   for (const child of mappedInternalSections){
     routes[0].children.push(child)
   }
+
+  //Push Products Filter by categorie Route
+  routes[0].children.push({path:'/productos/:category', name:'productsByCategory', component: ()=> import(`pages/Products.vue`)})
+  //Push Products Filter by categorie and subcategorie Route
+  routes[0].children.push({path:'/productos/:category/:subcategory', name:'productsBySubcategory', component: ()=> import(`pages/Products.vue`)})
+  //Push single Product Route
+  routes[0].children.push({path:'/productos/:category/:subcategory/:productName', name:'productScoped', component: ()=> import(`pages/Products.vue`)})
 
   return routes
 }

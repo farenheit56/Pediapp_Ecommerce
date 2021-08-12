@@ -9,8 +9,8 @@
                 </div>
                 <div class="col-xs-12 col-sm-11 col-md-9 col-lg-9">
                     <div class= "row">
-                        <div v-for="(product, index) in productList" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 q-pa-sm q-pa-sm">
-                            <card-product v-if="productList" :data="product" />
+                        <div v-for="(product, index) in productFilteredList" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 q-pa-sm q-pa-sm">
+                            <card-product v-if="products" :data="product" />
                         </div>
                     </div>
                 </div>
@@ -29,36 +29,31 @@
 import cardProduct from 'components/Products/cardProduct'
 import { mapMutations, mapState } from 'vuex'
 import sectionPortrait from '../components/reusable/sectionPortrait.vue'
+
+//Store modules
+import mapCategories from 'src/mixins/mapCategories.js'
+import mapInternalSections from 'src/mixins/mapInternalSections.js'
+import mapProducts from 'src/mixins/mapProducts.js'
+
 export default {
-  components: { sectionPortrait },
-  name: 'PageIndex',
-  data(){
+    components: { sectionPortrait },
+    name: 'PageIndex',    
+    data(){
       return {
           slide:1,
           productList:null
       }
-  },
-  mounted(){
-      this.SetSelectedCategory(2),
-      this.getProducts()
-      console.log(this.categories)
-  },
-  methods:{
-    ...mapMutations('categories', ['SetSelectedCategory']),
-    getProducts(){
-        this.$api.get('products')
-        .then((response) => {
-            console.log(response.data)
-            this.productList = response.data
-        })
-        .catch((e)=>{
-          console.log('error' + e);
-        })
-    }
-  },
-    computed: {
-        ...mapState('categories', ['categories'])
     },
+    mixins:[mapCategories, mapProducts, mapInternalSections],
+    computed:{
+        productFilteredList() {
+            console.log(this.$route.params.category)
+            console.log(this.$route.params.subcategory)
+            //let filtered = this.products.filter(prod => prod.length > 6);
+            return this.products
+        }
+    },
+
     components:{
         cardProduct,
         sectionPortrait,
