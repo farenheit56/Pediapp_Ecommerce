@@ -2,7 +2,7 @@
 const mapInternalSections = (internalSectionData)=>{
   let internalSections = []
   for (const section of internalSectionData){
-      internalSections.push({path: `/${section.path}`, component: ()=> import(`pages/${section.component_name}.vue`), props:{sectionData: section}})
+      internalSections.push({path: `/${section.path}`, name: `${section.path}`, component: ()=> import(`pages/${section.component_name}.vue`), props:{sectionData: section}})
   }
   return internalSections
 }

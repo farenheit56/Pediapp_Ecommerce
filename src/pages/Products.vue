@@ -27,7 +27,6 @@
 
 <script>
 import cardProduct from 'components/Products/cardProduct'
-import { mapMutations, mapState } from 'vuex'
 import sectionPortrait from '../components/reusable/sectionPortrait.vue'
 
 //Store modules
@@ -47,10 +46,34 @@ export default {
     mixins:[mapCategories, mapProducts, mapInternalSections],
     computed:{
         productFilteredList() {
-            console.log(this.$route.params.category)
-            console.log(this.$route.params.subcategory)
-            //let filtered = this.products.filter(prod => prod.length > 6);
-            return this.products
+            if(this.selectedCategory){
+                //By Category
+                let productsBySelectedCategory = this.products.filter((product)=>{
+                    let matchId = null
+                    for (let category of product.categories){
+                        if(category.id === this.selectedCategory.id){
+                            matchId= true
+                        }
+                    }
+                    return matchId
+                })
+                //By Subcategory
+                if(this.selectedSubCategory){
+                    let productByCategoryAndSubcategory = productsBySelectedCategory.filter((product)=>{
+                        let matchId = null
+                        for (let subcategory of product.subcategories){
+                            if(subcategory.id === this.selectedSubCategory.id){
+                                matchId= true
+                            }
+                        }
+                        return matchId                    
+                    })
+                    return productByCategoryAndSubcategory
+                }
+                return productsBySelectedCategory
+            }else{
+                return this.products
+            }
         }
     },
 

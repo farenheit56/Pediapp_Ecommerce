@@ -12,12 +12,13 @@ import {
       ]),
       ...mapMutations('categories', [
           'SetCategories',
-          'SetSelectedCategory'
+          'SetSelectedCategory',
+          'SetSelectedSubCategory'
       ])
     },
     computed: {
       ...mapState('categories', [
-        'categories'
+        'categories','selectedCategory', 'selectedSubCategory'
       ])
     }
   };

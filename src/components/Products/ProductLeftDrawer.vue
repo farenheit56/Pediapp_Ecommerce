@@ -38,9 +38,14 @@
                 :label="categorie.name"
                 >
                     <q-list class="q-pl-lg">
-                        <q-item :v-if="categorie.subcategories" v-for="(subcategorie,index) in categorie.subcategories" :key="index" to="/Map" active-class="q-item-no-link-highlighting">
+                        <q-item :v-if="categorie.subcategories" v-for="(subcategorie,index) in categorie.subcategories" :key="index" clickable @click="goToProductsFilteredBySubCat(categorie,subcategorie)" active-class="q-item-no-link-highlighting">
                             <q-item-section>
-                                <q-item-label>{{categorie.name}}</q-item-label>
+                                <q-item-label>{{subcategorie.name}}</q-item-label>
+                            </q-item-section>
+                        </q-item>
+                        <q-item clickable @click="goToProductsFilteredBySubCat(categorie,null)" active-class="q-item-no-link-highlighting">
+                            <q-item-section>
+                                <q-item-label><i>Ver todo en {{categorie.name}}</i></q-item-label>
                             </q-item-section>
                         </q-item>
                     </q-list>
@@ -58,7 +63,20 @@ export default {
     props:{
         value:Boolean
     },
-    mixins:[mapCategories]
+    mixins:[mapCategories],
+    methods:{
+        goToProductsFilteredBySubCat(category,subcategory){
+            if(subcategory){
+                this.SetSelectedCategory(category)
+                this.SetSelectedSubCategory(subcategory)
+                this.$router.push({ name: 'productsBySubcategory', params: { category: category.name , subcategory:subcategory.name } })
+            }else{
+                this.SetSelectedCategory(category)
+                this.SetSelectedSubCategory(subcategory) //null
+                this.$router.push({ name: 'productsByCategory', params: { category: category.name } })
+            }
+        }
+    }
 /*     computed: {
     ...mapState('categories', ['selectedCategory']),
     }, */
