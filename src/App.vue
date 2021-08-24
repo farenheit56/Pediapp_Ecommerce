@@ -11,7 +11,6 @@ export default {
     //Prefetching on ServerSide of initial data, it fills Our vuex store.
     preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
     // fetch data, validate route and optionally redirect to some other route...
-
     // ssrContext is available only server-side in SSR mode
 
     // No access to "this" here
@@ -20,7 +19,8 @@ export default {
     return Promise.all([
       store.dispatch('internalSections/actionInternalSections'),
       store.dispatch('categories/actionCategories'),
-      store.dispatch('products/actionProducts')
+      store.dispatch('categories/actionSubCategories'),
+      store.dispatch('products/actionProducts'),
       ])
       
     },

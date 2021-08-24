@@ -9,3 +9,7 @@ export function SetSelectedSubCategory(state,subcategory) {
 export function SetCategories(state,categories) {
     state.categories = categories
 }
+
+export function SetSubCategories(state,subcategories) {
+    state.subcategories = subcategories
+}

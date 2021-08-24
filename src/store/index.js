@@ -4,6 +4,8 @@ import Vuex from 'vuex'
 import categories from './categories'
 import internalSections from './internalSections'
 import products from './products'
+import cart from './cart'
+import events from './events'
 
 Vue.use(Vuex)
 
@@ -21,7 +23,9 @@ export default function (/* { ssrContext } */) {
     modules: {
         categories,
         internalSections,
-        products
+        products,
+        cart,
+        events
     },
 
     // enable strict mode (adds overhead!)

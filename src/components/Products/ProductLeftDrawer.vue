@@ -57,23 +57,28 @@
 
 <script>
 import mapCategories from 'src/mixins/mapCategories.js'
+import mapInternalSections from 'src/mixins/mapInternalSections.js'
 
 export default {
     name: 'ProductLeftDrawer',
     props:{
         value:Boolean
     },
-    mixins:[mapCategories],
+    mixins:[mapCategories, mapInternalSections],
     methods:{
         goToProductsFilteredBySubCat(category,subcategory){
             if(subcategory){
                 this.SetSelectedCategory(category)
                 this.SetSelectedSubCategory(subcategory)
-                this.$router.push({ name: 'productsBySubcategory', params: { category: category.name , subcategory:subcategory.name } })
+                if(!this.selectedInternalSection){
+                    let scopedInternalSection = this.internalSections.find(section=> section.path == 'productos')
+                    this.SetSelectedInternalSection(scopedInternalSection)
+                }
+                this.$router.push({ name: 'productsBySubcategory', params: { category: category.path , subcategory:subcategory.path } })
             }else{
                 this.SetSelectedCategory(category)
                 this.SetSelectedSubCategory(subcategory) //null
-                this.$router.push({ name: 'productsByCategory', params: { category: category.name } })
+                this.$router.push({ name: 'productsByCategory', params: { category: category.path } })
             }
         }
     }

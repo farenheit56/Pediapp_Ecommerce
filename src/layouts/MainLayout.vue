@@ -7,7 +7,7 @@
        <q-toolbar v-if="$q.screen.gt.xs" style="height: 64px">
         <q-toolbar-title v-if="$q.screen.gt.sm" shrink class="row items-center no-wrap">
           <img src="https://cdn.quasar.dev/img/layout-gallery/logo-google.svg">
-          <span class="q-ml-sm">PediApp</span>
+          <span class="q-ml-sm">Pedi App</span>
         </q-toolbar-title>
         <q-space />        
         <q-btn v-for="internalSection in internalSections" :key="internalSection.id" :to="internalSection.path" :label="internalSection.title" flat dense no-wrap color="primary" icon="cloud_upload" no-caps class="q-ml-sm q-px-md"></q-btn>
@@ -34,9 +34,11 @@
     <!-- Drawers -->
     <product-left-drawer v-model="openProductLeftDrawer"/>
     <home-left-drawer v-model="openMenuLeftDrawer"/>
+    <cart-left-drawer v-model="openCartLeftDrawer" />
+
 
     <q-page-container>
-      <router-view />
+      <router-view @openCartDrawerFromPage="openCartDrawerFromPage"/>
     </q-page-container>
 
     <q-footer class="bg-grey-8 text-white">
@@ -61,6 +63,8 @@ import pathAlias from 'src/router/pathAlias/pathAliasEs.js'
 import mapCategories from 'src/mixins/mapCategories.js'
 import mapInternalSections from 'src/mixins/mapInternalSections.js'
 import mapProducts from 'src/mixins/mapProducts.js'
+//import mapEvents from 'src/mixins/mapEvents.js'
+import CartLeftDrawer from 'components/cart/cartLeftDrawer.vue'
 
 export default {
     data () {
@@ -71,24 +75,75 @@ export default {
         openCartLeftDrawer: false,
     }
     },
+    preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
+    // fetch data, validate route and optionally redirect to some other route...
+    // ssrContext is available only server-side in SSR mode
+
+    //Here we are handling store initialization when a route is directly...
+    //...hit by the browser and not throught surfing the page
+    let allInternalSections= store._modulesNamespaceMap['internalSections/'].state.internalSections
+    let allCategories= store._modulesNamespaceMap['categories/'].state.categories
+    let allSubCategories= store._modulesNamespaceMap['categories/'].state.subcategories
+    let allProducts =  store._modulesNamespaceMap['products/'].state.products
+    let selectedSection
+    let selectedCategory
+    let selectedSubCategory
+    let selectedProduct
+    if(currentRoute.name != 'productsBySubcategory' && currentRoute.name != 'productsByCategory' && currentRoute.name != 'productScoped'){
+        selectedSection = allInternalSections.find(section=>{
+            return section.path == currentRoute.name
+        })
+        store.commit('internalSections/SetSelectedInternalSection', selectedSection)
+    }else if (currentRoute.name == 'productsByCategory'){
+      selectedSection = allInternalSections.find(section=>{
+          return section.path == 'productos'
+      })
+      selectedCategory = allCategories.find(categorie=>{
+          return categorie.path == currentRoute.params.category
+      })
+      store.commit('internalSections/SetSelectedInternalSection', selectedSection)
+      store.commit('categories/SetSelectedCategory', selectedCategory )
+
+    } else if (currentRoute.name == 'productsBySubcategory'){
+        selectedSection = allInternalSections.find(section=>{
+            return section.path == 'productos'
+        })
+        selectedCategory = allCategories.find(categorie=>{
+          return categorie.path == currentRoute.params.category
+        })
+        selectedSubCategory = allSubCategories.find(subcategory=>{
+          return subcategory.path == currentRoute.params.subcategory
+        })
+        store.commit('internalSections/SetSelectedInternalSection', selectedSection)
+        store.commit('categories/SetSelectedCategory', selectedCategory )
+        store.commit('categories/SetSelectedSubCategory', selectedSubCategory )
+    }else if ( currentRoute.name == 'productScoped'){
+        selectedProduct = allProducts.find(product=>{
+          return product.path == currentRoute.params.product
+        })
+        store.commit('products/SetSelectedProduct', selectedProduct )
+    }
+    //------End of route and store initialization handling--------
+
+    // No access to "this" here
+    // Return a Promise if you are running an async job
+      
+    },
     mounted(){
       console.log(this.internalSections)
       console.log(this.categories)
       console.log(this.products)
     },
     mixins: [mapCategories, mapInternalSections, mapProducts],
-    computed:{
-      //To render some Element if especific path is achived.
-/*         renderSomeElement(){
-            //E.g: products
-            if(this.$route.fullPath == this.$t('pathAlias.products') ){
-                return true
-            }
-        } */
+    methods:{
+      openCartDrawerFromPage(){
+        this.openCartLeftDrawer = true
+      }
     },
     components:{
         ProductLeftDrawer,
-        HomeLeftDrawer
+        HomeLeftDrawer,
+        CartLeftDrawer
     }
 }
 </script>

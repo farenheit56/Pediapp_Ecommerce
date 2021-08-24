@@ -8,3 +8,16 @@ export function actionProducts({commit}) {
         commit('SetProducts', data )
     })
 }
+
+export function actionRelatedProductByCat({commit}, catId) {
+    return axios.get(`http://localhost:3000/api/products/findForCategory/${catId}`).then(({data})=>{
+        commit('SetRelatedProductByCat', data )
+    })
+}
+
+export function actionRelatedProductBySubCat({commit}, subCatId) {
+    console.log(subCatId, 'este es el subcaaat que paso')
+    return axios.get(`http://localhost:3000/api/products/findForSubcategory/${subCatId}`).then(({data})=>{
+        commit('SetRelatedProductBySubCat', data )
+    })
+}

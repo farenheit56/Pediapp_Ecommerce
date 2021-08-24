@@ -8,3 +8,9 @@ export function actionCategories({commit}) {
         commit('SetCategories', data )
     })
 }
+
+export function actionSubCategories({commit}) {
+    return axios.get('http://localhost:3000/api/subcategories').then(({data})=>{
+        commit('SetSubCategories', data )
+    })
+}

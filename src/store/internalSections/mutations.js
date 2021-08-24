@@ -1,6 +1,6 @@
 
 export function SetSelectedInternalSection(state,internalSection) {
-    state.selectedinternalSection = internalSection
+    state.selectedInternalSection = internalSection
 }
 
 

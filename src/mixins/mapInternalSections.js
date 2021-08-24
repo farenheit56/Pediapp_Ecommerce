@@ -11,12 +11,14 @@ import {
           'GetInternalSections'
       ]),
       ...mapMutations('internalSections', [
-          'SetInternalSections'
+          'SetInternalSections',
+          'SetSelectedInternalSection'
       ])
     },
     computed: {
       ...mapState('internalSections', [
-        'internalSections'
+        'internalSections',
+        'selectedInternalSection'
       ])
     }
   };

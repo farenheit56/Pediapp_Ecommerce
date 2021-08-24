@@ -2,7 +2,7 @@
     <q-page class="q-pa-sm">
             <div class= "row full-width q-col-gutter-sm q-pr-sm" :class="`${$q.screen.lt.md ? 'justify-center': ''}`">
                 <div class="col-12">
-                    <section-portrait :sectionName="$route.path" :scopedCategory="['Instrumentos de hogar','Calefonesa']" />
+                    <section-portrait/>
                 </div>
                 <div class="col whiteSpace-grid" :class="`${$q.screen.lt.md ? 'hidden': ''}`">
                     <!-- Add WhiteSpace When Screen is Medium or Large -->
@@ -10,7 +10,7 @@
                 <div class="col-xs-12 col-sm-11 col-md-9 col-lg-9">
                     <div class= "row">
                         <div v-for="(product, index) in productFilteredList" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 q-pa-sm q-pa-sm">
-                            <card-product v-if="products" :data="product" />
+                            <card-product @openCartDrawerFromPage="openCartDrawerFromPage" v-if="products" :data="product" />
                         </div>
                     </div>
                 </div>
@@ -44,6 +44,11 @@ export default {
       }
     },
     mixins:[mapCategories, mapProducts, mapInternalSections],
+    methods:{
+        openCartDrawerFromPage(){
+            this.$emit('openCartDrawerFromPage')
+        }
+    },
     computed:{
         productFilteredList() {
             if(this.selectedCategory){

@@ -1,7 +1,8 @@
 import {
     mapState,
     mapMutations,
-    mapGetters
+    mapGetters,
+    mapActions
   } from 'vuex';
 
 
@@ -12,13 +13,22 @@ import {
       ]),
       ...mapMutations('products', [
           'SetProducts',
-          'SetSelectedProduct'
+          'SetSelectedProduct',
+          'SetRelatedProductByCat',
+          'SetRelatedProductBySubCat'
+      ]),
+      ...mapActions('products',[
+        'actionProducts',
+        'actionRelatedProductByCat',
+        'actionRelatedProductBySubCat'
       ])
     },
     computed: {
       ...mapState('products', [
         'products',
-        'selectedProduct'
+        'selectedProduct',
+        'relatedProductByCat',
+        'relatedProductBySubCat'
       ])
     }
   };
