@@ -39,7 +39,9 @@ const makeRoutes = (internalSectionsData) => {
   routes[0].children.push({path:'/productos/:category/:subcategory', name:'productsBySubcategory', component: ()=> import(`pages/Products.vue`)})
   //Push single Product Route
   routes[0].children.push({path:'/producto/:product', name:'productScoped', component: ()=> import(`pages/ProductScoped.vue`)})
-
+  
+  //Push PayAndCheckOut Route
+  routes[0].children.push({path:'/checkout', name:'cartCheckout', component: ()=> import(`pages/CartCheckout.vue`)})
   return routes
 }
 

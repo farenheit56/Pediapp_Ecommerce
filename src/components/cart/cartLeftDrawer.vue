@@ -18,14 +18,14 @@
                                 </q-card-section>
                                 <q-card-section class="col-5 flex flex-center">
                                     <div class="text-caption">{{product.name}}</div>
-                                    <div class="q-pa-none q-ma-none row item-start" style="max-height:15px">
+                                    <div v-show="$route.name != 'cartCheckout'" class="q-pa-none q-ma-none row item-start" style="max-height:15px">
                                         <q-btn flat class="col-4 items-center" :style="{maxHeight:'20px', fontSize:'10px'}" icon="remove" round/>
                                         <q-input :value="product.quantitySelected" class="q-pa-none q-ma-none col-4 items-center" readonly borderless :input-style="{maxHeight:'20px'}" />
                                         <q-btn flat class="col-4 items-center justify-start" :style="{maxHeight:'20px', fontSize:'10px'}" icon="add" round/>
                                     </div>                               
                                 </q-card-section>
                                 <q-card-section class="col-4 flex flex-center">
-                                    <q-btn icon="delete" flat round color="red" @click="DeleteProduct(product)" />
+                                    <q-btn icon="delete" v-show="$route.name != 'cartCheckout'" flat round color="red" @click="DeleteProduct(product)" />
                                     <div class="text-caption q-mb-xs">${{product.partialPrice}}</div>
                                 </q-card-section>
                             </q-card-section>
@@ -39,8 +39,8 @@
                                 Total : <span class="text-secondary">${{GetCartProductsTotalPrice()}}</span>
                             </div>
                             <q-separator color="secondary" class="q-mb-xs"/>
-                            <div class="row justify-center">
-                            <q-btn color="secondary" icon-right="shopping_cart" class=" shadow-2" label="INICIAR COMPRA" />
+                            <div v-show="$route.name != 'cartCheckout' && cartProducts.length != 0" class="row justify-center">
+                            <q-btn color="secondary" icon-right="shopping_cart" class=" shadow-2" label="INICIAR COMPRA" @click="goToCheckoutAndPay" />
                             </div>
                         </div>
                     </q-card-actions>
@@ -63,11 +63,10 @@ import mapCart from 'src/mixins/mapCart'
 
 export default {
     name: 'homeLeftDrawer',
-    mixins:[mapInternalSections, mapCart],
-    methods: {
-        redirectToSection(section){
-            this.SetSelectedInternalSection(section)
-            this.$router.push({ name: section.path })
+    mixins:[mapCart],
+    methods:{
+        goToCheckoutAndPay(){
+            this.$router.push({name:'cartCheckout'})
         }
     },
     props:{

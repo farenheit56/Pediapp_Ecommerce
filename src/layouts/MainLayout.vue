@@ -15,7 +15,7 @@
        </q-toolbar>
 
         <!-- Mobile Mode Toolbar -->
-        <q-toolbar v-if="!$q.screen.gt.xs" style="height:64px">
+        <q-toolbar v-show="$route.name != 'cartCheckout'" v-if="!$q.screen.gt.xs" style="height:64px">
             <q-btn dense flat round class="q-mx-md" icon="home"  @click="openMenuLeftDrawer = !openMenuLeftDrawer" >
                 <div class="text-subtitle1">{{$t('nav.home')}}</div>
             </q-btn>
@@ -29,6 +29,23 @@
             </q-btn>
 
         </q-toolbar> 
+        <!-- Mobile Mode Toolbar (only for CheckOut) -->
+            <q-toolbar v-show="$route.name == 'cartCheckout' && !$q.screen.gt.xs" style="height:64px" class="text-center">
+              <q-btn flat icon="home" @click="$router.push({path:'/'})" round></q-btn>
+              <q-separator />
+              <q-expansion-item
+                expand-separator
+                label="Ver Detalles de la compra"
+                @click="openCartLeftDrawer = !openCartLeftDrawer"
+                class="full-width q-pl-none"
+                header-class="text-secondary"
+              >
+              </q-expansion-item>
+<!--               <q-btn dense flat round class="q-mx-md" @click="openCartLeftDrawer = !openCartLeftDrawer" >
+                    <div class="text-subtitle1">Detalles de la compra</div>
+              </q-btn> -->
+
+            </q-toolbar> 
     </q-header>
 
     <!-- Drawers -->
@@ -89,7 +106,7 @@ export default {
     let selectedCategory
     let selectedSubCategory
     let selectedProduct
-    if(currentRoute.name != 'productsBySubcategory' && currentRoute.name != 'productsByCategory' && currentRoute.name != 'productScoped'){
+    if(currentRoute.name != 'productsBySubcategory' && currentRoute.name != 'productsByCategory' && currentRoute.name != 'productScoped' && currentRoute.name != 'checkoutAndPay'){
         selectedSection = allInternalSections.find(section=>{
             return section.path == currentRoute.name
         })
