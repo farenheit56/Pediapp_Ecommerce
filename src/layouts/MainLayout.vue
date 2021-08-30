@@ -1,8 +1,6 @@
 <template>
-  <q-layout view="hHh LpR fff">
-
+  <q-layout v-if="$q.screen.lt.md" view="hHh LpR fff">
     <q-header elevated class="bg-white text-grey-8" height-hint="64">
-
         <!-- Desktop Mode Toolbar -->
        <q-toolbar v-if="$q.screen.gt.xs" style="height: 64px">
         <q-toolbar-title v-if="$q.screen.gt.sm" shrink class="row items-center no-wrap">
@@ -17,35 +15,27 @@
         <!-- Mobile Mode Toolbar -->
         <q-toolbar v-show="$route.name != 'cartCheckout'" v-if="!$q.screen.gt.xs" style="height:64px">
             <q-btn dense flat round class="q-mx-md" icon="home"  @click="openMenuLeftDrawer = !openMenuLeftDrawer" >
-                <div class="text-subtitle1">{{$t('nav.home')}}</div>
             </q-btn>
             <q-space />
             <q-btn dense flat round class="q-mx-md" icon="menu"  @click="openProductLeftDrawer = !openProductLeftDrawer" >
-                <div class="text-subtitle1">{{$t('nav.products')}}</div>
             </q-btn>
             <q-space />
             <q-btn dense flat round class="q-mx-md" icon="shopping_cart"  @click="openCartLeftDrawer = !openCartLeftDrawer" >
-                <div class="text-subtitle1">{{$t('nav.cart')}}</div>
             </q-btn>
-
         </q-toolbar> 
         <!-- Mobile Mode Toolbar (only for CheckOut) -->
-            <q-toolbar v-show="$route.name == 'cartCheckout' && !$q.screen.gt.xs" style="height:64px" class="text-center">
-              <q-btn flat icon="home" @click="$router.push({path:'/'})" round></q-btn>
-              <q-separator />
-              <q-expansion-item
-                expand-separator
-                label="Ver Detalles de la compra"
-                @click="openCartLeftDrawer = !openCartLeftDrawer"
-                class="full-width q-pl-none"
-                header-class="text-secondary"
-              >
-              </q-expansion-item>
-<!--               <q-btn dense flat round class="q-mx-md" @click="openCartLeftDrawer = !openCartLeftDrawer" >
-                    <div class="text-subtitle1">Detalles de la compra</div>
-              </q-btn> -->
-
-            </q-toolbar> 
+        <q-toolbar v-show="$route.name == 'cartCheckout' && !$q.screen.gt.xs" style="height:64px" class="text-center">
+            <q-btn flat icon="home" @click="$router.push({path:'/'})" round></q-btn>
+            <q-separator />
+            <q-expansion-item
+              expand-separator
+              label="Ver Detalles de la compra"
+              @click="openCartLeftDrawer = !openCartLeftDrawer"
+              class="full-width q-pl-none"
+              header-class="text-secondary"
+            >
+            </q-expansion-item>
+        </q-toolbar> 
     </q-header>
 
     <!-- Drawers -->
@@ -58,16 +48,41 @@
       <router-view @openCartDrawerFromPage="openCartDrawerFromPage"/>
     </q-page-container>
 
-    <q-footer class="bg-grey-8 text-white">
+
+    <!-- Footer Mobile-->
+    <q-footer class="bg-grey-1 text-primary">
+      <div class="row text-center">
+          <div class="col-12 q-mt-md q-mb-md text-h6 text-bold">Somos Pedi App </div>
+      </div>
+      <q-separator class="shadow-1"></q-separator>
       <q-toolbar>
-        <q-toolbar-title>
+        <q-toolbar-title class="text-center">
           <q-avatar>
             <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
           </q-avatar>
         </q-toolbar-title>
       </q-toolbar>
+      <q-separator class="shadow-1"></q-separator>
+      <div class="row text-center">
+          <div class="col-5 q-ml-md q-mt-md text-h7  q-pa-none q-mb-md ">Nuestras Redes </div>
+          <q-icon class="col-2" size="20px" name="fab fa-facebook"></q-icon>
+          <q-icon class="col-2"  size="20px" name="fab fa-instagram"></q-icon>
+          <q-icon class="col-2"  size="20px" name="fab fa-twitter"></q-icon>
+          <q-space></q-space>
+      </div>
+      <q-separator class="shadow-1"></q-separator>
+      <div class="row text-center">
+          <div class="col-12  q-mt-md q-mb-sm text-h7 text-bold text-center ">Contacto </div>
+          <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">{{contact[0].address}} </div>
+          <div class="col-12  q-mt-xs q-mb-md  text-caption text-center">{{contact[0].phone}} </div>
+      </div>
     </q-footer>
 
+    <!-- SocialNetwork STICKY BTN-->
+    <q-page-sticky v-show="$route.name != 'cartCheckout'"  position="left" :offset="[5, 0]">
+      <q-btn flat round dense  color="blue-10" size="small" icon="fab fa-facebook" class="q-mb-xs shadow-1" @click="redirectToSocial(socialNetworks[0].url)" /><br>
+      <q-btn flat round dense  color="pink-3" size="small" icon="fab fa-instagram"  class="q-mb-xs shadow-1" @click="redirectToSocial(socialNetworks[1].url)" /><br>
+    </q-page-sticky>
   </q-layout>
 </template>
 
@@ -81,6 +96,8 @@ import mapCategories from 'src/mixins/mapCategories.js'
 import mapInternalSections from 'src/mixins/mapInternalSections.js'
 import mapProducts from 'src/mixins/mapProducts.js'
 //import mapEvents from 'src/mixins/mapEvents.js'
+import mapExtra from 'src/mixins/mapExtra.js'
+
 import CartLeftDrawer from 'components/cart/cartLeftDrawer.vue'
 
 export default {
@@ -150,11 +167,16 @@ export default {
       console.log(this.internalSections)
       console.log(this.categories)
       console.log(this.products)
+      console.log(this.contact)
+      console.log(this.socialNetworks)
     },
-    mixins: [mapCategories, mapInternalSections, mapProducts],
+    mixins: [mapCategories, mapInternalSections, mapProducts, mapExtra],
     methods:{
       openCartDrawerFromPage(){
         this.openCartLeftDrawer = true
+      },
+      redirectToSocial(link){
+        this.$router.push({ redirect: window.location.href = link });
       }
     },
     components:{

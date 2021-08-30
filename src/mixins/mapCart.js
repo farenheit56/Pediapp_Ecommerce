@@ -14,7 +14,10 @@ import {
       ]),
       ...mapMutations('cart', [
           'PushCartProduct',
-          'DeleteProduct'
+          'DeleteProduct',
+          'AddOneQuantitySelected',
+          'RemoveOneQuantitySelected'
+
       ]),
     },
     computed: {

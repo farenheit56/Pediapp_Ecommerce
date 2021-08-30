@@ -16,7 +16,6 @@ export function actionRelatedProductByCat({commit}, catId) {
 }
 
 export function actionRelatedProductBySubCat({commit}, subCatId) {
-    console.log(subCatId, 'este es el subcaaat que paso')
     return axios.get(`http://localhost:3000/api/products/findForSubcategory/${subCatId}`).then(({data})=>{
         commit('SetRelatedProductBySubCat', data )
     })

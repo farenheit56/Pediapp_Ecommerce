@@ -21,6 +21,8 @@ export default {
       store.dispatch('categories/actionCategories'),
       store.dispatch('categories/actionSubCategories'),
       store.dispatch('products/actionProducts'),
+      store.dispatch('extra/actionContact'),
+      store.dispatch('extra/actionSocialNetworks'),
       ])
       
     },

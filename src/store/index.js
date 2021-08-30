@@ -6,6 +6,7 @@ import internalSections from './internalSections'
 import products from './products'
 import cart from './cart'
 import events from './events'
+import extra from './extra'
 
 Vue.use(Vuex)
 
@@ -25,7 +26,8 @@ export default function (/* { ssrContext } */) {
         internalSections,
         products,
         cart,
-        events
+        events,
+        extra
     },
 
     // enable strict mode (adds overhead!)

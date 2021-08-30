@@ -1,4 +1,3 @@
-
 export function PushCartProduct(state,product) {
     let alreadyInList = false
     let index = null
@@ -24,4 +23,26 @@ export function DeleteProduct(state,product) {
         return (product.id != registeredProduct.id)
     })
     state.cartProducts = cartProductWithoutDeletedProduct
+}
+
+export function RemoveOneQuantitySelected(state,product) {
+    let indexOfProductToModify
+    state.cartProducts.filter((registeredProduct,index)=>{
+        if((registeredProduct.id == product.id)){
+            indexOfProductToModify = index
+        }
+    })
+    state.cartProducts[indexOfProductToModify].quantitySelected = (product.quantitySelected - 1) > 1 ? (product.quantitySelected - 1) : 1
+    state.cartProducts[indexOfProductToModify].partialPrice = state.cartProducts[indexOfProductToModify].quantitySelected * state.cartProducts[indexOfProductToModify].price
+}
+
+export function AddOneQuantitySelected(state,product) {
+    let indexOfProductToModify
+    state.cartProducts.filter((registeredProduct,index)=>{
+        if((registeredProduct.id == product.id)){
+            indexOfProductToModify = index
+        }
+    })
+    state.cartProducts[indexOfProductToModify].quantitySelected = product.quantitySelected + 1
+    state.cartProducts[indexOfProductToModify].partialPrice = state.cartProducts[indexOfProductToModify].quantitySelected * state.cartProducts[indexOfProductToModify].price
 }

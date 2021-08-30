@@ -26,7 +26,7 @@
             <q-list padding class="menu-list">
                 <q-item to="productos" active-class="q-item-no-link-highlighting">
                     <q-item-section avatar>
-                    <q-icon name="forward"/>
+                    <q-icon name="forward" color="primary" />
                     </q-item-section>
                     <q-item-section>
                     <q-item-label>Productos</q-item-label>

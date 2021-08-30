@@ -21,7 +21,7 @@
                         <!-- Add WhiteSpace When Screen is Medium or Large -->
                     </div>
                 </q-form>
-                <div class="col-12 q-mt-md absolute-bottom q-mb-lg" >
+                <div class="col-12 q-mt-md q-mb-lg" >
                     <q-btn color="secondary" icon-right="shopping_cart" class=" shadow-2" label="FINALIZAR COMPRA"  @click="sendOrderToWhatsapp" />
                 </div>    
             </div>

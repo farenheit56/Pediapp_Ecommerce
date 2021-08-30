@@ -40,7 +40,7 @@ export default {
     data(){
       return {
           slide:1,
-          productList:null
+          productList: null
       }
     },
     mixins:[mapCategories, mapProducts, mapInternalSections],
