@@ -7,7 +7,7 @@
       height="250px"
     >
 
-        <q-carousel-slide :name="1" :img-src="`http://localhost:3000/images/${selectedInternalSection && selectedInternalSection.slider_url}`">
+        <q-carousel-slide :name="1" :img-src="`https://admin.pediapp.com.ar/images/${selectedInternalSection && selectedInternalSection.slider_url}`">
             <div class="absolute-bottom custom-caption">
             <div class="text-h8" @click="goToProducts">Productos</div>
             <div class="text-h8" v-if="selectedCategory && !selectedSubCategory">

@@ -12,7 +12,7 @@
                         <div v-if="selectedInternalSection" class="text-h7 q-mt-lg">{{selectedInternalSection.description}}</div>
                     </div>
                     <div class="col-12 q-pt-sm q-ml-sm text-primary text-left">
-                        <q-img v-if="selectedInternalSection.support_image_url" :src="`http://localhost:3000/images/${selectedInternalSection.support_image_url}`" class="q-mt-md " style="max-width: 400px; height: 80px;" contain>
+                        <q-img v-if="selectedInternalSection.support_image_url" :src="`https://admin.pediapp.com.ar/images/${selectedInternalSection.support_image_url}`" class="q-mt-md " style="max-width: 400px; height: 80px;" contain>
                         </q-img>
                     </div>
                     <div class="col q-pl-none whiteSpace-grid" :class="`${$q.screen.lt.md ? 'hidden': ''}`">

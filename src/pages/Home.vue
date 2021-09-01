@@ -12,7 +12,7 @@
                 <div v-if="selectedInternalSection" class="text-h7 q-mt-lg">{{selectedInternalSection.description}}</div>
             </div>
             <div class="col-12 q-pt-sm q-ml-sm text-primary text-left">
-                <q-img v-if="selectedInternalSection.support_image_url" :src="`http://localhost:3000/images/${selectedInternalSection.support_image_url}`" class="q-mt-md " style="max-width: 400px; height: 80px;" contain>
+                <q-img v-if="selectedInternalSection.support_image_url" :src="`https://admin.pediapp.com.ar/images/${selectedInternalSection.support_image_url}`" class="q-mt-md " style="max-width: 400px; height: 80px;" contain>
                 </q-img>
             </div>
             <div class="col q-pl-none whiteSpace-grid" :class="`${$q.screen.lt.md ? 'hidden': ''}`">
@@ -40,7 +40,7 @@
                     <q-carousel-slide v-for="(prod,index) in products" :key="index" :name="index + 1" >
                         <div class="row fit items-center justify-center q-gutter-xs q-col-gutter no-wrap ">
                             <q-card @click="goToProduct(products[index])" class="q-pa-none q-ma-none q-mt-sm col-6 text-center" :style="'width:120px'" >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " :ratio="1"  :src="`http://localhost:3000/images/${products[index].image_url}`" />  
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " :ratio="1"  :src="`https://admin.pediapp.com.ar/images/${products[index].image_url}`" />  
                                 <div class=" q-pa-none q-ma-none" :style="'height:70px'">
                                     <q-card-section class="q-mt-sm q-pt-none row ">
                                         <div class="text-caption">
@@ -50,7 +50,7 @@
                                 </div>  
                             </q-card>
                             <q-card @click="goToProduct(products[index+1])" v-if="index + 1 < products.length" class="q-pa-none q-ma-none q-ml-sm q-mt-sm col-6 text-center" :style="'width:120px'" >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " :ratio="1"  :src="`http://localhost:3000/images/${products[index+1].image_url}`" />  
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " :ratio="1"  :src="`https://admin.pediapp.com.ar/images/${products[index+1].image_url}`" />  
                                 <div class=" q-pa-none q-ma-none" :style="'height:70px'">
                                     <q-card-section class="q-mt-sm q-pt-none row">
                                         <div class="text-caption">

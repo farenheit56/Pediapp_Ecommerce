@@ -5,9 +5,9 @@
                     <p v-if="selectedProduct" class="text-h5">{{selectedProduct.name}}</p>
                 </div>
                 <div class="col-12 q-pt-md" >
-                    <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`http://localhost:3000/images/${selectedProduct.image_url}` " contain  >
+                    <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://admin.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
                     </q-img>
-                    <!-- <img v-gallery :src="`http://localhost:3000/images/${selectedProduct.image_url}`" /> -->
+                    <!-- <img v-gallery :src="`https://admin.pediapp.com.ar/images/${selectedProduct.image_url}`" /> -->
 <!--                     <q-carousel
                     swipeable
                     animated
@@ -17,7 +17,7 @@
                     infinite
                     >
                     <q-carousel-slide :name="1"  >
-                    <q-img v-if="selectedProduct" class="text-center align-center" style="max-width: 400px; height: 300px;" :src="`http://localhost:3000/images/${selectedProduct.image_url}` " contain  >
+                    <q-img v-if="selectedProduct" class="text-center align-center" style="max-width: 400px; height: 300px;" :src="`https://admin.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
                     </q-img>
                     </q-carousel-slide>
 
@@ -91,7 +91,7 @@
                     v-model="slide"
                     infinite
                     >
-                    <q-carousel-slide v-for="(product,index) in relatedProductByCatAndSubCat" :key="index" :name="index+1" :img-src="`http://localhost:3000/images/${product.image_url}`">
+                    <q-carousel-slide v-for="(product,index) in relatedProductByCatAndSubCat" :key="index" :name="index+1" :img-src="`https://admin.pediapp.com.ar/images/${product.image_url}`">
                         </q-carousel-slide>
                     </q-carousel>
                 </div> -->
