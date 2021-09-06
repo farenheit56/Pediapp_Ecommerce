@@ -22,47 +22,9 @@
             <!-- Mobile carrousel -->
             <div class="col-12 q-mt-lg text-h6 text-primary">
                 Productos Destacados
-            </div>      
-            <div v-if="$q.screen.lt.md" class="col-12 q-pt-sm q-ml-sm q-pt-none q-mt-none text-primary text-left">
-                <q-carousel
-                v-model="slide"
-                transition-prev="slide-right"
-                transition-next="slide-left"
-                swipeable
-                animated
-                control-color="primary"
-                padding
-                arrows
-                infinite
-                height="220px"
-                class="rounded-borders q-mt-md"
-                >
-                    <q-carousel-slide v-for="(prod,index) in products" :key="index" :name="index + 1" >
-                        <div class="row fit items-center justify-center q-gutter-xs q-col-gutter no-wrap ">
-                            <q-card @click="goToProduct(products[index])" class="q-pa-none q-ma-none q-mt-sm col-6 text-center" :style="'width:120px'" >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " :ratio="1"  :src="`https://admin.pediapp.com.ar/images/${products[index].image_url}`" />  
-                                <div class=" q-pa-none q-ma-none" :style="'height:70px'">
-                                    <q-card-section class="q-mt-sm q-pt-none row ">
-                                        <div class="text-caption">
-                                            {{ products[index].name }}
-                                        </div>
-                                    </q-card-section>
-                                </div>  
-                            </q-card>
-                            <q-card @click="goToProduct(products[index+1])" v-if="index + 1 < products.length" class="q-pa-none q-ma-none q-ml-sm q-mt-sm col-6 text-center" :style="'width:120px'" >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " :ratio="1"  :src="`https://admin.pediapp.com.ar/images/${products[index+1].image_url}`" />  
-                                <div class=" q-pa-none q-ma-none" :style="'height:70px'">
-                                    <q-card-section class="q-mt-sm q-pt-none row">
-                                        <div class="text-caption">
-                                          {{ products[index + 1].name }}
-                                        </div>
-                                    </q-card-section>
-                                </div>  
-                            </q-card>                            
-                        </div>
-                    </q-carousel-slide>
-                </q-carousel>
             </div>
+            <carrousel></carrousel>
+
         </div>
     </q-page>
 </template>
@@ -76,6 +38,9 @@ import GenericPortrait from '../components/reusable/genericPortrait.vue'
 import mapInternalSections from 'src/mixins/mapInternalSections'
 import mapProducts from 'src/mixins/mapProducts'
 
+//components
+import Carrousel from 'src/components/carrousel/carrousel.vue'
+
 export default {
     name: 'GenericSection',
     mixins:[mapInternalSections, mapProducts],
@@ -85,7 +50,8 @@ export default {
         }
     },
     components:{
-        GenericPortrait
+        GenericPortrait,
+        Carrousel
     },
     methods:{
         goToProduct(prod){

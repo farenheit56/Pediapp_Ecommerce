@@ -1,6 +1,7 @@
 export default function () {
     return {
       cartProducts: [],
+      cartOrderNow: null // This will be an object including just one product when order is triggered from ProductScoped.
     }
 }
 

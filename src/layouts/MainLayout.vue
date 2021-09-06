@@ -12,8 +12,9 @@
         <q-space />
        </q-toolbar>
 
+        <!-- !!!!------------------------------MOBILE-------------------------------------!!!! -->
         <!-- Mobile Mode Toolbar -->
-        <q-toolbar v-show="$route.name != 'cartCheckout'" v-if="!$q.screen.gt.xs" style="height:64px">
+        <q-toolbar v-show="$route.name != 'cartCheckout' && $route.name != 'orderNow'" v-if="!$q.screen.gt.xs" style="height:64px">
             <q-btn dense flat round class="q-mx-md" icon="home"  @click="openMenuLeftDrawer = !openMenuLeftDrawer" >
             </q-btn>
             <q-space />
@@ -22,15 +23,31 @@
             <q-space />
             <q-btn dense flat round class="q-mx-md" icon="shopping_cart"  @click="openCartLeftDrawer = !openCartLeftDrawer" >
             </q-btn>
+
         </q-toolbar> 
         <!-- Mobile Mode Toolbar (only for CheckOut) -->
         <q-toolbar v-show="$route.name == 'cartCheckout' && !$q.screen.gt.xs" style="height:64px" class="text-center">
             <q-btn flat icon="home" @click="$router.push({path:'/'})" round></q-btn>
             <q-separator />
+            <!-- Checkout with cart -->
             <q-expansion-item
               expand-separator
               label="Ver Detalles de la compra"
               @click="openCartLeftDrawer = !openCartLeftDrawer"
+              class="full-width q-pl-none"
+              header-class="text-secondary"
+            >
+            </q-expansion-item>
+        </q-toolbar>
+        <!-- Mobile Mode Toolbar (only for ORDERNOW) -->
+        <q-toolbar v-show="$route.name == 'orderNow' && !$q.screen.gt.xs" style="height:64px" class="text-center">
+            <q-btn flat icon="home" @click="$router.push({path:'/'})" round></q-btn>
+            <q-separator />
+            <!-- Checkout with cart -->
+            <q-expansion-item
+              expand-separator
+              label="Ver Detalles de la compra"
+              @click="openOrderNowModal"
               class="full-width q-pl-none"
               header-class="text-secondary"
             >
@@ -42,7 +59,7 @@
     <product-left-drawer v-model="openProductLeftDrawer"/>
     <home-left-drawer v-model="openMenuLeftDrawer"/>
     <cart-left-drawer v-model="openCartLeftDrawer" />
-
+    <order-now-modal ref="orderNowModal"></order-now-modal>
 
     <q-page-container>
       <router-view @openCartDrawerFromPage="openCartDrawerFromPage"/>
@@ -95,10 +112,13 @@ import pathAlias from 'src/router/pathAlias/pathAliasEs.js'
 import mapCategories from 'src/mixins/mapCategories.js'
 import mapInternalSections from 'src/mixins/mapInternalSections.js'
 import mapProducts from 'src/mixins/mapProducts.js'
+import mapCart from 'src/mixins/mapCart.js'
 //import mapEvents from 'src/mixins/mapEvents.js'
 import mapExtra from 'src/mixins/mapExtra.js'
 
+//Drawers
 import CartLeftDrawer from 'components/cart/cartLeftDrawer.vue'
+import OrderNowModal from 'src/pages/orderNowModal'
 
 export default {
     data () {
@@ -123,7 +143,10 @@ export default {
     let selectedCategory
     let selectedSubCategory
     let selectedProduct
-    if(currentRoute.name != 'productsBySubcategory' && currentRoute.name != 'productsByCategory' && currentRoute.name != 'productScoped' && currentRoute.name != 'checkoutAndPay'){
+    if(currentRoute.name == 'orderNow' || currentRoute.name == 'cartCheckout'){
+      redirect({path:'/'})
+    }
+    if(currentRoute.name != 'productsBySubcategory' && currentRoute.name != 'productsByCategory' && currentRoute.name != 'productScoped'){
         selectedSection = allInternalSections.find(section=>{
             return section.path == currentRoute.name
         })
@@ -170,19 +193,25 @@ export default {
       console.log(this.contact)
       console.log(this.socialNetworks)
     },
-    mixins: [mapCategories, mapInternalSections, mapProducts, mapExtra],
+    mixins: [mapCategories, mapInternalSections, mapProducts, mapExtra, mapCart],
     methods:{
       openCartDrawerFromPage(){
         this.openCartLeftDrawer = true
       },
       redirectToSocial(link){
         this.$router.push({ redirect: window.location.href = link });
+      },
+      openOrderNowModal(){
+          this.$nextTick(_ => {
+              this.$refs["orderNowModal"].showOrderNowModal(this.cartOrderNow)
+          });
       }
     },
     components:{
         ProductLeftDrawer,
         HomeLeftDrawer,
-        CartLeftDrawer
+        CartLeftDrawer,
+        OrderNowModal
     }
 }
 </script>

@@ -46,3 +46,7 @@ export function AddOneQuantitySelected(state,product) {
     state.cartProducts[indexOfProductToModify].quantitySelected = product.quantitySelected + 1
     state.cartProducts[indexOfProductToModify].partialPrice = state.cartProducts[indexOfProductToModify].quantitySelected * state.cartProducts[indexOfProductToModify].price
 }
+
+export function PushCartOrderNow(state,product) {
+    state.cartOrderNow = product
+}

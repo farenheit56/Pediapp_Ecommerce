@@ -16,13 +16,15 @@ import {
           'PushCartProduct',
           'DeleteProduct',
           'AddOneQuantitySelected',
-          'RemoveOneQuantitySelected'
+          'RemoveOneQuantitySelected',
+          'PushCartOrderNow'
 
       ]),
     },
     computed: {
       ...mapState('cart', [
         'cartProducts',
+        'cartOrderNow'
       ])
     }
   };

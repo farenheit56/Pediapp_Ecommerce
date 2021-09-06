@@ -4,7 +4,7 @@ export function someAction (/* context */) {
 }
 
 export function actionProducts({commit}) {
-    return axios.get('https://admin.pediapp.com.ar/api/products').then(({data})=>{
+    return axios.get('https://admin.pediapp.com.ar/api/products/activeProducts').then(({data})=>{
         commit('SetProducts', data )
     })
 }

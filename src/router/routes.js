@@ -42,6 +42,8 @@ const makeRoutes = (internalSectionsData) => {
   
   //Push PayAndCheckOut Route
   routes[0].children.push({path:'/checkout', name:'cartCheckout', component: ()=> import(`pages/CartCheckout.vue`)})
+  //Push OrderNow Route
+  routes[0].children.push({path:'/pediya', name:'orderNow', component: ()=> import(`pages/CartCheckout.vue`)})
   return routes
 }
 

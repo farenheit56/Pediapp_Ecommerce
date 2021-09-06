@@ -9,13 +9,26 @@
                 </div>
                 <div class="col-xs-12 col-sm-11 col-md-9 col-lg-9">
                     <div class= "row">
-                        <div v-for="(product, index) in productFilteredList" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 q-pa-sm q-pa-sm">
+                        <div v-for="(product, index) in productFilteredList.slice((ElementosPorPagina * current) - ElementosPorPagina , (ElementosPorPagina * current))" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 q-pa-sm q-pa-sm">
                             <card-product @openCartDrawerFromPage="openCartDrawerFromPage" v-if="products" :data="product" />
                         </div>
                     </div>
                 </div>
                 <div class="col q-pl-none whiteSpace-grid" :class="`${$q.screen.lt.md ? 'hidden': ''}`">
                     <!-- Add WhiteSpace When Screen is Medium or Large -->
+                </div>
+                <div>
+                    <q-pagination
+                        v-model="current"
+                        color="black"
+                        size="11px"
+                        :max="TotalPaginas"
+                        :max-pages="4"
+                        :boundary-numbers="true"
+                        :min="1"
+                        @click="logInConsole"
+                    >
+                    </q-pagination>
                 </div>
             </div>
             <!-- Append extra element when reached certain scroll offset-->
@@ -38,15 +51,39 @@ export default {
     components: { sectionPortrait },
     name: 'PageIndex',    
     data(){
-      return {
-          slide:1,
-          productList: null
+    return {
+        slide:1,
+        productList: null,
+        ElementosPorPagina: 3,
+        TotalPaginas: 1,
+        current:1,
+
       }
     },
     mixins:[mapCategories, mapProducts, mapInternalSections],
+    mounted(){
+        this.CalcularTotalPaginas()
+    },
     methods:{
         openCartDrawerFromPage(){
             this.$emit('openCartDrawerFromPage')
+        },
+        //Pagination Logic
+        CalcularTotalPaginas(){
+            let resto = this.products.length % this.ElementosPorPagina
+            if(resto){
+                this.TotalPaginas = (this.products.length - resto) / this.ElementosPorPagina + 1
+            }else{
+                this.TotalPaginas = this.products.length / this.ElementosPorPagina
+            }
+            
+        },
+        logInConsole(){
+            window.scrollTo({
+            top: 0,
+            left: 270,
+            behavior: 'smooth'
+        });
         }
     },
     computed:{

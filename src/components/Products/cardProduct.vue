@@ -1,8 +1,8 @@
 <template>
-    <q-card class="my-card">
-            <q-img @click="goToProduct" :ratio="1" :src="`https://admin.pediapp.com.ar/images/${data.image_url}`">
-                <q-chip v-if="data.chip" :class="data.chip_class" :color="data.chip_color" :label="data.chip"></q-chip>
-            </q-img>
+    <q-card class="my-card" :class="`${!data.stock ? 'light-dimmed' : ''}` " @click="goToProductWhenDimmed">
+                <q-img @click="goToProduct" :ratio="1" :src="`https://admin.pediapp.com.ar/images/${data.image_url}`" >
+                    <q-chip v-if="data.chip" :class="data.chip_class" :color="data.chip_color" :label="data.chip"></q-chip>
+                </q-img>
 
             <q-card-section class="q-mt-none q-pt-none ">
                 <q-btn
@@ -22,8 +22,9 @@
                     </div>
                 </q-card-section>
             <q-card-section class="q-mt-none q-pt-none col-12">
-                <div @click="goToProduct">
-                <span class="text-h6 col-6">$ {{ data.price }}</span>
+                <div @click="goToProduct" class="row justify-between">
+                <span class="text-h6 ">$ {{ data.price }}</span>
+                <span v-if="!data.stock" class="text-h6 text-red-5">Sin Stock</span>
                 </div>
             </q-card-section>
         </div>
@@ -46,6 +47,11 @@ export default {
           this.SetSelectedProduct(this.data)
           this.$router.push({name:'productScoped', params:{product: this.data.path }})
       },
+      goToProductWhenDimmed(){
+          if(!this.data.stock){
+              this.goToProduct()
+          }
+      },
       addToCart(){
             let cartProductObj= {
                 id: this.data.id,
@@ -66,7 +72,20 @@ export default {
 
 <style lang="scss" scoped>
 .my-card {
-  width: 100%;
-  max-width: 300px;
+    position:relative;
+    width: 100%;
+     max-width: 300px;
 }
+
+.my-img{
+    position:relative;
+    top: 0;
+    bottom: 0;
+    left:0;
+    right:0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-color: rgb(0, 0, 0, 0.9);
+}
+
 </style>

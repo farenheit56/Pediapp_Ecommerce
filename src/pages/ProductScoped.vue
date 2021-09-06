@@ -4,7 +4,7 @@
                 <div class="col-12 text-center text-primary q-mt-sm">
                     <p v-if="selectedProduct" class="text-h5">{{selectedProduct.name}}</p>
                 </div>
-                <div class="col-12 q-pt-md" >
+                <div class="col-12 q-pt-md"  >
                     <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://admin.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
                     </q-img>
                     <!-- <img v-gallery :src="`https://admin.pediapp.com.ar/images/${selectedProduct.image_url}`" /> -->
@@ -18,7 +18,7 @@
                     >
                     <q-carousel-slide :name="1"  >
                     <q-img v-if="selectedProduct" class="text-center align-center" style="max-width: 400px; height: 300px;" :src="`https://admin.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
-                    </q-img>
+                    </q-img>    
                     </q-carousel-slide>
 
 
@@ -53,10 +53,10 @@
                         <q-space></q-space>
                     </div>                    
                 </div> -->
-                <div class="col-6 q-mt-md text-center">
-                    <div class="row full-width q-pl-sm q-pr-sm">
+                <div class="col-6 q-mt-md text-center" >
+                    <div class="row full-width q-pl-sm q-pr-sm " >
                         <div class="col-12 divBorder shadow-1" ref="quantityButon">
-                            <div class="row rowInherit ">
+                            <div class="row rowInherit " >
                                 <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="remove" @click="quantity = (quantity - 1) > 0 ? (quantity - 1) : 0 " ></q-btn>                                
                                 <div class="col-6 text-center q-mt-sm text-weight-light" :value="quantity" > {{quantity}}</div>                                
                                 <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="add" @click="quantity= quantity + 1" > </q-btn>                                
@@ -65,15 +65,19 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="row item-center">
+                    <div class="row item-center " :class="!selectedProduct.stock? 'light-dimmed': '' ">
                         <q-space/>
-                        <div class="col-6 q-ma-sm q-pt-sm" ref="quantityButon">
+                        <div class="col-2 q-ma-sm q-pt-sm" ref="quantityButon"  >  <!-- Dimmed cuando no hay stock -->
                             <q-btn color="secondary" icon-right="add_shopping_cart" @click="addToCart"  />
+                        </div>
+                        <q-space></q-space>
+                        <div class="col-2 q-ml-sm q-ma-sm q-pt-sm" ref="quantityButon" >  <!-- Dimmed cuando no hay stock -->
+                            <q-btn color="secondary" icon-right="fas fa-truck" @click="orderNow" />
                         </div>
                         <q-space/>
                     </div>
                 </div>
-                                <div class="col-12 q-pt-md text-primary ">
+                    <div class="col-12 q-pt-md text-primary ">
                     <q-separator />
                     <div class=" h-5 q-pa-none q-ma-none q-pt-sm text-weight-medium"> Descripción</div>                    
                 </div>      
@@ -82,34 +86,22 @@
                     <div v-if="selectedProduct" class="text-h7">{{selectedProduct.description}}</div>
                     
                 </div>
-<!--                 <div class="col-12 q-pa-md">
-                    <q-carousel
-                    v-if="relatedProductByCatAndSubCat"
-                    height="200px"
-                    swipeable
-                    animated
-                    v-model="slide"
-                    infinite
-                    >
-                    <q-carousel-slide v-for="(product,index) in relatedProductByCatAndSubCat" :key="index" :name="index+1" :img-src="`https://admin.pediapp.com.ar/images/${product.image_url}`">
-                        </q-carousel-slide>
-                    </q-carousel>
-                </div> -->
-<!--                 <div class="col-xs-12 col-sm-11 col-md-9 col-lg-9">
-                    <div class= "row">
-                        <div v-for="(product, index) in productFilteredList" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 q-pa-sm q-pa-sm">
-                            <card-product v-if="products" :data="product" />
-                        </div>
-                    </div>
-                </div> -->
+
+                <div v-if="!selectedProduct.stock" class="text-h5 text-red-7 q-mt-md">Sin Stock</div>
+                <q-separator></q-separator>
+                    <div class="text-h6 q-mt-md text-primary text-center q-mb-sm">Productos Relacionados</div>
+                <q-separator></q-separator>
             </div>
+            <carrousel>
+            </carrousel>
   </q-page>
 </template>
-
 
 <script>
 import mapProducts from 'src/mixins/mapProducts'
 import mapCart from 'src/mixins/mapCart'
+import Carrousel from 'src/components/carrousel/carrousel.vue'
+
 export default {
     name:'productScoped',
     mixins:[mapProducts, mapCart],
@@ -147,7 +139,23 @@ export default {
             }
             this.PushCartProduct(cartProductObj)
             this.$emit('openCartDrawerFromPage')
-        }
+        },
+        orderNow(){
+                let cartProductObj= {
+                id: this.selectedProduct.id,
+                name: this.selectedProduct.name,
+                description:this.selectedProduct.description,
+                quantitySelected: +this.quantity,
+                price: this.selectedProduct.price,
+                image_url: this.selectedProduct.image_url
+            }
+            this.PushCartOrderNow(cartProductObj)
+
+            //Go to Checkout.
+            this.$router.push({name:'orderNow'})
+
+        },
+
     },
     computed: {
         relatedProductByCatAndSubCat(){
@@ -164,11 +172,12 @@ export default {
             }
             return relatedArray
         }
+    },
+    components:{
+        Carrousel
     }
-
 }
 </script>
-
 <style lang="scss" scoped>
 
 .divBorder{
