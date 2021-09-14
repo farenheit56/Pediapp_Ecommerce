@@ -3,7 +3,7 @@
     <q-scroll-area class="fit">
         <q-list padding class="menu-list">
             <q-item >
-                <q-item-section clickable @click="goToSection('/')">
+                <q-item-section clickable @click="goToSection('productos')">
                 <q-item-label>Todos los Productos</q-item-label>
                 </q-item-section>
             </q-item>
@@ -60,6 +60,8 @@ export default {
           return section.path == sectionPath
         })
             this.SetSelectedInternalSection(sectionToBeSelected)
+            this.SetSelectedCategory(null)
+            this.SetSelectedSubCategory(null)
             this.$router.push({ name: sectionPath })
       },
     }
