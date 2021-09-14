@@ -1,6 +1,6 @@
 <template>
     <q-card class="my-card" :class="`${!data.stock ? 'light-dimmed' : ''}` " @click="goToProductWhenDimmed">
-                <q-img @click="goToProduct" :ratio="1" :src="`https://admin.pediapp.com.ar/images/${data.image_url}`" >
+                <q-img @click="goToProduct" :ratio="1" :src="`https://admin.pediapp.com.ar/images/${data.image_url}`" contain >
                     <q-chip v-if="data.chip" :class="data.chip_class" :color="data.chip_color" :label="data.chip"></q-chip>
                 </q-img>
 

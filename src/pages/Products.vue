@@ -1,40 +1,44 @@
 <template>
     <q-page class="q-pa-sm">
-            <div class= "row full-width q-col-gutter-sm q-pr-sm" :class="`${$q.screen.lt.md ? 'justify-center': ''}`">
+            <div class= "row full-width q-col-gutter-sm q-pr-sm" :class="`${!$q.screen.gt.xs ? 'justify-center': ''}`">
                 <div class="col-12">
                     <section-portrait/>
                 </div>
-                <div class="col whiteSpace-grid" :class="`${$q.screen.lt.md ? 'hidden': ''}`">
-                    <!-- Add WhiteSpace When Screen is Medium or Large -->
+                <div class="col-3" style="min-height:600px" :class="`${!$q.screen.gt.xs ? 'hidden': ''}`">
+                    <product-drawer-desktop></product-drawer-desktop>
                 </div>
-                <div class="col-xs-12 col-sm-11 col-md-9 col-lg-9">
+
+                <div class="col-xs-12 col-sm-11 col-md-8 col-lg-8">
                     <div class= "row">
                         <div v-for="(product, index) in productFilteredList.slice((ElementosPorPagina * current) - ElementosPorPagina , (ElementosPorPagina * current))" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 q-pa-sm q-pa-sm">
                             <card-product @openCartDrawerFromPage="openCartDrawerFromPage" v-if="products" :data="product" />
                         </div>
                     </div>
                 </div>
-                <div class="col q-pl-none whiteSpace-grid" :class="`${$q.screen.lt.md ? 'hidden': ''}`">
+                <div class="col q-pl-none " :class="`${!$q.screen.gt.xs ? 'hidden': ''}`">
                     <!-- Add WhiteSpace When Screen is Medium or Large -->
                 </div>
-                <div>
-                    <q-pagination
-                        v-model="current"
-                        color="black"
-                        size="11px"
-                        :max="TotalPaginas"
-                        :max-pages="4"
-                        :boundary-numbers="true"
-                        :min="1"
-                        @click="logInConsole"
-                    >
-                    </q-pagination>
+                <div class="col-12 q-mt-sm q-mb-sm">
+                    <div class="row justify-center">
+                        <q-pagination
+                            v-model="current"
+                            color="black"
+                            size="11px"
+                            :max="TotalPaginas"
+                            :max-pages="4"
+                            :boundary-numbers="true"
+                            :min="1"
+                            @click="logInConsole"
+                        >
+                        </q-pagination>
+                    </div>
                 </div>
             </div>
             <!-- Append extra element when reached certain scroll offset-->
 <!--             <q-page-scroller expand position="top" :scroll-offset="250" :offset="[0, 0]">
                 <div class="bg-grey full-width text-center">Up</div>
             </q-page-scroller> -->
+
   </q-page>
 </template>
 
@@ -46,6 +50,7 @@ import sectionPortrait from '../components/reusable/sectionPortrait.vue'
 import mapCategories from 'src/mixins/mapCategories.js'
 import mapInternalSections from 'src/mixins/mapInternalSections.js'
 import mapProducts from 'src/mixins/mapProducts.js'
+import ProductDrawerDesktop from 'components/Products/productDrawerDesktop.vue'
 
 export default {
     components: { sectionPortrait },
@@ -54,7 +59,7 @@ export default {
     return {
         slide:1,
         productList: null,
-        ElementosPorPagina: 3,
+        ElementosPorPagina: 9,
         TotalPaginas: 1,
         current:1,
 
@@ -122,11 +127,12 @@ export default {
     components:{
         cardProduct,
         sectionPortrait,
+        ProductDrawerDesktop
     }
 }
 </script>
 
-<style scoped>
+<style Product, ProductDrawerDesktopLeftDrawerscoped>
 /* add grid properties to debug responsive behaviour */
 .slider-grid {
     background: #f59494;

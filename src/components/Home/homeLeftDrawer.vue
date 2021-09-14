@@ -1,5 +1,5 @@
 <template>
-    <q-drawer show-if-above side="left" :width="200" :value="value" @input="$emit('input', $event)" content-class="bg-grey-3"  >
+    <q-drawer side="left" :width="200" :value="value" @input="$emit('input', $event)" content-class="bg-grey-3"  >
         <q-scroll-area class="fit">
             <div style="max-width: 350px;" >
                 <q-list class="menu-list">

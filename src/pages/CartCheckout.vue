@@ -1,6 +1,32 @@
 <template>
     <q-page class="q-pa-sm">
-            <div class= "row full-width q-col-gutter-sm q-pr-sm text-center" :class="`${$q.screen.lt.md ? 'justify-center': ''}`">
+            <!-- Desktop -->
+            <div v-if="$q.screen.gt.xs" class= "row full-width q-col-gutter-sm q-pr-sm text-center justify-center">
+                <q-form ref="form" class="full-width">
+                    <div class="col-12 q-mt-md text-h6 text-primary">
+                        Datos de contacto
+                    </div>
+                    <div class="row justify-center">
+                        <q-input autofocus v-model="customer.name" @input="resetVal" outlined label="Nombre" class="col-8 q-mt-md text-h6 text-primary" lazy-rules="ondemand" :rules="[val=> !!val || 'Campo Obligatorio']" ref="nameField">
+                        </q-input>
+                        <q-input outlined v-model="customer.address" label="Dirección Completa" class="col-8 q-mt-md q-pb-sm text-h6 text-primary">
+                        </q-input>
+                        <q-input outlined v-model="customer.postalCode" label="C.P" class="col-8 q-mt-lg text-h6 text-primary">
+                        </q-input>    
+                    </div>                
+
+
+                    <div class="col-12">
+                    </div>
+
+                </q-form>
+                <div class="col-12 q-mt-xl q-mb-lg" >
+                    <q-btn v-if="$route.name == 'cartCheckout' " color="secondary" icon-right="shopping_cart" class=" shadow-2" label="FINALIZAR COMPRA"  @click="sendOrderToWhatsapp" />
+                    <q-btn v-if="$route.name == 'orderNow' " color="secondary" icon-right="shopping_cart" class=" shadow-2" label="FINALIZAR COMPRA"  @click="sendOrderNowToWhatsapp" />
+                </div>    
+            </div>       
+            <!-- Mobile -->
+            <div v-if="!$q.screen.gt.xs" class= "row full-width q-col-gutter-sm q-pr-sm text-center justify-center">
                 <q-form ref="form">
                     <div class="col-12 q-mt-md text-h6 text-primary">
                         Datos de contacto

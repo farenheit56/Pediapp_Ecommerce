@@ -6,7 +6,7 @@
         @input="$emit('input', $event)"
         side="left"
         bordered
-        show-if-above
+
     >
 <!--         <q-scroll-area class="fit">
             <q-list>
@@ -67,13 +67,16 @@ export default {
     mixins:[mapCategories, mapInternalSections],
     methods:{
         goToProductsFilteredBySubCat(category,subcategory){
+            //E.g, when comming from another internal section and going to product page. Need to set Product as selectedSection. That way
+            //information such as image, and text that belongs to Product Section is set properly.
+            if(!this.selectedInternalSection || (this.selectedInternalSection && this.selectedInternalSection.path != 'productos')){
+                let scopedInternalSection = this.internalSections.find(section=> section.path == 'productos')
+                this.SetSelectedInternalSection(scopedInternalSection)
+            }
             if(subcategory){
                 this.SetSelectedCategory(category)
                 this.SetSelectedSubCategory(subcategory)
-                if(!this.selectedInternalSection){
-                    let scopedInternalSection = this.internalSections.find(section=> section.path == 'productos')
-                    this.SetSelectedInternalSection(scopedInternalSection)
-                }
+
                 this.$router.push({ name: 'productsBySubcategory', params: { category: category.path , subcategory:subcategory.path } })
             }else{
                 this.SetSelectedCategory(category)

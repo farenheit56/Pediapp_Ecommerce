@@ -1,5 +1,5 @@
 <template>
-    <q-drawer show-if-above side="right" :width="280" :value="value" @input="$emit('input', $event)">
+    <q-drawer auto-close overlay side="right" :width="280" :value="value" @input="$emit('input', $event) ">
             <div style="max-width: 350px; height:100%">
                 <q-card class="bg-grey-1 justify-end " style="max-width: 350px; height:100%">
                     <q-card-section class="text-center text-h6 text-primary bg-grey-2" style="box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.05)">
