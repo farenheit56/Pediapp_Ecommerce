@@ -220,6 +220,7 @@ import mapProducts from 'src/mixins/mapProducts.js'
 import mapCart from 'src/mixins/mapCart.js'
 //import mapEvents from 'src/mixins/mapEvents.js'
 import mapExtra from 'src/mixins/mapExtra.js'
+import mapHome from 'src/mixins/mapHome.js'
 
 //Drawers
 import CartLeftDrawer from 'components/cart/cartLeftDrawer.vue'
@@ -297,9 +298,10 @@ export default {
       console.log(this.products,'products')
       console.log(this.contact,'contact info')
       console.log(this.socialNetworks,'social networks')
+      console.log(this.home,'Home')
       console.log('---------------')
     },
-    mixins: [mapCategories, mapInternalSections, mapProducts, mapExtra, mapCart],
+    mixins: [mapCategories, mapInternalSections, mapProducts, mapExtra, mapCart,mapHome],
     methods:{
       openCartDrawerFromPage(){
         this.openCartLeftDrawer = true

@@ -44,6 +44,7 @@ export default {
   mixins:[mapCategories,mapInternalSections,mapProducts, mapCart],
   methods:{
       goToProduct(){
+          console.log(this.data)
           this.SetSelectedProduct(this.data)
           this.$router.push({name:'productScoped', params:{product: this.data.path }})
       },

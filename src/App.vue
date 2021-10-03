@@ -23,6 +23,7 @@ export default {
       store.dispatch('products/actionProducts'),
       store.dispatch('extra/actionContact'),
       store.dispatch('extra/actionSocialNetworks'),
+      store.dispatch('home/actionHome'),
       ])
       
     },

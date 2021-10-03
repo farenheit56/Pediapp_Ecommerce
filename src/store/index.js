@@ -7,6 +7,7 @@ import products from './products'
 import cart from './cart'
 import events from './events'
 import extra from './extra'
+import home from './home'
 
 Vue.use(Vuex)
 
@@ -27,7 +28,8 @@ export default function (/* { ssrContext } */) {
         products,
         cart,
         events,
-        extra
+        extra,
+        home
     },
 
     // enable strict mode (adds overhead!)
