@@ -2,13 +2,24 @@
     <q-page class="q-pa-sm">
 
             <!-- Desktop -->
-            <div v-if="$q.screen.gt.sm" class= "row full-width text-center justify-center">
+            <div v-if="$q.screen.gt.xs" class= "row full-width text-center justify-center">
                 <div class="col-12 text-center text-primary q-mt-sm">
                     <p v-if="selectedProduct" class="text-h5">{{selectedProduct.name}}</p>
                 </div>
                 <div class="col-12 q-pt-md"  >
-                    <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://admin.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
-                    </q-img>
+<!--                         <q-carousel
+                            height="200px"
+                            swipeable
+                            animated
+                            v-model="slide"
+                            thumbnails
+                            infinite
+                            >
+                             <q-carousel-slide :name="1" :img-src="`https://admin.pediapp.com.ar/images/${selectedProduct.image_url}`" ></q-carousel-slide>
+                        </q-carousel> -->
+                        <slider></slider>
+<!--                     <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://admin.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
+                    </q-img> -->
                 </div>
                 <div class="col-12 text-center q-pt-md q-mb-lg">
                     <div class="row full-width justify-center ">
@@ -57,7 +68,7 @@
             </div>
         
                     <!-- Mobile -->
-            <div v-if="!$q.screen.gt.sm" class= "row full-width justify-center">
+            <div v-if="!$q.screen.gt.xs" class= "row full-width justify-center">
                 <div class="col-12 text-center text-primary q-mt-sm">
                     <p v-if="selectedProduct" class="text-h5">{{selectedProduct.name}}</p>
                 </div>
@@ -122,6 +133,7 @@
 import mapProducts from 'src/mixins/mapProducts'
 import mapCart from 'src/mixins/mapCart'
 import Carrousel from 'src/components/carrousel/carrousel.vue'
+import Slider from 'src/components/Products/slider.vue'
 
 export default {
     name:'productScoped',
@@ -195,7 +207,8 @@ export default {
         }
     },
     components:{
-        Carrousel
+        Carrousel,
+        Slider
     }
 }
 
