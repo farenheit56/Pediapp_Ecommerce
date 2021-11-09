@@ -2,82 +2,53 @@
     <q-page class="q-pa-sm">
 
             <!----------- Desktop----------->
-            <div v-if="$q.screen.gt.xs" class= "row full-width q-pr-sm text-center justify-center">
-                    <div class="col-7 q-pa-none q-ma-none"  >
-                        <div class="row" style="height: 350px">
-                            <div class="col-12">
+            <div v-if="$q.screen.gt.xs" >
+                <div class="row bg-red full-width "  style="height:44vw"><!-- style="height:30em;width:30em" -->
+                    <div class="col-1  bg-white">                        
+                    </div>
+                    <div class="col-7  bg-blue">
+                        <div class="row full-width justify-center items-center" style="height:44vw">    
+                            <div class="bg-grey col-10" style="height:95%">
                                 <slider-home/>
                             </div>
-                        </div>
+                        </div>                          
                     </div>
-                    <div class="col-5">
-                        <div class="row" style="height: 350px">
-                            <div class="col-12 q-mb-sm">
+                    <div class="col-3  bg-orange"  >
+                        <div class="row full-width justify-center items-center" style="height:22vw">
+                            <div class="bg-grey col-10" style="height:90%">
                                 <banner :bannerNumber="1"></banner>
                             </div>
-                            <div class="col-12">
+                        </div>
+                        <div class="row full-width justify-center items-center" style="height:22vw">
+                            <div class="bg-grey col-10" style="height:90%">
                                 <banner :bannerNumber="2"></banner>
                             </div>
-                        </div>
-                        
+                        </div>                        
                     </div>
-<!--                     <div class="row">
-                        <q-space></q-space>
-                        <div class="col-8 q-pt-sm q-ml-sm text-primary">
-                            <div v-if="home" class="text-h7 text-primary q-mt-lg">{{home.description}}</div>
-                        </div>
-                        <q-space></q-space>
-                    </div> -->
-                        
-                    <div class="col q-pl-none whiteSpace-grid">
-                        <!-- Add WhiteSpace When Screen is Medium or Large -->
+                    <div class="col-1  bg-white">                        
                     </div>
-                    <!-- Desktop carrousel -->
-                    <div class="col-12 q-mt-lg text-h6 text-primary">
-                        Productos Destacados
+                </div>
+                <q-separator></q-separator>
+                <div class="row bg-red full-width"  style="height:22vw">
+                    <div class="col-1  bg-white">                        
                     </div>
-                    <carrousel></carrousel>
-
-                    <!-- Imagen Soporte, Si la quieren, esta. Pero no tengo relevado donde ponerla -->
-                    <div class="col-9 q-pt-sm q-mt-md q-ml-sm text-primary">
-                        <div class="row" style="height: 150px">
-                            <div class="col-12">
-                                <q-card class="q-ml-sm" :style="`height: 99%; width: 98%`">
-                                    <q-carousel-slide :name="1" :img-src="`https://admin.pediapp.com.ar/images/${home.support_image_url}`" contain >
-                                    </q-carousel-slide>
-                                </q-card>
+                    <div class="col-5  bg-blue">
+                        <div class="row full-width justify-end items-center q-mr-sm" style="height:22vw">    
+                            <div class="bg-grey col-9 q-mr-sm" style="height:95%">
+                                <banner :bannerNumber="3"></banner>
                             </div>
-                        </div>
+                        </div>                          
                     </div>
-        </div>
-
-        <div v-if="!$q.screen.gt.xs" class= "row full-width q-pr-sm text-center justify-center">
-            <div class="col-12 q-pa-none q-ma-none"  >
-                <div class="row" style="height: 350px">
-                    <div class="col-12">
-                        <slider-home/>
+                    <div class="col-5 bg-blue">
+                        <div class="row full-width justify-start items-center" style="height:22vw">    
+                            <div class="bg-grey col-9 q-ml-sm"  style="height:95%">
+                                <banner :bannerNumber="3"></banner>
+                            </div>
+                        </div>                          
                     </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="row q-mt-sm" style="height: 350px">
-                    <div class="col-6">
-                        <banner :bannerNumber="1"></banner>
-                    </div>
-                    <div class="col-6">
-                        <banner :bannerNumber="2"></banner>
+                    <div class="col-1  bg-white">                        
                     </div>
                 </div>
-                
-            </div>
-            <div class="col q-pl-none whiteSpace-grid">
-                <!-- Add WhiteSpace When Screen is Medium or Large -->
-            </div>
-            <!-- Desktop carrousel -->
-            <div class="col-12 q-mt-lg text-h6 text-primary">
-                Productos Destacados
-            </div>
-            <carrousel></carrousel>
 
             <!-- Imagen Soporte, Si la quieren, esta. Pero no tengo relevado donde ponerla -->
             <div class="col-9 q-pt-sm q-mt-md q-ml-sm text-primary">
