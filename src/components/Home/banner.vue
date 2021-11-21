@@ -1,26 +1,26 @@
 <template>
 <!--     <q-card :style="`height: 100%; width: 100%`">
-        <q-carousel-slide v-if="bannerNumber == 1" :name="1" :img-src="`https://admin.pediapp.com.ar/images/${home.banner_image_1_url}`" >
+        <q-carousel-slide v-if="bannerNumber == 1" :name="1" :img-src="`https://api.pediapp.com.ar/images/${home.banner_image_1_url}`" >
         </q-carousel-slide>
-        <q-carousel-slide v-if="bannerNumber == 2" :name="1" :img-src="`https://admin.pediapp.com.ar/images/${home.banner_image_2_url}`" >
+        <q-carousel-slide v-if="bannerNumber == 2" :name="1" :img-src="`https://api.pediapp.com.ar/images/${home.banner_image_2_url}`" >
         </q-carousel-slide>
     </q-card> -->
     <q-card  :style="`height: 100%; width: 100%`">
         <q-img        
         v-if="bannerNumber == 1"   
-        :src="`https://admin.pediapp.com.ar/images/${home.banner_image_1_url}`"
+        :src="`https://api.pediapp.com.ar/images/${home.banner_image_1_url}`"
         style="width: 100%; height: 100%;"
         contain
         />
         <q-img    
         v-if="bannerNumber == 2"     
-        :src="`https://admin.pediapp.com.ar/images/${home.banner_image_2_url}`"
+        :src="`https://api.pediapp.com.ar/images/${home.banner_image_2_url}`"
         style="width: 100%; height: 100%;"
         contain
         />
         <q-img    
         v-if="bannerNumber == 3"     
-        :src="`https://admin.pediapp.com.ar/images/${home.support_image_url}`"
+        :src="`https://api.pediapp.com.ar/images/${home.support_image_url}`"
         style="width: 100%; height: 100%;"
         contain
         />

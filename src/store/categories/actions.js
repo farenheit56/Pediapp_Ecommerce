@@ -4,13 +4,13 @@ export function someAction (/* context */) {
 }
 
 export function actionCategories({commit}) {
-    return axios.get('https://admin.pediapp.com.ar/api/categories').then(({data})=>{
+    return axios.get('https://api.pediapp.com.ar/api/categories').then(({data})=>{
         commit('SetCategories', data )
     })
 }
 
 export function actionSubCategories({commit}) {
-    return axios.get('https://admin.pediapp.com.ar/api/subcategories').then(({data})=>{
+    return axios.get('https://api.pediapp.com.ar/api/subcategories').then(({data})=>{
         commit('SetSubCategories', data )
     })
 }

@@ -15,7 +15,7 @@
                         <q-card-section class="col-3 flex flex-center q-pa-sm">
                             <q-img  
                                 class="rounded-borders"
-                                :src="`https://admin.pediapp.com.ar/images/${product.image_url}`"
+                                :src="`https://api.pediapp.com.ar/images/${product.image_url}`"
                                 :ratio="1"
                                 contain                            
                             />

@@ -36,7 +36,7 @@
                         <div class="row" style="height: 150px">
                             <div class="col-12">
                                 <q-card class="q-ml-sm" :style="`height: 99%; width: 98%`">
-                                    <q-carousel-slide :name="1" :img-src="`https://admin.pediapp.com.ar/images/${home.support_image_url}`" contain >
+                                    <q-carousel-slide :name="1" :img-src="`https://api.pediapp.com.ar/images/${home.support_image_url}`" contain >
                                     </q-carousel-slide>
                                 </q-card>
                             </div>
@@ -77,7 +77,7 @@
                 <div class="row" style="height: 150px">
                     <div class="col-12">
                         <q-card class="q-ml-sm" :style="`height: 99%; width: 98%`">
-                            <q-carousel-slide :name="1" :img-src="`https://admin.pediapp.com.ar/images/${home.support_image_url}`" contain >
+                            <q-carousel-slide :name="1" :img-src="`https://api.pediapp.com.ar/images/${home.support_image_url}`" contain >
                             </q-carousel-slide>
                         </q-card>
                     </div>

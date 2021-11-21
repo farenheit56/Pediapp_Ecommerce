@@ -1,6 +1,6 @@
 <template>
     <q-card :style="`height: 100%; width: 100%`">
-        <q-carousel-slide :name="1" :img-src="`https://admin.pediapp.com.ar/images/${home.slider_url}`" >
+        <q-carousel-slide :name="1" :img-src="`https://api.pediapp.com.ar/images/${home.slider_url}`" >
             <div class="q-ma-md absolute-top-left">
                 <!-- <div class="text-h7">{{home.description}}</div> PARA AGREGAR DESCRIPCION QUE VIENE DEL ADMIN-->
             </div>

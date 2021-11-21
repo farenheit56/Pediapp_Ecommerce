@@ -17,7 +17,7 @@
                     </div>
 
                         <div class="col-12 q-pt-sm q-mt-md q-ml-sm text-primary">
-                            <q-img v-if="selectedInternalSection.support_image_url" :src="`https://admin.pediapp.com.ar/images/${selectedInternalSection.support_image_url}`" class="q-mt-md  shadow-1" style="max-width: 400px;" contain>
+                            <q-img v-if="selectedInternalSection.support_image_url" :src="`https://api.pediapp.com.ar/images/${selectedInternalSection.support_image_url}`" class="q-mt-md  shadow-1" style="max-width: 400px;" contain>
                             </q-img>
                         </div>
                         
@@ -35,7 +35,7 @@
                         <div v-if="selectedInternalSection" class="text-h7 q-mt-lg">{{selectedInternalSection.description}}</div>
                     </div>
                     <div class="col-12 q-pt-sm q-ml-sm text-primary text-left">
-                        <q-img v-if="selectedInternalSection.support_image_url" :src="`https://admin.pediapp.com.ar/images/${selectedInternalSection.support_image_url}`" class="q-mt-md " style="max-width: 400px; height: 80px;" contain>
+                        <q-img v-if="selectedInternalSection.support_image_url" :src="`https://api.pediapp.com.ar/images/${selectedInternalSection.support_image_url}`" class="q-mt-md " style="max-width: 400px; height: 80px;" contain>
                         </q-img>
                     </div>
             </div>

@@ -15,10 +15,10 @@
                             thumbnails
                             infinite
                             >
-                             <q-carousel-slide :name="1" :img-src="`https://admin.pediapp.com.ar/images/${selectedProduct.image_url}`" ></q-carousel-slide>
+                             <q-carousel-slide :name="1" :img-src="`https://api.pediapp.com.ar/images/${selectedProduct.image_url}`" ></q-carousel-slide>
                         </q-carousel> -->
                         <slider></slider>
-<!--                     <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://admin.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
+<!--                     <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://api.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
                     </q-img> -->
                 </div>
                 <div class="col-12 text-center q-pt-md q-mb-lg">
@@ -73,7 +73,7 @@
                     <p v-if="selectedProduct" class="text-h5">{{selectedProduct.name}}</p>
                 </div>
                 <div class="col-12 q-pt-md"  >
-                    <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://admin.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
+                    <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://api.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
                     </q-img>
                 </div>
                 <div class="col-12  q-pt-md ">
@@ -223,7 +223,7 @@ export default {
                 <div class="col-6 text-center text-primary q-mt-sm">
                     <div class="row">
                         <div class="col-12">
-                        <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://admin.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
+                        <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://api.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
                         </q-img>
                         </div>
                     </div>
