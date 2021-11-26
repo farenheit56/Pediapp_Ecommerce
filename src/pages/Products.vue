@@ -10,6 +10,9 @@
 
                 <div class="col-xs-12 col-sm-11 col-md-8 col-lg-8">
                     <div class= "row">
+                        <div class="col-12 q-ml-md q-mt-md q-mb-md">
+                            <categories-tags></categories-tags>
+                        </div>
                         <div v-for="(product, index) in productFilteredList.slice((ElementosPorPagina * current) - ElementosPorPagina , (ElementosPorPagina * current))" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 q-pa-sm q-pa-sm">
                             <card-product @openCartDrawerFromPage="openCartDrawerFromPage" v-if="products" :data="product" />
                         </div>
@@ -45,6 +48,7 @@
 <script>
 import cardProduct from 'components/Products/cardProduct'
 import sectionPortrait from '../components/reusable/sectionPortrait.vue'
+import CategoriesTags from 'components/reusable/categoriesTags'
 
 //Store modules
 import mapCategories from 'src/mixins/mapCategories.js'
@@ -127,7 +131,8 @@ export default {
     components:{
         cardProduct,
         sectionPortrait,
-        ProductDrawerDesktop
+        ProductDrawerDesktop,
+        CategoriesTags
     }
 }
 </script>
