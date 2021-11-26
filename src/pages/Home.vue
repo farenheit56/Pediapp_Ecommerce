@@ -42,7 +42,35 @@
                     <div class="col-5 bg-blue">
                         <div class="row full-width justify-start items-center" style="height:22vw">    
                             <div class="bg-grey col-9 q-ml-sm"  style="height:95%">
-                                <banner :bannerNumber="3"></banner>
+                                <banner :bannerNumber="4"></banner>
+                            </div>
+                        </div>                          
+                    </div>
+                    <div class="col-1  bg-white">                        
+                    </div>
+                </div>
+                <q-separator></q-separator>
+                <div class="row bg-red full-width justify-center"  style="height:15vw">
+                    <div class="col-1  bg-white">                        
+                    </div>
+                    <div class="col-3  bg-blue">
+                        <div class="row full-width justify-end items-center q-mr-sm" style="height:15vw">    
+                            <div class="bg-grey col-9 q-mr-sm" style="height:95%">
+                                <info-extra :bannerNumber="1"></info-extra>
+                            </div>
+                        </div>                          
+                    </div>
+                    <div class="col-3 bg-blue">
+                        <div class="row full-width justify-center items-center" style="height:15vw">    
+                            <div class="bg-grey col-9 q-ml-sm"  style="height:95%">
+                                <info-extra :bannerNumber="2"></info-extra>
+                            </div>
+                        </div>                          
+                    </div>
+                    <div class="col-3 bg-blue">
+                        <div class="row full-width justify-start items-center" style="height:15vw">    
+                            <div class="bg-grey col-9 q-ml-sm"  style="height:95%">
+                                <info-extra :bannerNumber="3"></info-extra>
                             </div>
                         </div>                          
                     </div>
@@ -51,7 +79,7 @@
                 </div>
 
             <!-- Imagen Soporte, Si la quieren, esta. Pero no tengo relevado donde ponerla -->
-            <div class="col-9 q-pt-sm q-mt-md q-ml-sm text-primary">
+<!--             <div class="col-9 q-pt-sm q-mt-md q-ml-sm text-primary">
                 <div class="row" style="height: 150px">
                     <div class="col-12">
                         <q-card class="q-ml-sm" :style="`height: 99%; width: 98%`">
@@ -60,7 +88,7 @@
                         </q-card>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </q-page>
 </template>
@@ -72,12 +100,14 @@
 <script>
 import SliderHome from 'src/components/home/sliderHome.vue'
 import Banner from 'src/components/home/banner.vue'
+import InfoExtra from 'src/components/home/infoExtra.vue'
 import mapInternalSections from 'src/mixins/mapInternalSections'
 import mapHome from 'src/mixins/mapHome'
 import mapProducts from 'src/mixins/mapProducts'
 
 //components
 import Carrousel from 'src/components/carrousel/carrousel.vue'
+
 
 export default {
     name: 'GenericSection',
@@ -90,7 +120,8 @@ export default {
     components:{
         Carrousel,
         SliderHome,
-        Banner
+        Banner,
+        InfoExtra
     },
     methods:{
         goToProduct(prod){

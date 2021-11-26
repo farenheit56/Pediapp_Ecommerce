@@ -20,7 +20,13 @@
         />
         <q-img    
         v-if="bannerNumber == 3"     
-        :src="`https://api.pediapp.com.ar/images/${home.support_image_url}`"
+        :src="`https://api.pediapp.com.ar/images/${home.body_banner_image_1_url}`"
+        style="width: 100%; height: 100%;"
+        contain
+        />
+        <q-img    
+        v-if="bannerNumber == 4"     
+        :src="`https://api.pediapp.com.ar/images/${home.body_banner_image_2_url}`"
         style="width: 100%; height: 100%;"
         contain
         />
