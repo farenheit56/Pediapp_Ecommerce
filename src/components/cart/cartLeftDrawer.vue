@@ -44,7 +44,7 @@
                                 </q-card-section>
                                 <q-card-section class="col-3 flex flex-center">
                                     <q-btn icon="delete" v-show="$route.name != 'cartCheckout'" flat round color="primary" @click="DeleteProduct(product)" />
-                                    <div class="text-caption q-mb-xs">${{product.partialPrice}}</div>
+                                    <div class="text-caption q-mb-xs">${{parsePrice(product.partialPrice)}}</div>
                                 </q-card-section>
                             </q-card-section>
                             <q-separator/>
@@ -54,7 +54,7 @@
                         <div class="text-h6 text-center" style="position: absolute; bottom:10px; width:96%">
                             <q-separator color="secondary" class="q-mb-sm "/>
                             <div class="q-mb-md">
-                                Total : <span class="text-secondary">${{GetCartProductsTotalPrice()}}</span>
+                                Total : <span class="text-secondary">${{parsePrice(GetCartProductsTotalPrice())}}</span>
                             </div>
                             <q-separator color="secondary" class="q-mb-xs"/>
                             <div v-show="$route.name != 'cartCheckout' && cartProducts.length != 0" class="row justify-center">
@@ -63,11 +63,6 @@
                         </div>
                     </q-card-actions>
                 </q-card>
-<!--                 <div class="text-h6">
-                    <div class="q-mr-md">
-                        Total : <span class="text-blue">${{GetCartProductsTotalPrice()}}</span>
-                    </div>
-                </div> -->
             </div>
  
     </q-drawer>
@@ -77,11 +72,12 @@
 
 //Store Modules
 import mapCart from 'src/mixins/mapCart'
+import mapHelpers from 'src/mixins/mapHelpers'
 
 export default {
     name: 'homeLeftDrawer',
 
-    mixins:[mapCart],
+    mixins:[mapCart,mapHelpers],
     methods:{
         goToCheckoutAndPay(){
             this.$router.push({name:'cartCheckout'})

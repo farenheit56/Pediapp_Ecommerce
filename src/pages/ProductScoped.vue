@@ -23,8 +23,7 @@
                 </div>
                 <div class="col-12 text-center q-pt-md q-mb-lg">
                     <div class="row full-width justify-center ">
-                        <p v-if="selectedProduct" class="text-h8 text-strike text-red-2 q-ma-none q-mt-sm">  $ {{selectedProduct.price * 0.8}}</p>
-                        <div v-if="selectedProduct" class="text-h5 text-primary q-ml-sm ">$ {{selectedProduct.price}}</div>
+                        <div v-if="selectedProduct" class="text-h5 text-primary q-ml-sm ">$ {{parsePrice(selectedProduct.price)}}</div>
                     </div>
                 </div>
                 <div class="col-3 q-mt-md text-center q-ml-xl" >
@@ -78,8 +77,7 @@
                 </div>
                 <div class="col-12  q-pt-md ">
                     <div class="row full-width ">
-                        <p v-if="selectedProduct" class="text-h8 text-strike text-red-2 q-ma-none q-mt-sm">  $ {{selectedProduct.price * 0.8}}</p>
-                        <div v-if="selectedProduct" class="text-h5 text-primary q-ml-sm ">$ {{selectedProduct.price}}</div>
+                        <div v-if="selectedProduct" class="text-h5 text-primary q-ml-sm ">$ {{parsePrice(selectedProduct.price)}}</div>
                         <q-space></q-space>
                     </div>
 
@@ -132,12 +130,13 @@
 <script>
 import mapProducts from 'src/mixins/mapProducts'
 import mapCart from 'src/mixins/mapCart'
+import mapHelpers from 'src/mixins/mapHelpers'
 import Carrousel from 'src/components/carrousel/carrousel.vue'
 import Slider from 'src/components/Products/slider.vue'
 
 export default {
     name:'productScoped',
-    mixins:[mapProducts, mapCart],
+    mixins:[mapProducts, mapCart,mapHelpers],
     mounted(){
         this.fetchRelatedProducts()
     },

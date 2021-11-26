@@ -34,8 +34,8 @@
                             </div>   -->                                      
                         </q-card-section>
                         <q-card-section class="col-3 flex flex-center">
-                            <div v-if="!$q.screen.gt.xs" class="text-caption q-mb-xs">${{product.price * product.quantitySelected}}</div>
-                            <div v-if="$q.screen.gt.xs" class="text-h6 q-mb-xs">${{product.price * product.quantitySelected}}</div>
+                            <div v-if="!$q.screen.gt.xs" class="text-caption q-mb-xs">${{parsePrice(product.price * product.quantitySelected)}}</div>
+                            <div v-if="$q.screen.gt.xs" class="text-h6 q-mb-xs">${{parsePrice(product.price * product.quantitySelected)}}</div>
                         </q-card-section>
                     </q-card-section>
                     <q-separator/>
@@ -45,9 +45,10 @@
 </template>
 
 <script>
-
+import malHelpers from 'src/mixins/mapHelpers.js'
 export default {
     name:'modalOrderNow',
+    mixins:[malHelpers],
     data(){
         return{
             showModal: false,

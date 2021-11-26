@@ -23,7 +23,7 @@
                 </q-card-section>
             <q-card-section class="q-mt-none q-pt-none col-12">
                 <div @click="goToProduct" class="row justify-between">
-                <span class="text-h6 ">$ {{ data.price }}</span>
+                <span class="text-h6 ">$ {{ parsePrice(data.price) }}</span>
                 <span v-if="!data.stock" class="text-h6 text-red-5">Sin Stock</span>
                 </div>
             </q-card-section>
@@ -37,11 +37,12 @@ import mapCategories from 'src/mixins/mapCategories.js'
 import mapInternalSections from 'src/mixins/mapInternalSections.js'
 import mapProducts from 'src/mixins/mapProducts.js'
 import mapCart from 'src/mixins/mapCart.js'
+import mapHelpers from 'src/mixins/mapHelpers.js'
 
 export default {
   name: "CardProduct",
   props: ['data'],
-  mixins:[mapCategories,mapInternalSections,mapProducts, mapCart],
+  mixins:[mapCategories,mapInternalSections,mapProducts, mapCart,mapHelpers],
   methods:{
       goToProduct(){
           console.log(this.data)
