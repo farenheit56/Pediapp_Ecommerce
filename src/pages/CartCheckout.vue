@@ -100,7 +100,9 @@ export default {
             })
             text += "%0D%0A"+ "------" + "%0D%0A"+ "Precio Total: " + `$ ${this.GetCartProductsTotalPrice()}`
 
-            let link = `https://wa.me/${this.contact[0].phone}?text=${text}`
+            let trimedPhone= this.contact[0].phone.split(' ').join('').split('-').join('')
+            let link = `https://wa.me/${trimedPhone}?text=${text}`
+            //let link = `https://wa.me/${this.contact[0].phone}?text=${text}`
 
             window.open(link, "_blank")
         },
@@ -114,8 +116,10 @@ export default {
             let text = this.customer.name + " ha solicitado enviar un pedido a: " + "%0D%0A"+ `Direccion: ${this.customer.address}` +'%0D%0A' + `C.P: ${this.customer.postalCode}` +"%0D%0A"+ "*(Click en enviar mensaje para que podamos ver su solicitud de compra)*"
             let total_price
             text += "%0D%0A" + "------"+ "%0D%0A"  +  "Detalles del pedido: " + "%0D%0A" + "%0D%0A"+ "Producto: " + this.cartOrderNow.name + "%0D%0A" + " Cantidad: " + `${this.cartOrderNow.quantitySelected}` + "%0D%0A" + "Precio : " + `$ ${this.cartOrderNow.price * this.cartOrderNow.quantitySelected}`
-
-            let link = `https://wa.me/${this.contact[0].phone}?text=${text}`
+            
+            let trimedPhone= this.contact[0].phone.split(' ').join('').split('-').join('')
+            let link = `https://wa.me/${trimedPhone}?text=${text}`
+            //let link = `https://wa.me/${this.contact[0].phone}?text=${text}`
 
             window.open(link, "_blank")
         },
