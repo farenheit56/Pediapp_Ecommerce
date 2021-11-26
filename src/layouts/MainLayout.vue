@@ -129,10 +129,10 @@
 
     <!-- Footer Mobile-->
     <q-footer v-if="!$q.screen.gt.xs" class="bg-grey-1 text-primary">
+      <q-separator class="shadow-1"></q-separator>
       <div class="row text-center">
           <div class="col-12 q-mt-md q-mb-md text-h6 text-bold">Somos Pedi App </div>
       </div>
-      <q-separator class="shadow-1"></q-separator>
       <q-toolbar>
         <q-toolbar-title class="text-center">
           <q-avatar>
@@ -140,19 +140,11 @@
           </q-avatar>
         </q-toolbar-title>
       </q-toolbar>
-      <q-separator class="shadow-1"></q-separator>
-      <div class="row text-center">
-          <div class="col-5 q-ml-md q-mt-md text-h7  q-pa-none q-mb-md ">Nuestras Redes </div>
-          <q-icon class="col-2" size="20px" name="fab fa-facebook"></q-icon>
-          <q-icon class="col-2"  size="20px" name="fab fa-instagram"></q-icon>
-          <q-icon class="col-2"  size="20px" name="fab fa-twitter"></q-icon>
-          <q-space></q-space>
-      </div>
-      <q-separator class="shadow-1"></q-separator>
       <div class="row text-center">
           <div class="col-12  q-mt-md q-mb-sm text-h7 text-bold text-center ">Contacto </div>
-          <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">{{contact[0].address}} </div>
-          <div class="col-12  q-mt-xs q-mb-md  text-caption text-center">{{contact[0].phone}} </div>
+          <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Telefono: {{contact[0].phone}} </div>
+          <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Mail: {{contact[0].email || ''}} </div>
+          <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Dirección: {{contact[0].address}}</div>
       </div>
     </q-footer>
     
@@ -166,11 +158,12 @@
       <div class="col-3">
         <div class="row text-center">
             <div class="col-12  q-mt-md q-mb-sm text-h7 text-bold text-center ">Contacto </div>
-            <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">{{contact[0].address}} </div>
-            <div class="col-12  q-mt-xs q-mb-md  text-caption text-center">{{contact[0].phone}} </div>
+            <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Telefono: {{contact[0].phone}} </div>
+            <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Mail: {{contact[0].email || ''}} </div>
+            <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Dirección: {{contact[0].address}} </div>
         </div>
       </div>
-      <div class="col-3">
+<!--       <div class="col-3">
         <div class="row text-center justify-center">
             <div class="col-12  q-mt-md q-mb-sm text-h7 text-bold text-center ">Nuestras Redes </div>
             <div class="col-12  q-mt-md q-mb-sm text-h7 text-bold text-center "></div>
@@ -180,7 +173,7 @@
             <q-icon class="col-2"  size="20px" name="fab fa-instagram"></q-icon>
             <q-icon class="col-2"  size="20px" name="fab fa-twitter"></q-icon>
         </div>
-      </div>
+      </div> -->
       <div class="col-3">
         <div class="row text-center">
             <div class="col-12  q-mt-md q-mb-sm text-h7 text-bold text-center ">Somos Pedi App </div>
