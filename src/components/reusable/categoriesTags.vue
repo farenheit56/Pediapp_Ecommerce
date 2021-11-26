@@ -1,7 +1,7 @@
 <template>
     <q-breadcrumbs>
       <q-breadcrumbs-el @click="goToProducts" label="Productos" />
-      <q-breadcrumbs-el v-if="selectedCategory && !selectedSubCategory" >{{selectedCategory.name}}</q-breadcrumbs-el>
+      <q-breadcrumbs-el v-if="selectedCategory && !selectedSubCategory" :label="selectedCategory.name" ></q-breadcrumbs-el>
       <q-breadcrumbs-el v-if="selectedSubCategory" @click="goToCategory" :label="selectedCategoryTrunqued" />
       <q-breadcrumbs-el v-if="selectedSubCategory" :label="selectedSubCategoryTrunqued" />
     </q-breadcrumbs>
