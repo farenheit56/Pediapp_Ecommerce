@@ -7,12 +7,13 @@
                         Datos de contacto
                     </div>
                     <div class="row justify-center">
-                        <q-input autofocus v-model="customer.name" @input="resetVal" outlined label="Nombre" class="col-8 q-mt-md text-h6 text-primary" lazy-rules="ondemand" :rules="[val=> !!val || 'Campo Obligatorio']" ref="nameField">
+                        <q-input autofocus v-model="customer.name" @input="resetVal" outlined label="Nombre" class="col-8 q-mt-lg text-h7 text-primary" lazy-rules="ondemand" :rules="[val=> !!val || 'Campo Obligatorio']" ref="nameField">
                         </q-input>
-                        <q-input outlined v-model="customer.address" label="Dirección Completa" class="col-8 q-mt-md q-pb-sm text-h6 text-primary">
+                        <q-select outlined v-model="payement.payementSelected" :options="payement.options" label="Método de pago" class="col-8 q-mt-lg text-h7 text-primary"/>
+                        <q-input outlined v-model="customer.address" label="Dirección Completa" class="col-8 q-mt-lg text-h7 text-primary">
                         </q-input>
-                        <q-input outlined v-model="customer.postalCode" label="C.P" class="col-8 q-mt-lg text-h6 text-primary">
-                        </q-input>    
+                        <q-input outlined v-model="customer.postalCode" label="C.P" class="col-8 q-mt-lg text-h7 text-primary">
+                        </q-input>
                     </div>                
 
 
@@ -33,9 +34,10 @@
                     </div>                
                     <q-input autofocus v-model="customer.name" @input="resetVal" outlined label="Nombre" class="col-12 q-mt-md text-h6 text-primary" lazy-rules="ondemand" :rules="[val=> !!val || 'Campo Obligatorio']" ref="nameField">
                     </q-input>
+                    <q-select outlined v-model="payement.payementSelected" :options="payement.options" label="Método de pago" class="col-12 q-mt-md text-h6 text-primary"/>
                     <q-input outlined v-model="customer.address" label="Dirección Completa" class="col-12 q-mt-md q-pb-sm text-h6 text-primary">
                     </q-input>
-                    <q-input outlined v-model="customer.postalCode" label="C.P" class="col-12 q-mt-lg text-h6 text-primary">
+                    <q-input outlined v-model="customer.postalCode" label="C.P" class="col-12 q-mt-md text-h6 text-primary">
                     </q-input>    
 
                     <div class="col whiteSpace-grid" :class="`${$q.screen.lt.md ? 'hidden': ''}`">
@@ -71,29 +73,33 @@ export default {
             customer: {
                 name: "",
                 address:"",
-                postalCode:""
+                postalCode:"",
             },
+            payement:{
+                payementSelected:null,
+                options:['Efectivo', 'Transferencia', 'Tarjeta de Crédito', 'Mercado Pago']
+            }
         }
     },
     methods: {
-/*         getContactData() {
-            api
-            .get("contact")
-            .then((response) => {
-            this.contact = response.data;
-            })
-            .catch((e) => {
-            console.log("error" + e);
-            });
-        }, */
         sendOrderToWhatsapp() {
             this.$refs.nameField.validate() 
             if(this.$refs.nameField.innerError){
                 return
             }
+            if(!this.customer.address){
+                this.customer.address="No específica"
+            }
+            if(!this.customer.postalCode){
+                this.customer.postalCode="No específica"
+            }
+            let payementMethod= this.payement.payementSelected
+            if(!payementMethod){
+                payementMethod = "No específica"
+            }
             //armo el text basándome en this.order(con un forEach) y this.customer
             //"%0D%0A" es para mandarle un newLine o enter al mensaje de wsp y que quede organizado sin ser choclazo.
-            let text = this.customer.name + " ha solicitado enviar un pedido a: " + "%0D%0A"+ `Direccion: ${this.customer.address}` +'%0D%0A' + `C.P: ${this.customer.postalCode}` +"%0D%0A"+ "*(Click en enviar mensaje para que podamos ver su solicitud de compra)*"
+            let text = this.customer.name + " ha solicitado enviar un pedido a: " + "%0D%0A"+ `Direccion: ${this.customer.address}` +'%0D%0A' + `C.P: ${this.customer.postalCode}` +"%0D%0A"+ `Método de pago: ${payementMethod}` + "%0D%0A"+ "*(Click en enviar mensaje para que podamos ver su solicitud de compra)*"
             let total_price
             this.cartProducts.forEach(order_detail => {
                 text += "%0D%0A" + "------"+ "%0D%0A"  +  "Detalles del pedido: " + "%0D%0A" + "%0D%0A"+ "Producto: " + order_detail.name + "%0D%0A" + " Cantidad: " + `${order_detail.quantitySelected}` + "%0D%0A" + "Precio : " + `$ ${order_detail.partialPrice}`
@@ -111,9 +117,19 @@ export default {
             if(this.$refs.nameField.innerError){
                 return
             }
+            if(!this.customer.address){
+                this.customer.address="No específica"
+            }
+            if(!this.customer.postalCode){
+                this.customer.postalCode="No específica"
+            }
+            let payementMethod= this.payement.payementSelected
+            if(!payementMethod){
+                payementMethod = "No específica"
+            }
             //armo el text basándome en this.order(con un forEach) y this.customer
             //"%0D%0A" es para mandarle un newLine o enter al mensaje de wsp y que quede organizado sin ser choclazo.
-            let text = this.customer.name + " ha solicitado enviar un pedido a: " + "%0D%0A"+ `Direccion: ${this.customer.address}` +'%0D%0A' + `C.P: ${this.customer.postalCode}` +"%0D%0A"+ "*(Click en enviar mensaje para que podamos ver su solicitud de compra)*"
+            let text = this.customer.name + " ha solicitado enviar un pedido a: " + "%0D%0A"+ `Direccion: ${this.customer.address}` +'%0D%0A' + `C.P: ${this.customer.postalCode}` +"%0D%0A"+ `Método de pago: ${payementMethod}` + "%0D%0A"+ "*(Click en enviar mensaje para que podamos ver su solicitud de compra)*"
             let total_price
             text += "%0D%0A" + "------"+ "%0D%0A"  +  "Detalles del pedido: " + "%0D%0A" + "%0D%0A"+ "Producto: " + this.cartOrderNow.name + "%0D%0A" + " Cantidad: " + `${this.cartOrderNow.quantitySelected}` + "%0D%0A" + "Precio : " + `$ ${this.cartOrderNow.price * this.cartOrderNow.quantitySelected}`
             
