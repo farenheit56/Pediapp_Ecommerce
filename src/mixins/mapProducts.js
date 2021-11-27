@@ -14,6 +14,7 @@ import {
       ...mapMutations('products', [
           'SetProducts',
           'SetSelectedProduct',
+          'SetSelectedProductImages',
           'SetRelatedProductByCat',
           'SetRelatedProductBySubCat'
       ]),
@@ -27,6 +28,7 @@ import {
       ...mapState('products', [
         'products',
         'selectedProduct',
+        'selectedProductImages',
         'relatedProductByCat',
         'relatedProductBySubCat'
       ])

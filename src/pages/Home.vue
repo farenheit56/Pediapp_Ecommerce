@@ -120,6 +120,7 @@ export default {
     methods:{
         goToProduct(prod){
           this.SetSelectedProduct(prod)
+          this.SetSelectedProductImages(prod)
           this.$router.push({name:'productScoped', params:{product: prod.path }})
         },
     }

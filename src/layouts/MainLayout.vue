@@ -273,6 +273,7 @@ export default {
           return product.path == currentRoute.params.product
         })
         store.commit('products/SetSelectedProduct', selectedProduct )
+        store.commit('products/SetSelectedProductImages', selectedProduct )
     }
     //------End of route and store initialization handling--------
 

@@ -47,6 +47,7 @@ export default {
       goToProduct(){
           console.log(this.data)
           this.SetSelectedProduct(this.data)
+          this.SetSelectedProductImages(this.data)
           this.$router.push({name:'productScoped', params:{product: this.data.path }})
       },
       goToProductWhenDimmed(){

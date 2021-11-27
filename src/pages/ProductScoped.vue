@@ -5,10 +5,10 @@
             <div v-if="$q.screen.gt.xs" class= "row full-width text-center">
                 <div class="col-1">
                 </div>
-                <div class="col-6">
+                <div v-if="selectedProductImages" class="col-6">
                     <carousel
                         :starting-image="1"
-                        :images="images"
+                        :images="selectedProductImages"
                     ></carousel>
                 </div>
                 <div class="col-4" :class="!$q.screen.gt.md ?'col-5' : 'col-4'">
@@ -141,7 +141,7 @@ export default {
             loadingCat: null,
             loadingSubCat: null,
             quantity: 1,
-            images: [
+/*             images: [
                 {
                     id: '1',
                     big: 'images/p1.jpeg',
@@ -163,7 +163,7 @@ export default {
                     thumb: 'images/p1.jpeg'
                 },
                 
-            ]
+            ] */
         }
     },
     methods:{

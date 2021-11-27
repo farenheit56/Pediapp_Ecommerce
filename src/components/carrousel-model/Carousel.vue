@@ -5,7 +5,7 @@
         </div>
         <div class="row full-width">
             <div class="card-img col-11">
-                <img :src="currentImage" alt="" style="height:30vw"/>
+                <q-img :src="currentImage" alt="" style="height:30vw" contain/>
                 <div class="actions">
                     <span @click="prevImage" class="prev">
                         &#8249;
@@ -22,7 +22,7 @@
                     :class="['thumbnail-image', (activeImage == index) ? 'active' : '']"
                     @click="activateImage(index)"
                 >
-                    <img :src="image.thumb" :style="!$q.screen.gt.md ? 'height:60px': 'height:80px'" />
+                    <img :src="image.thumb" :style="!$q.screen.gt.md ? 'height:60px;width:60px': 'height:80px;width:100px'" />
                 </div>
             </div>
         </div>
