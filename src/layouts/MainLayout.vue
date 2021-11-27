@@ -3,26 +3,6 @@
     <q-header elevated class="bg-white text-grey-8" height-hint="64">
         <!-- Desktop Mode Toolbar -->
        <q-toolbar v-show="$route.name != 'cartCheckout' && $route.name != 'orderNow'" v-if="$q.screen.gt.xs" style="height: 64px">
-<!--           <q-toolbar-title v-if="$q.screen.gt.sm" shrink class="row items-center no-wrap">
-          <q-btn-dropdown
-            flat
-            rounded
-            dense
-            no-wrap
-            color="primary"
-            no-caps
-            no-icon-animation
-            dropdown-icon="esteiconnolovasaencontraraasd"
-            class="q-ml-sm q-px-md"
-            @click="goToSection('/')"
-          >
-            <template v-slot:label>
-              <div class="row items-center no-wrap">
-                <img src="logo-empresa-desktop.svg">
-              </div>
-            </template>
-          </q-btn-dropdown> 
-        </q-toolbar-title> -->
       <q-avatar square style="width: 90px">
         <q-img src="logo-empresa-desktop.svg" contain />
       </q-avatar>
@@ -31,7 +11,7 @@
           <q-btn v-if="$q.screen.gt.xs" flat dense no-wrap color="primary" no-caps class="q-ml-sm q-px-md" :class="!$q.screen.gt.md? 'q-ml-none q-px-sm' : '' " :label="section.title"></q-btn>
         </div>
         <q-space v-if="$q.screen.gt.md" />        
-        <q-btn flat dense no-wrap color="primary" icon="shopping_cart" no-caps class="q-ml-sm q-px-md"   @click="openCartLeftDrawer = !openCartLeftDrawer"></q-btn>
+        <q-btn flat dense no-wrap color="primary" icon="shopping_cart" no-caps class="q-ml-sm q-px-md"   @click="openCartLeftDialog = !openCartLeftDialog"></q-btn>
         <!-- <q-btn v-for="internalSection in internalSections" :key="internalSection.id" :to="internalSection.path" :label="internalSection.title" flat dense no-wrap color="primary" icon="cloud_upload" no-caps class="q-ml-sm q-px-md"></q-btn> -->
        </q-toolbar>
       <!-- Desktop Mode Toolbar (only for CheckOut)-->
@@ -43,7 +23,7 @@
             <q-expansion-item
               expand-separator
               label="Ver Detalles de la compra"
-              @click="openCartLeftDrawer = !openCartLeftDrawer"
+              @click="openCartLeftDialog = !openCartLeftDialog"
               class="full-width q-pl-none"
               header-class="text-secondary"
             >
@@ -115,6 +95,7 @@
     <product-left-drawer v-model="openProductLeftDrawer"/>
     <home-left-drawer v-model="openMenuLeftDrawer"/>
     <cart-left-drawer v-model="openCartLeftDrawer" />
+    <cart-left-dialog v-model="openCartLeftDialog" />
     <order-now-modal ref="orderNowModal"></order-now-modal>
 
     <q-page-container>
@@ -213,6 +194,7 @@ import mapHome from 'src/mixins/mapHome.js'
 //Drawers
 import CartLeftDrawer from 'components/cart/cartLeftDrawer.vue'
 import OrderNowModal from 'src/pages/orderNowModal'
+import CartLeftDialog from 'components/cart/cartLeftDialog.vue'
 
 export default {
     data () {
@@ -221,6 +203,7 @@ export default {
         openMenuLeftDrawer:false,
         openProductLeftDrawer: false,
         openCartLeftDrawer: false,
+        openCartLeftDialog:false
     }
     },
     preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
@@ -293,7 +276,11 @@ export default {
     mixins: [mapCategories, mapInternalSections, mapProducts, mapExtra, mapCart,mapHome],
     methods:{
       openCartDrawerFromPage(){
-        this.openCartLeftDrawer = true
+        if(this.$q.screen.gt.sm){
+          this.openCartLeftDialog = true
+        }else{
+          this.openCartLeftDrawer = true
+        }
       },
       redirectToSocial(link){
         this.$router.push({ redirect: window.location.href = link });
@@ -318,7 +305,8 @@ export default {
         ProductLeftDrawer,
         HomeLeftDrawer,
         CartLeftDrawer,
-        OrderNowModal
+        OrderNowModal,
+        CartLeftDialog
     }
 }
 </script>
