@@ -1,5 +1,5 @@
 <template>
-    <q-card class="my-card" :class="`${!data.stock ? 'light-dimmed' : ''}` " @click="goToProductWhenDimmed">
+    <q-card class="my-card"  @click="goToProductWhenDimmed">
                 <q-img @click="goToProduct" :ratio="1" :src="`https://api.pediapp.com.ar/images/${data.image_url}`" contain >
                     <q-chip v-if="data.chip" :class="data.chip_class" :color="data.chip_color" :label="data.chip"></q-chip>
                 </q-img>
@@ -89,5 +89,5 @@ export default {
     background-position: 50% 50%;
     background-color: rgb(0, 0, 0, 0.9);
 }
-
+//:class="`${!data.stock ? 'light-dimmed' : ''}` "
 </style>

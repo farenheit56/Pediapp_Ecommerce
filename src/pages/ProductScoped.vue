@@ -2,62 +2,54 @@
     <q-page class="q-pa-sm">
 
             <!-- Desktop -->
-            <div v-if="$q.screen.gt.xs" class= "row full-width text-center justify-center">
-                <div class="col-12 text-center text-primary q-mt-sm">
-                    <p v-if="selectedProduct" class="text-h5">{{selectedProduct.name}}</p>
+            <div v-if="$q.screen.gt.xs" class= "row full-width text-center">
+                <div class="col-1">
                 </div>
-                <div class="col-12 q-pt-md"  >
-<!--                         <q-carousel
-                            height="200px"
-                            swipeable
-                            animated
-                            v-model="slide"
-                            thumbnails
-                            infinite
-                            >
-                             <q-carousel-slide :name="1" :img-src="`https://api.pediapp.com.ar/images/${selectedProduct.image_url}`" ></q-carousel-slide>
-                        </q-carousel> -->
-                        <slider></slider>
-<!--                     <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://api.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
-                    </q-img> -->
+                <div class="col-6">
+                    <carousel
+                        :starting-image="1"
+                        :images="images"
+                    ></carousel>
                 </div>
-                <div class="col-12 text-center q-pt-md q-mb-lg">
-                    <div class="row full-width justify-center ">
-                        <div v-if="selectedProduct" class="text-h5 text-primary q-ml-sm ">$ {{parsePrice(selectedProduct.price)}}</div>
-                    </div>
-                </div>
-                <div class="col-3 q-mt-md text-center q-ml-xl" >
-                    <div class="row full-width q-pl-sm q-pr-sm justify-start" >
-                        <div class="col-12 divBorder shadow-1" ref="quantityButon">
-                            <div class="row rowInherit " >
-                                <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="remove" @click="quantity = (quantity - 1) > 0 ? (quantity - 1) : 0 " ></q-btn>                                
-                                <div class="col-6 text-center q-mt-sm text-weight-light" :value="quantity" > {{quantity}}</div>                                
-                                <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="add" @click="quantity= quantity + 1" > </q-btn>                                
+                <div class="col-4" :class="!$q.screen.gt.md ?'col-5' : 'col-4'">
+                    <div class="row">
+                        <div class="col-12 text-left text-primary q-mt-lg">
+                            <p v-if="selectedProduct" class="text-h5" :class="!$q.screen.gt.md ?'text-h6' : 'text-h5'">{{selectedProduct.name}}</p>
+                        </div>
+                        <div class="col-7 q-pt-sm text-left text-primary" :class="!$q.screen.gt.md ?'col-12' : 'col-12'">
+                            <div v-if="selectedProduct" class="text-h7 q-mb-md" :class="!$q.screen.gt.md ?'text-h8' : 'text-h7'">{{selectedProduct.description}}</div>                    
+                        </div>
+                        <div class="col-12 text-left q-pt-md q-mb-lg">
+                            <div v-if="selectedProduct" class="text-h5 text-primary q-ml-sm " :class="!$q.screen.gt.md ?'text-h6' : 'text-h5'">$ {{parsePrice(selectedProduct.price)}}</div>
+                        </div>
+                        <div class="col-3 text-center" :class="!$q.screen.gt.md ?'col-6' : 'col-3'">
+                            <div class="row full-width q-pl-sm q-pr-sm justify-start" >
+                                <div class="col-12 divBorder shadow-1" ref="quantityButon">
+                                    <div class="row rowInherit " >
+                                        <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="remove" @click="quantity = (quantity - 1) > 0 ? (quantity - 1) : 0 " ></q-btn>                                
+                                        <div class="col-6 text-center q-mt-sm text-weight-light" :value="quantity" > {{quantity}}</div>                                
+                                        <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="add" @click="quantity= quantity + 1" > </q-btn>                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 text-left">
+                            <div class="row">
+                                <div class="col-5 q-ml-sm" ref="quantityButon"  >  <!-- Dimmed cuando no hay stock -->
+                                    <q-btn color="secondary" icon-right="add_shopping_cart" @click="addToCart"  />
+                                </div>
+                                <div class="col-5" ref="quantityButon" >  <!-- Dimmed cuando no hay stock -->
+                                    <q-btn color="secondary" icon-right="fas fa-truck" @click="orderNow" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-6">
-                    <div class="row item-center " :class="!selectedProduct.stock? 'light-dimmed': '' ">
-                        <q-space/>
-                        <div class="col-2 q-ma-sm q-pt-sm" ref="quantityButon"  >  <!-- Dimmed cuando no hay stock -->
-                            <q-btn color="secondary" icon-right="add_shopping_cart" @click="addToCart"  />
-                        </div>
-                        <div class="col-2 q-ml-sm q-ma-sm q-pt-sm" ref="quantityButon" >  <!-- Dimmed cuando no hay stock -->
-                            <q-btn color="secondary" icon-right="fas fa-truck" @click="orderNow" />
-                        </div>
-                    </div>
+                <div v-if="$q.screen.gt.md" class="col-1">
                 </div>
-                    <div class="col-12 q-pt-md text-primary ">
-                    <q-separator />
-                    <div class=" text-h6 q-pa-none q-ma-none q-pt-sm text-weight-medium"> Descripción</div>                    
-                </div>      
-
-                <div class="col-7 q-pt-sm text-primary">
-                    <div v-if="selectedProduct" class="text-h7 q-mb-md">{{selectedProduct.description}}</div>
-                    
-                </div>
+                <div class="col-12 q-pt-md text-primary ">
+                    <q-separator />                 
+                </div>     
                 <div class="col-12">
                     <div v-if="!selectedProduct.stock" class="text-h5 text-red-7 q-mt-md">Sin Stock</div>
                     <q-separator></q-separator>
@@ -131,8 +123,10 @@
 import mapProducts from 'src/mixins/mapProducts'
 import mapCart from 'src/mixins/mapCart'
 import mapHelpers from 'src/mixins/mapHelpers'
-import Carrousel from 'src/components/carrousel/carrousel.vue'
+//import Carrousel from 'src/components/carrousel/carrousel.vue'
+import Carousel from 'src/components/carrousel-model/Carousel.vue'
 import Slider from 'src/components/Products/slider.vue'
+
 
 export default {
     name:'productScoped',
@@ -146,7 +140,30 @@ export default {
             fullscreen: false,
             loadingCat: null,
             loadingSubCat: null,
-            quantity: 1
+            quantity: 1,
+            images: [
+                {
+                    id: '1',
+                    big: 'images/p1.jpeg',
+                    thumb: 'images/p1.jpeg'
+                },
+                {
+                    id: '2',
+                    big: 'images/p2.jpeg',
+                    thumb: 'images/p1.jpeg'
+                },
+                {
+                    id: '3',
+                    big: 'images/p3.jpeg',
+                    thumb: 'images/p1.jpeg'
+                },
+                {
+                    id: '4',
+                    big: 'images/p4.jpeg',
+                    thumb: 'images/p1.jpeg'
+                },
+                
+            ]
         }
     },
     methods:{
@@ -206,79 +223,10 @@ export default {
         }
     },
     components:{
-        Carrousel,
+        Carousel,
         Slider
     }
 }
-
-
-
-
-
-
-
-/* 
-            <div v-if="$q.screen.gt.sm" class= "row text-left justify-center">
-                <div class="col-6 text-center text-primary q-mt-sm">
-                    <div class="row">
-                        <div class="col-12">
-                        <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://api.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
-                        </q-img>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 q-pt-md ">
-                    <div class="row full-height">
-                        <p v-if="selectedProduct" class="col-12 self-start q-mt-md text-h5">{{selectedProduct.name}}</p>
-
-                        <div class="col-12 self-end">
-                            <div class="row full-width">
-                                <p v-if="selectedProduct" class="text-h8 text-strike text-red-2 q-ma-none q-mt-sm q-mb-md">  $ {{selectedProduct.price * 0.8}}</p>
-                                <div v-if="selectedProduct" class="text-h5 text-primary q-ml-sm ">$ {{selectedProduct.price}}</div>
-                                <q-space></q-space>
-                            </div>
-                            <div class="row q-pr-sm text-bottom " >
-                                <div class="col-6 divBorder shadow-1" ref="quantityButon">
-                                    <div class="row rowInherit relative-bottom" >
-                                        <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="remove" @click="quantity = (quantity - 1) > 0 ? (quantity - 1) : 0 " ></q-btn>                                
-                                        <div class="col-6 text-center q-mt-sm text-weight-light" :value="quantity" > {{quantity}}</div>                                
-                                        <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="add" @click="quantity= quantity + 1" > </q-btn>                                
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>           
-
-                <div class="col-6">
-                    <div class="row item-center " :class="!selectedProduct.stock? 'light-dimmed': '' ">
-                        <q-space/>
-                        <div class="col-2 q-ma-sm q-pt-sm" ref="quantityButon"  >  <!-- Dimmed cuando no hay stock -->
-                            <q-btn color="secondary" icon-right="add_shopping_cart" @click="addToCart"  />
-                        </div>
-                        <q-space></q-space>
-                        <div class="col-2 q-ml-sm q-ma-sm q-pt-sm" ref="quantityButon" >  <!-- Dimmed cuando no hay stock -->
-                            <q-btn color="secondary" icon-right="fas fa-truck" @click="orderNow" />
-                        </div>
-                        <q-space/>
-                    </div>
-                </div>
-                    <div class="col-12 q-pt-md text-primary ">
-                    <q-separator />
-                    <div class=" h-5 q-pa-none q-ma-none q-pt-sm text-weight-medium"> Descripción</div>                    
-                </div>      
-
-                <div class="col-12 q-pt-sm text-primary">
-                    <div v-if="selectedProduct" class="text-h7">{{selectedProduct.description}}</div>
-                    
-                </div>
-
-                <div v-if="!selectedProduct.stock" class="text-h5 text-red-7 q-mt-md">Sin Stock</div>
-                <q-separator></q-separator>
-                    <div class="text-h6 q-mt-md text-primary text-center q-mb-sm">Productos Relacionados</div>
-                <q-separator></q-separator>
-            </div> */
 </script>
 
 

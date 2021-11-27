@@ -11,6 +11,7 @@
 
 import mapProducts from 'src/mixins/mapProducts.js'
 export default {
+    //Deprecado, no se usa mas
     name:'carrousel',
     data(){
         return {

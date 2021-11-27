@@ -3,44 +3,36 @@
     <q-header elevated class="bg-white text-grey-8" height-hint="64">
         <!-- Desktop Mode Toolbar -->
        <q-toolbar v-show="$route.name != 'cartCheckout' && $route.name != 'orderNow'" v-if="$q.screen.gt.xs" style="height: 64px">
-        <q-toolbar-title v-if="$q.screen.gt.sm" shrink class="row items-center no-wrap">
-        <q-btn-dropdown
-          flat
-          rounded
-          dense
-          no-wrap
-          color="primary"
-          no-caps
-          class="q-ml-sm q-px-md"
-        >
-          <template v-slot:label>
-            <div class="row items-center no-wrap">
-              <img src="https://cdn.quasar.dev/img/layout-gallery/logo-google.svg">
-      <!--           <div class="text-center">
-                  Pedi App
-                </div> -->
-            </div>
-          </template>
-          <q-list>
-            <q-item v-for="(section,index) in internalSections" :key="index + 117" clickable v-close-popup @click="goToSection(section.path)">
-              <q-item-section>
-                <q-item-label>{{section.title}}</q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown> 
-        </q-toolbar-title>
+<!--           <q-toolbar-title v-if="$q.screen.gt.sm" shrink class="row items-center no-wrap">
+          <q-btn-dropdown
+            flat
+            rounded
+            dense
+            no-wrap
+            color="primary"
+            no-caps
+            no-icon-animation
+            dropdown-icon="esteiconnolovasaencontraraasd"
+            class="q-ml-sm q-px-md"
+            @click="goToSection('/')"
+          >
+            <template v-slot:label>
+              <div class="row items-center no-wrap">
+                <img src="logo-empresa-desktop.svg">
+              </div>
+            </template>
+          </q-btn-dropdown> 
+        </q-toolbar-title> -->
+      <q-avatar square style="width: 90px">
+        <q-img src="logo-empresa-desktop.svg" contain />
+      </q-avatar>
         <q-space />
-
-        <q-btn flat dense no-wrap color="primary" icon="home" no-caps class="q-ml-sm q-px-md" @click="goToSection('/')"></q-btn>
-        <q-btn flat dense no-wrap color="primary" icon="menu" no-caps class="q-ml-sm q-px-md" @click="goToSection('productos')">
-          <q-tooltip class="bg-indigo" :offset="[10, 10]">
-            Productos
-          </q-tooltip>
-        </q-btn>
+        <div v-for="(section,index) in internalSections" :key="index + 1017" @click="goToSection(section.path)">
+          <q-btn v-if="$q.screen.gt.xs" flat dense no-wrap color="primary" no-caps class="q-ml-sm q-px-md" :class="!$q.screen.gt.md? 'q-ml-none q-px-sm' : '' " :label="section.title"></q-btn>
+        </div>
+        <q-space v-if="$q.screen.gt.md" />        
         <q-btn flat dense no-wrap color="primary" icon="shopping_cart" no-caps class="q-ml-sm q-px-md"   @click="openCartLeftDrawer = !openCartLeftDrawer"></q-btn>
         <!-- <q-btn v-for="internalSection in internalSections" :key="internalSection.id" :to="internalSection.path" :label="internalSection.title" flat dense no-wrap color="primary" icon="cloud_upload" no-caps class="q-ml-sm q-px-md"></q-btn> -->
-        <q-space />
        </q-toolbar>
       <!-- Desktop Mode Toolbar (only for CheckOut)-->
       <q-toolbar v-show="$route.name == 'cartCheckout' && $q.screen.gt.xs" style="height:64px" class="text-center">
@@ -76,13 +68,16 @@
         <!-- !!!!------------------------------MOBILE-------------------------------------!!!! -->
         <!-- Mobile Mode Toolbar -->
         <q-toolbar v-show="$route.name != 'cartCheckout' && $route.name != 'orderNow'" v-if="!$q.screen.gt.xs" style="height:64px">
-            <q-btn dense flat round class="q-mx-md" icon="home"  @click="openMenuLeftDrawer = !openMenuLeftDrawer" >
+            <q-btn dense flat round icon="home"  @click="openMenuLeftDrawer = !openMenuLeftDrawer" >
+            </q-btn>
+            <q-btn dense flat round class="q-ml-sm" icon="menu"  @click="openProductLeftDrawer = !openProductLeftDrawer" >
             </q-btn>
             <q-space />
-            <q-btn dense flat round class="q-mx-md" icon="menu"  @click="openProductLeftDrawer = !openProductLeftDrawer" >
-            </q-btn>
+            <q-avatar square style="width: 80px">
+              <q-img src="logo-empresa-desktop.svg" contain />
+            </q-avatar>
             <q-space />
-            <q-btn dense flat round class="q-mx-md" icon="shopping_cart"  @click="openCartLeftDrawer = !openCartLeftDrawer" >
+            <q-btn dense flat round  icon="shopping_cart"  @click="openCartLeftDrawer = !openCartLeftDrawer" >
             </q-btn>
 
         </q-toolbar> 
