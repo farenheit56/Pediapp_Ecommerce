@@ -29,7 +29,6 @@ export function SetSelectedProductImages(state,product) {
             })
         })
     }
-    console.log(images, 'como quedoooooooooooo?')
     state.selectedProductImages = images
 }
 
