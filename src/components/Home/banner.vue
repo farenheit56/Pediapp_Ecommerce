@@ -5,7 +5,7 @@
         <q-carousel-slide v-if="bannerNumber == 2" :name="1" :img-src="`https://api.pediapp.com.ar/images/${home.banner_image_2_url}`" >
         </q-carousel-slide>
     </q-card> -->
-    <q-card  :style="`height: 100%; width: 100%`">
+    <div  :style="`height: 100%; width: 100%`">
         <q-img        
         v-if="bannerNumber == 1"   
         :src="`https://api.pediapp.com.ar/images/${home.banner_image_1_url}`"
@@ -30,7 +30,7 @@
         style="width: 100%; height: 100%;"
         contain
         />
-    </q-card>
+    </div>
     
 
 </template>

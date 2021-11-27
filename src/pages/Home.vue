@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-3 ">
                         <div class="row full-width justify-center items-center" style="height:15vw">    
-                            <div class="bg-grey col-9 q-ml-sm"  style="height:95%">
+                            <div class="col-9 q-ml-sm"  style="height:95%">
                                 <info-extra :bannerNumber="2"></info-extra>
                             </div>
                         </div>                          
@@ -75,19 +75,70 @@
                     <div class="col-1 ">                        
                     </div>
                 </div>
-
-            <!-- Imagen Soporte, Si la quieren, esta. Pero no tengo relevado donde ponerla -->
-<!--             <div class="col-9 q-pt-sm q-mt-md q-ml-sm text-primary">
-                <div class="row" style="height: 150px">
+            </div>
+            <!----------- Mobile----------->
+            <div v-if="!$q.screen.gt.xs" >
+                <div class="row full-width justify-center ">   
                     <div class="col-12">
-                        <q-card class="q-ml-sm" :style="`height: 99%; width: 98%`">
-                            <q-carousel-slide :name="1" :img-src="`https://api.pediapp.com.ar/images/${home.support_image_url}`" contain >
-                            </q-carousel-slide>
-                        </q-card>
+                        <div class="row full-width justify-center items-center" style="height:250px">    
+                            <div class="col-12" style="height:95%">
+                                <slider-home/>
+                            </div>
+                        </div>                          
                     </div>
+                    <div class="col-12 q-mb-lg q-mt-lg">
+                        <div class="row full-width justify-center items-center" style="height:230px">
+                            <div class=" col-10" style="height:95%">
+                                <banner :bannerNumber="1"></banner>
+                            </div>
+                        </div>                      
+                    </div>
+                    <div class="col-12">
+                        <div class="row full-width justify-center items-center" style="height:230px">
+                            <div class=" col-10" style="height:95%">
+                                <banner :bannerNumber="2"></banner>
+                            </div>
+                        </div>                      
+                    </div>
+                    <div class="col-12">
+                        <div class="row full-width justify-center items-center  q-mb-sm q-mt-md" style="height:200px">
+                            <div class=" col-10" style="height:100%">
+                                <banner :bannerNumber="3"></banner>
+                            </div>
+                        </div>                      
+                    </div>
+                    <div class="col-12">
+                        <div class="row full-width justify-center items-center" style="height:200px">
+                            <div class=" col-10" style="height:100%">
+                                <banner :bannerNumber="4"></banner>
+                            </div>
+                        </div>                      
+                    </div>
+                    <div class="col-12 ">
+                        <div class="row full-width justify-end items-center q-mt-sm q-mb-sm" style="height:200px">    
+                            <div class="col-11 q-mr-sm" style="height:95%">
+                                <info-extra :bannerNumber="1"></info-extra>
+                            </div>
+                        </div>                          
+                    </div>
+                    <div class="col-12 ">
+                        <div class="row full-width justify-end items-center q-mt-sm q-mb-sm" style="height:200px">    
+                            <div class="col-11 q-mr-sm" style="height:95%">
+                                <info-extra :bannerNumber="2"></info-extra>
+                            </div>
+                        </div>                          
+                    </div>
+                    <div class="col-12 ">
+                        <div class="row full-width justify-end items-center q-mt-sm q-mb-sm" style="height:200px">    
+                            <div class="col-11 q-mr-sm" style="height:95%">
+                                <info-extra :bannerNumber="3"></info-extra>
+                            </div>
+                        </div>                          
+                    </div>
+                    
                 </div>
-            </div> -->
-        </div>
+            </div>
+
     </q-page>
 </template>
 
@@ -128,3 +179,15 @@ export default {
 </script>
 
 
+            <!-- Imagen Soporte, Si la quieren, esta. Pero no tengo relevado donde ponerla -->
+            
+<!--             <div class="col-9 q-pt-sm q-mt-md q-ml-sm text-primary">
+                <div class="row" style="height: 150px">
+                    <div class="col-12">
+                        <q-card class="q-ml-sm" :style="`height: 99%; width: 98%`">
+                            <q-carousel-slide :name="1" :img-src="`https://api.pediapp.com.ar/images/${home.support_image_url}`" contain >
+                            </q-carousel-slide>
+                        </q-card>
+                    </div>
+                </div>
+            </div> -->

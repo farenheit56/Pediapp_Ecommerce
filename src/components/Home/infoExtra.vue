@@ -1,5 +1,5 @@
 <template>
-    <q-card  :style="`height: 100%; width: 100%`">
+    <div :style="`height: 100%; width: 100%`">
         <q-img        
         v-if="bannerNumber == 1"   
         :src="`https://api.pediapp.com.ar/images/${home.extra_info_image_1_url}`"
@@ -18,7 +18,7 @@
         style="width: 100%; height: 100%;"
         contain
         />
-    </q-card>  
+    </div>  
 </template>
 
 
