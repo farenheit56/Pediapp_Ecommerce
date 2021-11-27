@@ -3,6 +3,9 @@
 
             <!-- Desktop -->
             <div v-if="$q.screen.gt.xs" class= "row full-width text-center">
+                <div class="col-12 q-ml-md q-mt-md q-mb-md">
+                    <categories-tags :fromProductScoped="true" ></categories-tags>
+                </div>
                 <div class="col-1">
                 </div>
                 <div v-if="selectedProductImages" class="col-6">
@@ -61,8 +64,8 @@
         
             <!-- Mobile -->
             <div v-if="!$q.screen.gt.xs" class= "row full-width justify-center">
-                <div class="col-12 text-center text-primary q-mt-sm">
-                    <p v-if="selectedProduct" class="text-h5">{{selectedProduct.name}}</p>
+                <div class="col-12 q-ml-md q-mt-md q-mb-md">
+                    <categories-tags :fromProductScoped="true" ></categories-tags>
                 </div>
                 <div class="col-12 q-pt-md"  >
 <!--                     <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://api.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
@@ -71,6 +74,16 @@
                         :starting-image="1"
                         :images="selectedProductImages">                        
                     </carousel-mobile>
+                </div>
+                <div class="col-12 q-pt-md text-primary ">
+                    <q-separator />
+                    <div class="col-12 text-left text-primary q-mt-sm">
+                        <p v-if="selectedProduct" class="text-h6">{{selectedProduct.name}}</p>
+                    </div>             
+                </div>     
+
+                <div class="col-12 q-pt-sm text-primary">
+                    <div v-if="selectedProduct" class="text-h7">{{selectedProduct.description}}</div>                    
                 </div>
                 <div class="col-12  q-pt-md ">
                     <div class="row full-width ">
@@ -103,23 +116,12 @@
                         <q-space/>
                     </div>
                 </div>
-                    <div class="col-12 q-pt-md text-primary ">
-                    <q-separator />
-                    <div class=" h-5 q-pa-none q-ma-none q-pt-sm text-weight-medium"> Descripción</div>                    
-                </div>      
-
-                <div class="col-12 q-pt-sm text-primary">
-                    <div v-if="selectedProduct" class="text-h7">{{selectedProduct.description}}</div>
-                    
-                </div>
 
                 <div v-if="!selectedProduct.stock" class="text-h5 text-red-7 q-mt-md">Sin Stock</div>
                 <q-separator></q-separator>
                     <div class="text-h6 q-mt-md text-primary text-center q-mb-sm">Productos Relacionados</div>
                 <q-separator></q-separator>
             </div>
-            <carrousel>
-            </carrousel>
   </q-page>
 </template>
 
@@ -127,10 +129,10 @@
 import mapProducts from 'src/mixins/mapProducts'
 import mapCart from 'src/mixins/mapCart'
 import mapHelpers from 'src/mixins/mapHelpers'
-//import Carrousel from 'src/components/carrousel/carrousel.vue'
 import Carousel from 'src/components/carrousel-model/Carousel.vue'
 import CarouselMobile from 'src/components/carrousel-model/CarouselMobile.vue'
 import Slider from 'src/components/Products/slider.vue'
+import CategoriesTags from 'components/reusable/categoriesTags'
 
 
 export default {
@@ -230,7 +232,8 @@ export default {
     components:{
         Carousel,
         Slider,
-        CarouselMobile
+        CarouselMobile,
+        CategoriesTags
     }
 }
 </script>

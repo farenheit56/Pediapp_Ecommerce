@@ -4,20 +4,23 @@
       <q-breadcrumbs-el v-if="selectedCategory && !selectedSubCategory" :label="selectedCategory.name" ></q-breadcrumbs-el>
       <q-breadcrumbs-el v-if="selectedSubCategory" @click="goToCategory" :label="selectedCategoryTrunqued" />
       <q-breadcrumbs-el v-if="selectedSubCategory" :label="selectedSubCategoryTrunqued" />
+        <q-breadcrumbs-el v-if="selectedProduct && fromProductScoped" :label="selectedProduct.name" />
     </q-breadcrumbs>
 </template>
 
 <script>
 import mapCategories from 'src/mixins/mapCategories.js'
 import mapInternalSections from 'src/mixins/mapInternalSections.js'
+import mapProducts from 'src/mixins/mapProducts.js'
 export default {
     name:'categoriesTagas',
+    props:['fromProductScoped'],
     data(){
         return {
             dummy:null
         }
     },
-    mixins:[mapCategories, mapInternalSections],
+    mixins:[mapCategories, mapInternalSections,mapProducts],
     methods:{
         goToProducts(){
             this.SetSelectedCategory(null)
