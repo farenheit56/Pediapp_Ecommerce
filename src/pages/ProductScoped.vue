@@ -24,15 +24,18 @@
                             <div v-if="selectedProduct" class="text-h7 q-mb-md" :class="!$q.screen.gt.md ?'text-h8' : 'text-h7'">{{selectedProduct.description}}</div>                    
                         </div>
                         <div class="col-12 text-left q-pt-md q-mb-lg">
-                            <div v-if="selectedProduct" class="text-h5 text-primary q-ml-sm " :class="!$q.screen.gt.md ?'text-h6' : 'text-h5'">$ {{parsePrice(selectedProduct.price)}}</div>
+                            <div class="row full-width text-left">
+                                <div v-if="selectedProduct" class="col-6 text-h5 text-primary q-ml-sm " :class="!$q.screen.gt.md ?'text-h6' : 'text-h5'">$ {{parsePrice(selectedProduct.price)}}</div>
+                                <div v-if="!selectedProduct.stock" class="col-4 text-h5 text-red-7 text-left">Sin Stock</div>
+                            </div>
                         </div>
                         <div class="col-3 text-center" :class="!$q.screen.gt.md ?'col-6' : 'col-3'">
                             <div class="row full-width q-pl-sm q-pr-sm justify-start" >
                                 <div class="col-12 divBorder shadow-1" ref="quantityButon">
                                     <div class="row rowInherit " >
-                                        <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="remove" @click="quantity = (quantity - 1) > 0 ? (quantity - 1) : 0 " ></q-btn>                                
+                                        <q-btn  outlined size="8px" class="col-3 text-center btnBorder" :disabled="!selectedProduct.stock" icon="remove" @click="quantity = (quantity - 1) > 0 ? (quantity - 1) : 0 " ></q-btn>                                
                                         <div class="col-6 text-center q-mt-sm text-weight-light" :value="quantity" > {{quantity}}</div>                                
-                                        <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="add" @click="quantity= quantity + 1" > </q-btn>                                
+                                        <q-btn  outlined size="8px" class="col-3 text-center btnBorder" :disabled="!selectedProduct.stock" icon="add" @click="quantity= quantity + 1" > </q-btn>                                
                                     </div>
                                 </div>
                             </div>
@@ -40,25 +43,19 @@
                         <div class="col-6 text-left">
                             <div class="row">
                                 <div class="col-5 q-ml-sm" ref="quantityButon"  >  <!-- Dimmed cuando no hay stock -->
-                                    <q-btn color="secondary" icon-right="add_shopping_cart" @click="addToCart"  />
+                                    <q-btn color="secondary" icon-right="add_shopping_cart" :disabled="!selectedProduct.stock" @click="addToCart"  />
                                 </div>
                                 <div class="col-5" ref="quantityButon" >  <!-- Dimmed cuando no hay stock -->
-                                    <q-btn color="secondary" icon-right="fas fa-truck" @click="orderNow" />
+                                    <q-btn color="secondary" icon-right="fas fa-truck" :disabled="!selectedProduct.stock" @click="orderNow" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div v-if="$q.screen.gt.md" class="col-1">
-                </div>
-                <div class="col-12 q-pt-md text-primary ">
-                    <q-separator />                 
-                </div>     
-                <div class="col-12">
-                    <div v-if="!selectedProduct.stock" class="text-h5 text-red-7 q-mt-md">Sin Stock</div>
-                    <q-separator></q-separator>
+                </div>   
+                <div class="col-12">                    
                         <div class="text-h6 q-mt-md text-primary text-center q-mt-sm q-mb-sm">Productos Relacionados</div>
-                    <q-separator></q-separator>
                 </div>
             </div>
         
@@ -87,8 +84,8 @@
                 </div>
                 <div class="col-12  q-pt-md ">
                     <div class="row full-width ">
-                        <div v-if="selectedProduct" class="text-h5 text-primary q-ml-sm ">$ {{parsePrice(selectedProduct.price)}}</div>
-                        <q-space></q-space>
+                        <div v-if="selectedProduct" class="col-6 text-h5 text-primary q-ml-sm ">$ {{parsePrice(selectedProduct.price)}}</div>
+                        <div v-if="!selectedProduct.stock" class="col-5 text-h5 text-red-7">Sin Stock</div>
                     </div>
                 </div>           
 
@@ -96,30 +93,27 @@
                     <div class="row full-width q-pl-sm q-pr-sm " >
                         <div class="col-12 divBorder shadow-1" ref="quantityButon">
                             <div class="row rowInherit " >
-                                <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="remove" @click="quantity = (quantity - 1) > 0 ? (quantity - 1) : 0 " ></q-btn>                                
+                                <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="remove" :disabled="!selectedProduct.stock" @click="quantity = (quantity - 1) > 0 ? (quantity - 1) : 0 " ></q-btn>                                
                                 <div class="col-6 text-center q-mt-sm text-weight-light" :value="quantity" > {{quantity}}</div>                                
-                                <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="add" @click="quantity= quantity + 1" > </q-btn>                                
+                                <q-btn  outlined size="8px" class="col-3 text-center btnBorder" icon="add" :disabled="!selectedProduct.stock" @click="quantity= quantity + 1" > </q-btn>                                
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="row item-center " :class="!selectedProduct.stock? 'light-dimmed': '' ">
+                    <div class="row item-center " >
                         <q-space/>
                         <div class="col-2 q-ma-sm q-pt-sm" ref="quantityButon"  >  <!-- Dimmed cuando no hay stock -->
-                            <q-btn color="secondary" icon-right="add_shopping_cart" @click="addToCart"  />
+                            <q-btn color="secondary" icon-right="add_shopping_cart" :disabled="!selectedProduct.stock" @click="addToCart"  />
                         </div>
                         <q-space></q-space>
                         <div class="col-2 q-ml-sm q-ma-sm q-pt-sm" ref="quantityButon" >  <!-- Dimmed cuando no hay stock -->
-                            <q-btn color="secondary" icon-right="fas fa-truck" @click="orderNow" />
+                            <q-btn color="secondary" icon-right="fas fa-truck" :disabled="!selectedProduct.stock" @click="orderNow" />
                         </div>
                         <q-space/>
                     </div>
                 </div>
-
-                <div v-if="!selectedProduct.stock" class="text-h5 text-red-7 q-mt-md">Sin Stock</div>
-                <q-separator></q-separator>
-                    <div class="text-h6 q-mt-md text-primary text-center q-mb-sm">Productos Relacionados</div>
+                <div class="text-h6 q-mt-md text-primary text-center q-mb-sm">Productos Relacionados</div>
                 <q-separator></q-separator>
             </div>
   </q-page>
