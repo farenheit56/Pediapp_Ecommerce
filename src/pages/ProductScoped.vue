@@ -13,6 +13,7 @@
                 </div>
                 <div class="col-4" :class="!$q.screen.gt.md ?'col-5' : 'col-4'">
                     <div class="row">
+                        <div v-if="$q.screen.gt.md" class="col-12 q-mb-md"></div>
                         <div class="col-12 text-left text-primary q-mt-lg">
                             <p v-if="selectedProduct" class="text-h5" :class="!$q.screen.gt.md ?'text-h6' : 'text-h5'">{{selectedProduct.name}}</p>
                         </div>
@@ -58,21 +59,24 @@
                 </div>
             </div>
         
-                    <!-- Mobile -->
+            <!-- Mobile -->
             <div v-if="!$q.screen.gt.xs" class= "row full-width justify-center">
                 <div class="col-12 text-center text-primary q-mt-sm">
                     <p v-if="selectedProduct" class="text-h5">{{selectedProduct.name}}</p>
                 </div>
                 <div class="col-12 q-pt-md"  >
-                    <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://api.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
-                    </q-img>
+<!--                     <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://api.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
+                    </q-img> -->
+                    <carousel-mobile
+                        :starting-image="1"
+                        :images="selectedProductImages">                        
+                    </carousel-mobile>
                 </div>
                 <div class="col-12  q-pt-md ">
                     <div class="row full-width ">
                         <div v-if="selectedProduct" class="text-h5 text-primary q-ml-sm ">$ {{parsePrice(selectedProduct.price)}}</div>
                         <q-space></q-space>
                     </div>
-
                 </div>           
 
                 <div class="col-6 q-mt-md text-center" >
@@ -125,6 +129,7 @@ import mapCart from 'src/mixins/mapCart'
 import mapHelpers from 'src/mixins/mapHelpers'
 //import Carrousel from 'src/components/carrousel/carrousel.vue'
 import Carousel from 'src/components/carrousel-model/Carousel.vue'
+import CarouselMobile from 'src/components/carrousel-model/CarouselMobile.vue'
 import Slider from 'src/components/Products/slider.vue'
 
 
@@ -224,7 +229,8 @@ export default {
     },
     components:{
         Carousel,
-        Slider
+        Slider,
+        CarouselMobile
     }
 }
 </script>
