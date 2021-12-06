@@ -18,10 +18,10 @@
                     <div class="row">
                         <div v-if="$q.screen.gt.md" class="col-12 q-mb-md"></div>
                         <div class="col-12 text-left text-primary q-mt-lg">
-                            <p v-if="selectedProduct" class="text-h5" :class="!$q.screen.gt.md ?'text-h6' : 'text-h5'">{{selectedProduct.name}}</p>
+                            <p v-if="selectedProduct" class="text-h4" :class="!$q.screen.gt.md ?'text-h5 text-bold' : 'text-h4 text-bold'">{{selectedProduct.name}}</p>
                         </div>
                         <div class="col-7 q-pt-sm text-left text-primary" :class="!$q.screen.gt.md ?'col-12' : 'col-12'">
-                            <div v-if="selectedProduct" class="text-h7 q-mb-md" :class="!$q.screen.gt.md ?'text-h8' : 'text-h7'">{{selectedProduct.description}}</div>                    
+                            <div v-if="selectedProduct" class="text-h6 q-mb-md" :class="!$q.screen.gt.md ?'text-h7' : 'text-h6'">{{selectedProduct.description}}</div>                    
                         </div>
                         <div class="col-12 text-left q-pt-md q-mb-lg">
                             <div class="row full-width text-left">
@@ -54,8 +54,22 @@
                 </div>
                 <div v-if="$q.screen.gt.md" class="col-1">
                 </div>   
+                <div class="col-12" style="height:3vw">                    
+                </div>
                 <div class="col-12">                    
-                        <div class="text-h6 q-mt-md text-primary text-center q-mt-sm q-mb-sm">Productos Relacionados</div>
+                        <div class="text-h4 q-mt-md text-primary text-center q-mt-xl q-mb-sm">Productos Relacionados</div>
+                </div>
+                <div class="row full-width q-mt-lg q-mb-xl"  style="height:20vw"><!-- style="height:30em;width:30em" -->
+                    <div class="col-1 ">                        
+                    </div> 
+                    <div class="col-10" style="height:20vw"  >
+                        <carrousel-related></carrousel-related>
+                    </div>
+                    <div class="col-1 ">                        
+                    </div>
+                </div>
+                <div class="col-12" style="height:5vw">
+
                 </div>
             </div>
         
@@ -113,8 +127,14 @@
                         <q-space/>
                     </div>
                 </div>
-                <div class="text-h6 q-mt-md text-primary text-center q-mb-sm">Productos Relacionados</div>
-                <q-separator></q-separator>
+                <div class="col-12"  >
+                    <div class="text-center text-primary text-h6 q-mt-md"> Productos Relacionados</div>
+                </div>
+                <div class="row full-width q-mt-lg"  style="height:350px"><!-- style="height:30em;width:30em" -->
+                    <div class="col-12"  style="height:350px"  >
+                        <carrousel-related></carrousel-related>
+                    </div>
+                </div>
             </div>
   </q-page>
 </template>
@@ -125,6 +145,7 @@ import mapCart from 'src/mixins/mapCart'
 import mapHelpers from 'src/mixins/mapHelpers'
 import Carousel from 'src/components/carrousel-model/Carousel.vue'
 import CarouselMobile from 'src/components/carrousel-model/CarouselMobile.vue'
+import CarrouselRelated from 'src/components/carrousel/carrousel.vue'
 import Slider from 'src/components/Products/slider.vue'
 import CategoriesTags from 'components/reusable/categoriesTags'
 
@@ -227,7 +248,8 @@ export default {
         Carousel,
         Slider,
         CarouselMobile,
-        CategoriesTags
+        CategoriesTags,
+        CarrouselRelated
     }
 }
 </script>

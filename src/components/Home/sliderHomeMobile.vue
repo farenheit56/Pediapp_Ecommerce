@@ -1,10 +1,10 @@
 <template>
-    <div  :style="`height: 100%; width: 100%`">
+    <div  :style="`height: 100%; width: 100%;` ">
         <q-img        
         :src="`https://api.pediapp.com.ar/images/${home.slider_url}`"
-        style="width: 100%; height: 100%;"
-        :ratio="4/3"
+        style="width: 100%; height: 100%"
         @click="redirectToSocial('https://pediapp.com.ar/productos')"
+        contain
         />
     </div>    
 </template>
@@ -15,7 +15,7 @@ import mapInternalSections from 'src/mixins/mapInternalSections'
 import mapHome from 'src/mixins/mapHome'
 
 export default {
-    name:'sectionPortrait',
+    name:'sliderHomeMobile',
     mixins:[mapInternalSections,mapHome],
     data(){
         return {

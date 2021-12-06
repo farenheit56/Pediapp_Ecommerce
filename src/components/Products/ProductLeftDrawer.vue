@@ -24,11 +24,11 @@
         </q-scroll-area> -->  
         <q-scroll-area class="fit">
             <q-list padding class="menu-list">
-                <q-item to="productos" active-class="q-item-no-link-highlighting">
-                    <q-item-section avatar>
-                    <q-icon name="forward" color="primary" />
+                <q-item @click="goToProducts" active-class="q-item-no-link-highlighting">
+                    <q-item-section avatar >
+                    <q-icon @click="goToProducts" name="forward" color="primary" />
                     </q-item-section>
-                    <q-item-section>
+                    <q-item-section @click="goToProducts">
                     <q-item-label>Productos</q-item-label>
                     </q-item-section>
                 </q-item>
@@ -83,7 +83,12 @@ export default {
                 this.SetSelectedSubCategory(subcategory) //null
                 this.$router.push({ name: 'productsByCategory', params: { category: category.path } })
             }
-        }
+        },
+        goToProducts(){
+            this.SetSelectedCategory(null)
+            this.SetSelectedSubCategory(null)
+            this.$router.push({name: 'productos'})
+        },
     }
 /*     computed: {
     ...mapState('categories', ['selectedCategory']),

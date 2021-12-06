@@ -1,41 +1,40 @@
 <template>
     <q-page class="q-pa-sm">
             <!----------- Desktop----------->
-            <div v-if="$q.screen.gt.xs" class= "row full-width q-pr-sm text-center justify-center">
+            <div v-if="$q.screen.gt.xs">                    
                     <div class="col-12 q-pa-none q-ma-none">
-                        <generic-portrait/>
+                        <section-portrait></section-portrait>
                     </div>
-                    <div class="col whiteSpace-grid">
-                        <!-- Add WhiteSpace When Screen is Medium or Large -->
+                    <div class="col-12 q-mt-xl q-mb-lg text-h4 text-center">
+                            {{selectedInternalSection.title}}
                     </div>
-                    <div class="row">
-                        <q-space></q-space>
-                        <div class="col-8 q-pt-sm q-ml-sm text-primary">
-                            <div v-if="selectedInternalSection" class="text-h7 text-primary q-mt-lg">{{selectedInternalSection.description}}</div>
-                        </div>
-                        <q-space></q-space>
-                    </div>
-
-                        <div class="col-12 q-pt-sm q-mt-md q-ml-sm text-primary">
-                            <q-img v-if="selectedInternalSection.support_image_url" :src="`https://api.pediapp.com.ar/images/${selectedInternalSection.support_image_url}`" class="q-mt-md  shadow-1" style="max-width: 400px;" contain>
+                    <div class="row q-mt-xl q-mb-xl " style="height:22vw">
+                        <div class="col-2"></div>
+                        <div class="col-4 col-md-4 col-sm-5 item-end" style="height:22vw">
+                            <q-img v-if="selectedInternalSection.support_image_url" :src="`https://api.pediapp.com.ar/images/${selectedInternalSection.support_image_url}`" style="width: 100%; height: 100%;" contain>
                             </q-img>
                         </div>
-                        
-                    <div class="col q-pl-none whiteSpace-grid">
-                        <!-- Add WhiteSpace When Screen is Medium or Large -->
+                        <q-space></q-space>
+                        <div class="col-4 col-md-4 col-sm-3 text-h6 text-primary justify-center">
+                            {{selectedInternalSection.description}}
+                        </div>
+                        <div class="col-1"></div>
+                    </div>            
                     </div>
-            </div>
 
             <!----- Mobile---- -->
             <div v-if="!$q.screen.gt.xs" class= "row full-width q-pr-sm text-center justify-center">
                     <div class="col-12 q-pa-none q-ma-none">
-                        <generic-portrait/>
+                        <section-portrait></section-portrait>
+                    </div>
+                    <div class="col-12 q-mt-lg text-h6 text-center">
+                    {{selectedInternalSection.title}}
                     </div>
                     <div class="col-12 q-pt-sm q-ml-sm text-primary text-left">
                         <div v-if="selectedInternalSection" class="text-h7 q-mt-lg">{{selectedInternalSection.description}}</div>
                     </div>
                     <div class="col-12 q-pt-sm q-ml-sm text-primary text-left">
-                        <q-img v-if="selectedInternalSection.support_image_url" :src="`https://api.pediapp.com.ar/images/${selectedInternalSection.support_image_url}`" class="q-mt-md " style="max-width: 400px; height: 80px;" contain>
+                        <q-img v-if="selectedInternalSection.support_image_url" :src="`https://api.pediapp.com.ar/images/${selectedInternalSection.support_image_url}`" class="q-mt-md " style="max-width: 400px; height: 200px;" contain>
                         </q-img>
                     </div>
             </div>
@@ -48,16 +47,18 @@
 
 
 <script>
-import GenericPortrait from '../components/reusable/genericPortrait.vue'
 import mapInternalSections from 'src/mixins/mapInternalSections'
+import SectionPortrait from 'src/components/reusable/sectionPortrait.vue'
 
 export default {
     name: 'GenericSection',
     mixins:[mapInternalSections],
     components:{
-        GenericPortrait
+        SectionPortrait
     }
 }
 </script>
 
 
+
+        SectionPortrait

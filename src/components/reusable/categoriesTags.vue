@@ -1,10 +1,17 @@
 <template>
     <q-breadcrumbs>
-      <q-breadcrumbs-el @click="goToProducts" label="Productos" />
-      <q-breadcrumbs-el v-if="selectedCategory && !selectedSubCategory" :label="selectedCategory.name" ></q-breadcrumbs-el>
-      <q-breadcrumbs-el v-if="selectedSubCategory" @click="goToCategory" :label="selectedCategoryTrunqued" />
-      <q-breadcrumbs-el v-if="selectedSubCategory" :label="selectedSubCategoryTrunqued" />
-        <q-breadcrumbs-el v-if="selectedProduct && fromProductScoped" :label="selectedProduct.name" />
+        <!-- General -->
+      <q-breadcrumbs-el v-if="!fromProductScoped" @click="goToProducts" label="Productos" :class="selectedCategory||selectedSubCategory? 'cursor-pointer': ''" />
+      <!-- Products -->
+      <q-breadcrumbs-el v-if="selectedCategory && !selectedSubCategory && !fromProductScoped" :label="selectedCategory.name" ></q-breadcrumbs-el>
+      <q-breadcrumbs-el v-if="selectedSubCategory && !fromProductScoped" @click="goToCategory" :label="selectedCategoryTrunqued" class="cursor-pointer"/>
+      <q-breadcrumbs-el v-if="selectedSubCategory && !fromProductScoped" :label="selectedSubCategoryTrunqued" />
+      <!-- Product Scoped -->
+      <q-breadcrumbs-el v-if="fromProductScoped" @click="goToProducts" label="Productos" class="cursor-pointer" />
+      <q-breadcrumbs-el v-if="selectedCategory && fromProductScoped" @click="goToCategory" :label="selectedCategoryTrunqued" class="cursor-pointer"></q-breadcrumbs-el>
+      <q-breadcrumbs-el v-if="selectedSubCategory && fromProductScoped" @click="goToSubCategory" :label="selectedSubCategoryTrunqued" class="cursor-pointer"/>
+      <q-breadcrumbs-el v-if="selectedProduct && fromProductScoped" :label="selectedProduct.name" />
+
     </q-breadcrumbs>
 </template>
 
@@ -30,6 +37,9 @@ export default {
         goToCategory(){
             this.SetSelectedSubCategory(null)
             this.$router.push({name: 'productsByCategory', params:{ category: this.selectedCategory.path}})
+        },
+        goToSubCategory(){
+            this.$router.push({ name: 'productsBySubcategory', params: { category: this.selectedCategory.path , subcategory: this.selectedSubCategory } })
         }
     },
     computed:{

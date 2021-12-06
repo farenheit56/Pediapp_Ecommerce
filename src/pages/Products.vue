@@ -2,7 +2,7 @@
     <q-page class="q-pa-sm">
             <div class= "row full-width q-col-gutter-sm q-pr-sm" :class="`${!$q.screen.gt.xs ? 'justify-center': ''}`">
                 <div class="col-12">
-                    <section-portrait/>
+                    <section-portrait></section-portrait>
                 </div>
                 <div class="col-3" style="min-height:600px" :class="`${!$q.screen.gt.xs ? 'hidden': ''}`">
                     <product-drawer-desktop></product-drawer-desktop>
@@ -11,10 +11,10 @@
                 <div class="col-xs-12 col-sm-11 col-md-8 col-lg-8">
                     <div class= "row">
                         <div class="col-12 q-ml-md q-mt-md q-mb-md">
-                            <categories-tags></categories-tags>
+                            <categories-tags :fromProductScoped="false"></categories-tags>
                         </div>
                         <div v-for="(product, index) in productFilteredList.slice((ElementosPorPagina * current) - ElementosPorPagina , (ElementosPorPagina * current))" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 q-pa-sm q-pa-sm">
-                            <card-product @openCartDrawerFromPage="openCartDrawerFromPage" v-if="products" :data="product" />
+                            <card-product @openCartDrawerFromPage="openCartDrawerFromPage" v-if="products" :data="product" class="cursor-pointer"/>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,6 @@
 
 <script>
 import cardProduct from 'components/Products/cardProduct'
-import sectionPortrait from '../components/reusable/sectionPortrait.vue'
 import CategoriesTags from 'components/reusable/categoriesTags'
 
 //Store modules
@@ -55,9 +54,9 @@ import mapCategories from 'src/mixins/mapCategories.js'
 import mapInternalSections from 'src/mixins/mapInternalSections.js'
 import mapProducts from 'src/mixins/mapProducts.js'
 import ProductDrawerDesktop from 'components/Products/productDrawerDesktop.vue'
+import SectionPortrait from 'src/components/reusable/sectionPortrait.vue'
 
 export default {
-    components: { sectionPortrait },
     name: 'PageIndex',    
     data(){
     return {
@@ -130,7 +129,7 @@ export default {
 
     components:{
         cardProduct,
-        sectionPortrait,
+        SectionPortrait,
         ProductDrawerDesktop,
         CategoriesTags
     }

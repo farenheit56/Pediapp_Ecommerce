@@ -1,9 +1,6 @@
 <template>
     <q-page class="q-pa-sm">
             <div class= "row full-width q-col-gutter-sm q-pr-sm" :class="`${$q.screen.lt.md ? 'justify-center': ''}`">
-                <div class="col-12">
-                    <section-portrait :sectionName="'Productos'" :scopedCategory="['Instrumentos de hogar','Calefonesa']" />
-                </div>
                 <div class="col whiteSpace-grid" :class="`${$q.screen.lt.md ? 'hidden': ''}`">
                     <!-- Add WhiteSpace When Screen is Medium or Large -->
                 </div>
@@ -18,7 +15,6 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
-import sectionPortrait from '../components/reusable/sectionPortrait.vue'
 
 export default {
   components: { sectionPortrait },
@@ -38,7 +34,6 @@ export default {
         ...mapState('categories', ['categories'])
     },
     components:{
-        sectionPortrait
     }
 }
 </script>

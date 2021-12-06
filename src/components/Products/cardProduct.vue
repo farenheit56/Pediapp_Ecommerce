@@ -1,20 +1,23 @@
 <template>
-    <q-card class="my-card"  @click="goToProductWhenDimmed">
-                <q-img @click="goToProduct" :ratio="1" :src="`https://api.pediapp.com.ar/images/${data.image_url}`" contain >
-                    <q-chip v-if="data.chip" :class="data.chip_class" :color="data.chip_color" :label="data.chip"></q-chip>
-                </q-img>
+    <q-card class="my-card q-mt-md"  @click="goToProductWhenDimmed">
+        <q-img @click="goToProduct" :ratio="1" :src="`https://api.pediapp.com.ar/images/${data.image_url}`" contain >
+<!--             <q-chip v-if="data.chip" :class="data.chip_class" :color="data.chip_color" :label="data.chip"></q-chip> -->
+            <div v-if="!data.stock" class="absolute-top-left q-pa-none q-ml-md q-mt-md text-caption text-h6 bg-grey-5 opacityClass" style="bg-red">
+                Sin Stock
+            </div>
+        </q-img>
 
-            <q-card-section class="q-mt-none q-pt-none ">
-                <q-btn
-                fab
-                color="secondary"
-                icon="add_shopping_cart" padding="sm"
-                class="absolute"
-                style="top: 0; right: 12px; transform: translateY(-180%);"
-                @click="addToCart"
-                />
-            </q-card-section>
-        
+<!--         <q-card-section class="q-mt-none q-pt-none ">
+            <q-btn
+            fab
+            color="secondary"
+            icon="add_shopping_cart" padding="sm"
+            class="absolute"
+            style="top: 60; right: 12px; transform: translateY(-180%);"
+            @click="addToCart"
+            />
+        </q-card-section> -->
+
         <div class="row q-pa-none q-ma-none">
             <q-card-section @click="goToProduct" class="q-mt-none q-pt-none col-12 ">
                     <div class="text-h6">
@@ -22,11 +25,13 @@
                     </div>
                 </q-card-section>
             <q-card-section class="q-mt-none q-pt-none col-12">
-                <div @click="goToProduct" class="row justify-between">
-                <span class="text-h6 ">$ {{ parsePrice(data.price) }}</span>
-                <span v-if="!data.stock" class="text-h6 text-red-5">Sin Stock</span>
+                <div @click="goToProduct" class="row justify-between items-end">
+                <span class="text-h6">$ {{ parsePrice(data.price) }}</span>
+                <q-img width="40px" height="40px" src="icons/cart.png" contain @click.stop="addToCart" :disabled="!data.stock"> </q-img>
+                <!-- <span v-if="!data.stock" class="text-h6 text-red-5">Sin Stock</span> -->
                 </div>
             </q-card-section>
+
         </div>
 
     </q-card>
@@ -44,7 +49,8 @@ export default {
   props: ['data'],
   mixins:[mapCategories,mapInternalSections,mapProducts, mapCart,mapHelpers],
   methods:{
-      goToProduct(){
+      goToProduct(event){
+          console.log(event)
           console.log(this.data)
           this.SetSelectedProduct(this.data)
           this.SetSelectedProductImages(this.data)
@@ -56,6 +62,9 @@ export default {
           }
       },
       addToCart(){
+          if(!this.data.stock){
+              return
+          }
             let cartProductObj= {
                 id: this.data.id,
                 name: this.data.name,
@@ -78,6 +87,9 @@ export default {
     position:relative;
     width: 100%;
      max-width: 300px;
+}
+.opacityClass {
+    opacity:0.7
 }
 
 .my-img{

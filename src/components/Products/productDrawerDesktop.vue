@@ -3,7 +3,7 @@
     <q-scroll-area class="fit">
         <q-list padding class="menu-list">
             <q-item >
-                <q-item-section clickable @click="goToSection('productos')">
+                <q-item-section clickable @click="goToSection('productos')" class="cursor-pointer">
                 <q-item-label>Todos los Productos</q-item-label>
                 </q-item-section>
             </q-item>

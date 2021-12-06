@@ -10,26 +10,29 @@
         v-if="bannerNumber == 1"   
         :src="`https://api.pediapp.com.ar/images/${home.banner_image_1_url}`"
         style="width: 100%; height: 100%;"
-        href="www.gooogle.com"
         @click="redirectToSocial('https://pediapp.com.ar/productos')"
+        contain
         />
         <q-img    
         v-if="bannerNumber == 2"     
         :src="`https://api.pediapp.com.ar/images/${home.banner_image_2_url}`"
         style="width: 100%; height: 100%;"
         @click="redirectToSocial('https://pediapp.com.ar/productos')"
+        contain
         />
         <q-img    
         v-if="bannerNumber == 3"     
         :src="`https://api.pediapp.com.ar/images/${home.body_banner_image_1_url}`"
         style="width: 100%; height: 100%;"
         @click="redirectToSocial('https://pediapp.com.ar/productos')"
+        contain
         />
         <q-img    
         v-if="bannerNumber == 4"     
         :src="`https://api.pediapp.com.ar/images/${home.body_banner_image_2_url}`"
         style="width: 100%; height: 100%;"
         @click="redirectToSocial('https://pediapp.com.ar/productos')"
+        contain
         />
     </div>
     
@@ -41,7 +44,7 @@
 import mapHome from 'src/mixins/mapHome'
 
 export default {
-    name:'banner',
+    name:'bannerMobile',
     props:['bannerNumber'],
     mixins:[mapHome],
     data(){
