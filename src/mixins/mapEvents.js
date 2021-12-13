@@ -12,12 +12,12 @@ export default {
       'GetOpenCartEvent'
   ]),
     ...mapMutations('events', [
-        'OpenCartEventMutation'
+        'OpenCartEventMutation','SetBrowserNav'
     ]),
   },
   computed: {
     ...mapState('events', [
-      'openCartEvent',
+      'openCartEvent','browserNav'
     ])
   }
 };

@@ -3,7 +3,7 @@
     <q-header elevated class="bg-white text-grey-8" height-hint="64">
         <!-- Desktop Mode Toolbar -->
        <q-toolbar v-show="$route.name != 'cartCheckout' && $route.name != 'orderNow'" v-if="$q.screen.gt.xs" style="height: 64px">
-      <q-avatar square style="width: 90px">
+      <q-avatar square style="width: 90px" class="q-ml-md">
         <q-img src="logo-empresa-desktop.svg" contain />
       </q-avatar>
         <q-space />
@@ -25,7 +25,7 @@
               label="Ver Detalles de la compra"
               @click="openCartLeftDialog = !openCartLeftDialog"
               class="full-width q-pl-none"
-              header-class="text-secondary"
+              header-class="text-green-8"
             >
             </q-expansion-item>
             <q-space />
@@ -40,24 +40,31 @@
               label="Ver Detalles de la compra"
               @click="openOrderNowModal"
               class="full-width q-pl-none"
-              header-class="text-secondary"
+              header-class="text-green-8"
             >
             </q-expansion-item>
         </q-toolbar>
 
         <!-- !!!!------------------------------MOBILE-------------------------------------!!!! -->
         <!-- Mobile Mode Toolbar -->
-        <q-toolbar v-show="$route.name != 'cartCheckout' && $route.name != 'orderNow'" v-if="!$q.screen.gt.xs" style="height:64px">
-            <q-btn dense flat round icon="home"  @click="openMenuLeftDrawer = !openMenuLeftDrawer" >
-            </q-btn>
-            <q-btn dense flat round class="q-ml-sm" icon="menu"  @click="openProductLeftDrawer = !openProductLeftDrawer" >
-            </q-btn>
-            <q-space />
-            <q-avatar square style="width: 80px">
-              <q-img src="logo-empresa-desktop.svg" contain />
-            </q-avatar>
-            <q-space />
-            <q-btn dense flat round  icon="shopping_cart"  @click="openCartLeftDrawer = !openCartLeftDrawer" >
+        <q-toolbar v-show="$route.name != 'cartCheckout' && $route.name != 'orderNow'" v-if="!$q.screen.gt.xs" style="height:64px" class="row">
+            <div class="text-left col-1 q-pa-none q-ma-none"> 
+              <q-btn dense flat round icon="home" @click="openMenuLeftDrawer = !openMenuLeftDrawer" >
+              </q-btn>
+            </div>
+            <div class="text-right q-ml-xs col-1 q-pa-none q-ma-none">
+              <q-btn dense flat round  icon="menu"  @click="openProductLeftDrawer = !openProductLeftDrawer" >
+              </q-btn>
+            </div>
+            <q-space></q-space>
+            <div class="col-4 text-center q-pa-none q-ma-none" >
+              <q-avatar square style="width: 80px">
+                <q-img src="logo-empresa-desktop.svg" contain />
+              </q-avatar>
+            </div>
+            <q-space></q-space>
+            <div class="q-pa-none q-ma-none col-1 q-mr-xs"></div>
+            <q-btn dense flat round  icon="shopping_cart" class="col-1 q-pa-none q-ma-none" @click="openCartLeftDrawer = !openCartLeftDrawer" >
             </q-btn>
 
         </q-toolbar> 
@@ -71,7 +78,7 @@
               label="Ver Detalles de la compra"
               @click="openCartLeftDrawer = !openCartLeftDrawer"
               class="full-width q-pl-none"
-              header-class="text-secondary"
+              header-class="text-green-8"
             >
             </q-expansion-item>
         </q-toolbar>
@@ -85,7 +92,7 @@
               label="Ver Detalles de la compra"
               @click="openOrderNowModal"
               class="full-width q-pl-none"
-              header-class="text-secondary"
+              header-class="text-green-8"
             >
             </q-expansion-item>
         </q-toolbar> 
@@ -107,12 +114,12 @@
     <q-footer v-if="!$q.screen.gt.xs" class="bg-grey-1 text-primary">
       <q-separator class="shadow-1"></q-separator>
       <div class="row text-center">
-          <div class="col-12 q-mt-md q-mb-md text-h6 text-bold">Somos Pedi App </div>
+          <div class="col-12 q-mt-md q-mb-md text-h6 text-bold">Pedi App </div>
       </div>
       <q-toolbar>
         <q-toolbar-title class="text-center">
           <q-avatar>
-            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
+              <img src="icons/logo-pedi-app.png" @click="redirectToSocial('https://pediapp.com.ar/')" class="cursor-pointer">
           </q-avatar>
         </q-toolbar-title>
       </q-toolbar>
@@ -152,12 +159,12 @@
       </div> -->
       <div class="col-3">
         <div class="row text-center">
-            <div class="col-12  q-mt-md q-mb-sm text-h7 text-bold text-center ">Somos Pedi App </div>
+            <div class="col-12  q-mt-md q-mb-sm text-h7 text-bold text-center ">Pedi App </div>
         </div>
         <q-toolbar>
           <q-toolbar-title class="text-center">
             <q-avatar>
-              <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
+              <img src="icons/logo-pedi-app.png" @click="redirectToSocial('https://pediapp.com.ar/')" class="cursor-pointer">
             </q-avatar>
           </q-toolbar-title>
         </q-toolbar>
@@ -187,7 +194,7 @@ import mapCategories from 'src/mixins/mapCategories.js'
 import mapInternalSections from 'src/mixins/mapInternalSections.js'
 import mapProducts from 'src/mixins/mapProducts.js'
 import mapCart from 'src/mixins/mapCart.js'
-//import mapEvents from 'src/mixins/mapEvents.js'
+import mapEvents from 'src/mixins/mapEvents.js'
 import mapExtra from 'src/mixins/mapExtra.js'
 import mapHome from 'src/mixins/mapHome.js'
 
@@ -271,9 +278,12 @@ export default {
       console.log(this.contact,'contact info')
       console.log(this.socialNetworks,'social networks')
       console.log(this.home,'Home')
+      console.log(this.randomProducts, 'randomProducts')
+      console.log(JSON.parse(localStorage.getItem('pediApp-currentCart')),'LocalStorage Cart')
       console.log('---------------')
+      this.SetCartFromLocalStorage(JSON.parse(localStorage.getItem('pediApp-currentCart')))
     },
-    mixins: [mapCategories, mapInternalSections, mapProducts, mapExtra, mapCart,mapHome],
+    mixins: [mapCategories, mapInternalSections, mapProducts, mapExtra, mapCart,mapHome,mapEvents],
     methods:{
       openCartDrawerFromPage(){
         if(this.$q.screen.gt.sm){

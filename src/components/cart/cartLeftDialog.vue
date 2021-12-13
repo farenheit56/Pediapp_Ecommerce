@@ -52,13 +52,18 @@
                     </q-scroll-area>
                     <q-card-actions >                        
                         <div class="text-h6 text-center" style="position: absolute; bottom:10px; width:96%">
-                            <q-separator color="secondary" class="q-mb-sm "/>
+                            <q-separator color="positive" class="q-mb-sm "/>
                             <div class="q-mb-md">
-                                Total : <span class="text-secondary">${{parsePrice(GetCartProductsTotalPrice())}}</span>
+                                Total : <span class="text-green-10">${{parsePrice(GetCartProductsTotalPrice())}}</span>
                             </div>
-                            <q-separator color="secondary" class="q-mb-xs"/>
-                            <div v-show="$route.name != 'cartCheckout' && cartProducts.length != 0" class="row justify-center">
-                            <q-btn color="secondary" icon-right="shopping_cart" class=" shadow-2" label="Pedi ya !" @click="goToCheckoutAndPay" />
+                            <q-separator color="positive" class="q-mb-xs"/>
+                            <div v-show="$route.name != 'cartCheckout' && cartProducts.length != 0" class="row items-center justify-center">
+<!--                             <div class="text-center q-mr-sm" >¡Pedí ya!</div>
+                            <img src="icons/cart.png" @click="goToCheckoutAndPay()" class="cursor-pointer" style="height:50px"> -->
+                            <q-btn color="positive" class=" shadow-2" @click="goToCheckoutAndPay" no-caps style="min-width:100px">
+                                <div class="q-mr-sm">{{`¡Pedí ya!`}}</div>
+                                <img src="icons/cart.png" style="height:50px">
+                            </q-btn>
                             </div>
                         </div>
                     </q-card-actions>

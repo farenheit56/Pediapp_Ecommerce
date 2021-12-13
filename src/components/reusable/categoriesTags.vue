@@ -39,7 +39,8 @@ export default {
             this.$router.push({name: 'productsByCategory', params:{ category: this.selectedCategory.path}})
         },
         goToSubCategory(){
-            this.$router.push({ name: 'productsBySubcategory', params: { category: this.selectedCategory.path , subcategory: this.selectedSubCategory } })
+            console.log(this.selectedSubCategory,'esta es la subcctegoria que se selecciona')
+            this.$router.push({ name: 'productsBySubcategory', params: { category: this.selectedCategory.path , subcategory: this.selectedSubCategory.path } })
         }
     },
     computed:{

@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-export function someAction (/* context */) {
+export function actionCart({commit}) {
+    commit('SetCartFromLocalStorage', null)
 }
 
 //Async example

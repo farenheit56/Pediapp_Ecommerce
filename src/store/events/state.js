@@ -1,6 +1,7 @@
 export default function () {
     return {
-      openCartEvent: null
+      openCartEvent: null,
+      browserNav: false
     }
 }
 

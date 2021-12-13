@@ -14,25 +14,25 @@
             infinite
             height="300px"
             >
-                <template v-for="(prod,index) in products">           
+                <template v-for="(prod,index) in randomProducts">           
                     <q-carousel-slide :key="index" :name="index + 1" >
                         <div class="row fit items-center justify-center no-wrap ">
-                            <q-card @click="goToProduct(products[index])" class="q-pa-none q-ma-none col-12 text-center" :style="'width:230px'" >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${products[index].image_url}`" />  
+                            <q-card @click="goToProduct(randomProducts[index])" class="q-pa-none q-ma-none col-12 text-center" :style="'width:230px'" >
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index].image_url}`" />  
                                 <div class=" q-pa-none q-ma-none">
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center q-mt-md">
                                         <div class="col text-caption text-weight-bold ">
-                                            {{ products[index].name }}
+                                            {{ randomProducts[index].name }}
                                         </div>
                                     </q-card-section>
                                 </div>  
                             </q-card>
-<!--                             <q-card @click="goToProduct(products[index+1])" v-if="products[index+1]" class="q-pa-none q-ma-none q-ml-sm q-mt-sm col-6 text-center" :style="'width:120px'" >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${products[index+1].image_url}`" />
+<!--                             <q-card @click="goToProduct(randomProducts[index+1])" v-if="randomProducts[index+1]" class="q-pa-none q-ma-none q-ml-sm q-mt-sm col-6 text-center" :style="'width:120px'" >
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index+1].image_url}`" />
                                 <div class=" q-pa-none q-ma-none" >
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center  q-mt-md">
                                         <div class="col text-caption text-weight-bold">
-                                            {{ products[index + 1].name }}
+                                            {{ randomProducts[index + 1].name }}
                                         </div>
                                     </q-card-section>
                                 </div>  
@@ -45,7 +45,7 @@
 
         <div v-if="$q.screen.gt.xs" class="col-12 q-pt-sm q-ml-sm q-pt-none q-mt-none text-primary text-left">
             <q-carousel
-            v-if="products"
+            v-if="randomProducts"
             v-model="slide1"
             transition-prev="slide-right"
             transition-next="slide-left"
@@ -55,45 +55,45 @@
             infinite
             height="25vw"
             >
-                <template v-for="(prod,index) in products" >
+                <template v-for="(prod,index) in randomProducts" >
                     <q-carousel-slide v-if="validIndex(index)" :key="index" :name="index + 1" >
                         <div v-if="validIndex(index)" class="row fit items-center justify-center no-wrap ">
-                            <q-card @click="goToProduct(products[index])" class="q-pa-none q-ma-none col-3 text-center cursor-pointer" >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${products[index].image_url}`" />  
+                            <q-card @click="goToProduct(randomProducts[index])" class="q-pa-none q-ma-none col-3 text-center cursor-pointer" >
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index].image_url}`" />  
                                 <div class=" q-pa-none q-ma-none" >
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center q-mt-md">
                                         <div class="col text-weight-bold " :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
-                                            {{ products[index].name }}
+                                            {{ randomProducts[index].name }}
                                         </div>
                                     </q-card-section>
                                 </div>  
                             </q-card>
-                            <q-card @click="goToProduct(products[index+1])" v-if="products[index+1]" class="q-pa-none q-ma-none q-ml-sm col-3 text-center cursor-pointer"  >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${products[index+1].image_url}`" />
+                            <q-card @click="goToProduct(randomProducts[index+1])" v-if="randomProducts[index+1]" class="q-pa-none q-ma-none q-ml-sm col-3 text-center cursor-pointer"  >
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index+1].image_url}`" />
                                 <div class=" q-pa-none q-ma-none">
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center  q-mt-md">
                                         <div class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
-                                            {{ products[index + 1].name }}
+                                            {{ randomProducts[index + 1].name }}
                                         </div>
                                     </q-card-section>
                                 </div>  
                             </q-card>
-                            <q-card @click="goToProduct(products[index+2])" v-if="products[index+2]" class="q-pa-none q-ma-none q-ml-sm  col-3 text-center cursor-pointer"  >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${products[index+2].image_url}`" />
+                            <q-card @click="goToProduct(randomProducts[index+2])" v-if="randomProducts[index+2]" class="q-pa-none q-ma-none q-ml-sm  col-3 text-center cursor-pointer"  >
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index+2].image_url}`" />
                                 <div class=" q-pa-none q-ma-none" >
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center  q-mt-md">
                                         <div class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
-                                            {{ products[index + 2].name }}
+                                            {{ randomProducts[index + 2].name }}
                                         </div>
                                     </q-card-section>
                                 </div>  
                             </q-card>
-                            <q-card @click="goToProduct(products[index+3])" v-if="products[index+3]" class="q-pa-none q-ma-none q-ml-sm  col-3 text-center cursor-pointer"  >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${products[index+3].image_url}`" />
+                            <q-card @click="goToProduct(randomProducts[index+3])" v-if="randomProducts[index+3]" class="q-pa-none q-ma-none q-ml-sm  col-3 text-center cursor-pointer"  >
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index+3].image_url}`" />
                                 <div class=" q-pa-none q-ma-none" >
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center  q-mt-md">
                                         <div class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
-                                            {{ products[index + 3].name }}
+                                            {{ randomProducts[index + 3].name }}
                                         </div>
                                     </q-card-section>
                                 </div>
@@ -126,10 +126,7 @@ export default {
             this.$router.push({name:'productScoped', params:{product: prod.path }})
         },
         validIndex(index){
-            console.log(index, 'este es el index')
             if(index%4 == 0){
-                console.log(index)
-                console.log(this.products)
                 return true
             } else {
                 return false

@@ -22,8 +22,15 @@
 
                 </q-form>
                 <div class="col-12 q-mt-xl q-mb-lg" >
-                    <q-btn v-if="$route.name == 'cartCheckout' " color="secondary" icon-right="shopping_cart" class=" shadow-2" label="FINALIZAR COMPRA"  @click="sendOrderToWhatsapp" />
-                    <q-btn v-if="$route.name == 'orderNow' " color="secondary" icon-right="shopping_cart" class=" shadow-2" label="FINALIZAR COMPRA"  @click="sendOrderNowToWhatsapp" />
+
+                    <q-btn v-if="$route.name == 'cartCheckout' " color="positive" class=" shadow-2" @click="sendOrderToWhatsapp" >
+                        <div class="q-mr-sm">{{`Finalizar compra`}}</div>
+                        <img src="icons/cart.png" style="height:50px">
+                    </q-btn>
+                    <q-btn v-if="$route.name == 'orderNow' " color="positive"  class=" shadow-2"  @click="sendOrderNowToWhatsapp" >
+                        <div class="q-mr-sm">{{`Finalizar compra`}}</div>
+                        <img src="icons/cart.png" style="height:50px">
+                    </q-btn>
                 </div>    
             </div>       
             <!-- Mobile -->
@@ -50,8 +57,14 @@
                     </div>
                 </q-form>
                 <div class="col-12 q-mt-md q-mb-lg" >
-                    <q-btn v-if="$route.name == 'cartCheckout' " color="secondary" icon-right="shopping_cart" class=" shadow-2" label="FINALIZAR COMPRA"  @click="sendOrderToWhatsapp" />
-                    <q-btn v-if="$route.name == 'orderNow' " color="secondary" icon-right="shopping_cart" class=" shadow-2" label="FINALIZAR COMPRA"  @click="sendOrderNowToWhatsapp" />
+                    <q-btn v-if="$route.name == 'cartCheckout' " color="positive" class=" shadow-2" @click="sendOrderToWhatsapp" >
+                        <div class="q-mr-sm">{{`Finalizar compra`}}</div>
+                        <img src="icons/cart.png" style="height:35px">
+                    </q-btn>
+                    <q-btn v-if="$route.name == 'orderNow' " color="positive" class=" shadow-2"  @click="sendOrderNowToWhatsapp" >
+                    <div class="q-mr-sm">{{`Finalizar compra`}}</div>
+                        <img src="icons/cart.png" style="height:35px">
+                    </q-btn>
                 </div>    
             </div>
             <!-- Append extra element when reached certain scroll offset-->

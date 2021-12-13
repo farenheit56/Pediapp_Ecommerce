@@ -5,8 +5,13 @@
   </div>
 </template>
 <script>
+import {
+  Loading,
+  QSpinnerGears
+} from 'quasar'
 
 export default {
+  
   name: 'App',
     //Prefetching on ServerSide of initial data, it fills Our vuex store.
     preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
@@ -27,6 +32,11 @@ export default {
       ])
       
     },
-
+    mounted(){
+      window.addEventListener('popstate', () => {
+        Loading.show()
+        location.reload();
+      })
+    }
 }
 </script>

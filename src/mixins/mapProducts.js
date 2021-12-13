@@ -13,6 +13,7 @@ import {
       ]),
       ...mapMutations('products', [
           'SetProducts',
+          'SetRandomProducts',
           'SetSelectedProduct',
           'SetSelectedProductImages',
           'SetRelatedProductByCat',
@@ -27,6 +28,7 @@ import {
     computed: {
       ...mapState('products', [
         'products',
+        'randomProducts',
         'selectedProduct',
         'selectedProductImages',
         'relatedProductByCat',

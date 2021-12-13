@@ -10,6 +10,7 @@ export function SetRelatedProductBySubCat(state,products) {
 
 export function SetSelectedProduct(state,product) {
     state.selectedProduct = product
+    PopSelectedProductFromRandom(state,product)
 }
 
 export function SetSelectedProductImages(state,product) {
@@ -34,4 +35,59 @@ export function SetSelectedProductImages(state,product) {
 
 export function SetProducts(state,products) {
     state.products = products
+}
+
+export function SetRandomProducts(state,products) {
+    let array
+    if(products){
+        array = products
+    }else{
+        array = state.products
+    }
+    let currentIndex = array.length,  randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+    state.randomProducts = array
+}
+
+//Siempre que se selecciona un producto pasa por esta funcion.
+export function PopSelectedProductFromRandom(state,product) {
+    SetRandomProducts(state,null)
+    let array = state.randomProducts
+    let productsWithoutSelectedProduct = array
+    let productsFilterByCat = array
+    if(product){
+        productsWithoutSelectedProduct = array.filter(randomProd => randomProd.id!= product.id)
+        if(product.categories.length > 0){
+            productsFilterByCat = productsWithoutSelectedProduct.filter((prod)=>{
+                let isRelatedProduct = false
+                if(prod.categories.length > 0){
+                    prod.categories.map((cat)=>{
+                        product.categories.map((catSelectedProduct)=>{
+                            if(cat.id == catSelectedProduct.id){
+                                isRelatedProduct = true
+                            }
+                        })
+                    })
+                }
+                return isRelatedProduct
+            })
+        }
+    }
+
+    if(productsFilterByCat.length > 0 ){
+        state.randomProducts = productsFilterByCat
+    }else{
+        state.randomProducts = productsWithoutSelectedProduct
+    }
 }

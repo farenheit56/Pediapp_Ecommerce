@@ -11,10 +11,12 @@ export function PushCartProduct(state,product) {
     if(!alreadyInList){
         product.partialPrice = product.quantitySelected * product.price
         state.cartProducts.push(product)
+        localStorage.setItem('pediApp-currentCart', JSON.stringify(state.cartProducts) )
         
     } else{
         state.cartProducts[index].quantitySelected = state.cartProducts[index].quantitySelected + product.quantitySelected
         state.cartProducts[index].partialPrice = state.cartProducts[index].quantitySelected * state.cartProducts[index].price
+        localStorage.setItem('pediApp-currentCart', JSON.stringify(state.cartProducts) )
     }
 }
 
@@ -23,6 +25,7 @@ export function DeleteProduct(state,product) {
         return (product.id != registeredProduct.id)
     })
     state.cartProducts = cartProductWithoutDeletedProduct
+    localStorage.setItem('pediApp-currentCart', JSON.stringify(state.cartProducts) )
 }
 
 export function RemoveOneQuantitySelected(state,product) {
@@ -34,6 +37,7 @@ export function RemoveOneQuantitySelected(state,product) {
     })
     state.cartProducts[indexOfProductToModify].quantitySelected = (product.quantitySelected - 1) > 1 ? (product.quantitySelected - 1) : 1
     state.cartProducts[indexOfProductToModify].partialPrice = state.cartProducts[indexOfProductToModify].quantitySelected * state.cartProducts[indexOfProductToModify].price
+    localStorage.setItem('pediApp-currentCart', JSON.stringify(state.cartProducts) )
 }
 
 export function AddOneQuantitySelected(state,product) {
@@ -45,8 +49,13 @@ export function AddOneQuantitySelected(state,product) {
     })
     state.cartProducts[indexOfProductToModify].quantitySelected = product.quantitySelected + 1
     state.cartProducts[indexOfProductToModify].partialPrice = state.cartProducts[indexOfProductToModify].quantitySelected * state.cartProducts[indexOfProductToModify].price
+    localStorage.setItem('pediApp-currentCart', JSON.stringify(state.cartProducts) )
 }
 
 export function PushCartOrderNow(state,product) {
     state.cartOrderNow = product
+}
+
+export function SetCartFromLocalStorage(state,cart) {
+    state.cartProducts = cart    
 }

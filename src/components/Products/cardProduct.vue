@@ -73,9 +73,7 @@ export default {
                 price: this.data.price,
                 image_url: this.data.image_url
             }
-            console.log(cartProductObj)
-            this.PushCartProduct(cartProductObj)
-            console.log(this.cartProducts)            
+            this.PushCartProduct(cartProductObj)         
             this.$emit('openCartDrawerFromPage')
       }
   }

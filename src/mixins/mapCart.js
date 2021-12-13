@@ -17,7 +17,8 @@ import {
           'DeleteProduct',
           'AddOneQuantitySelected',
           'RemoveOneQuantitySelected',
-          'PushCartOrderNow'
+          'PushCartOrderNow',
+          'SetCartFromLocalStorage'
 
       ]),
     },

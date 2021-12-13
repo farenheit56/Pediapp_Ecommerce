@@ -10,17 +10,17 @@
                 </div>
                 <div v-if="selectedProductImages" class="col-6">
                     <carousel
-                        :starting-image="1"
+                        :starting-image="0"
                         :images="selectedProductImages"
                     ></carousel>
                 </div>
                 <div class="col-4" :class="!$q.screen.gt.md ?'col-5' : 'col-4'">
-                    <div class="row">
+                    <div class="row items-center">
                         <div v-if="$q.screen.gt.md" class="col-12 q-mb-md"></div>
-                        <div class="col-12 text-left text-primary q-mt-lg">
+                        <div class="col-12 text-left q-mt-lg">
                             <p v-if="selectedProduct" class="text-h4" :class="!$q.screen.gt.md ?'text-h5 text-bold' : 'text-h4 text-bold'">{{selectedProduct.name}}</p>
                         </div>
-                        <div class="col-7 q-pt-sm text-left text-primary" :class="!$q.screen.gt.md ?'col-12' : 'col-12'">
+                        <div class="col-7 q-pt-sm text-left" :class="!$q.screen.gt.md ?'col-12' : 'col-12'">
                             <div v-if="selectedProduct" class="text-h6 q-mb-md" :class="!$q.screen.gt.md ?'text-h7' : 'text-h6'">{{selectedProduct.description}}</div>                    
                         </div>
                         <div class="col-12 text-left q-pt-md q-mb-lg">
@@ -42,12 +42,13 @@
                         </div>
                         <div class="col-6 text-left">
                             <div class="row">
-                                <div class="col-5 q-ml-sm" ref="quantityButon"  >  <!-- Dimmed cuando no hay stock -->
-                                    <q-btn color="secondary" icon-right="add_shopping_cart" :disabled="!selectedProduct.stock" @click="addToCart"  />
+                                <div class="col-5 q-ml-lg" ref="quantityButon"  >  <!-- Dimmed cuando no hay stock -->
+                                    <!-- <q-btn color="secondary" icon-right="add_shopping_cart" :disabled="!selectedProduct.stock" @click="addToCart"  /> -->
+                                    <img src="icons/cart.png" style="height:50px" :disabled="!selectedProduct.stock" @click="addToCart" class='cursor-pointer self-center item-center q-mt-xs'>
                                 </div>
-                                <div class="col-5" ref="quantityButon" >  <!-- Dimmed cuando no hay stock -->
+<!--                                 <div class="col-5" ref="quantityButon" >
                                     <q-btn color="secondary" icon-right="fas fa-truck" :disabled="!selectedProduct.stock" @click="orderNow" />
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -86,14 +87,14 @@
                         :images="selectedProductImages">                        
                     </carousel-mobile>
                 </div>
-                <div class="col-12 q-pt-md text-primary ">
+                <div class="col-12 q-pt-md">
                     <q-separator />
-                    <div class="col-12 text-left text-primary q-mt-sm">
-                        <p v-if="selectedProduct" class="text-h6">{{selectedProduct.name}}</p>
+                    <div class="col-12 text-left q-mt-sm">
+                        <p v-if="selectedProduct" class="text-h6 text-bold">{{selectedProduct.name}}</p>
                     </div>             
                 </div>     
 
-                <div class="col-12 q-pt-sm text-primary">
+                <div class="col-12 q-pt-sm ">
                     <div v-if="selectedProduct" class="text-h7">{{selectedProduct.description}}</div>                    
                 </div>
                 <div class="col-12  q-pt-md ">
@@ -116,15 +117,15 @@
                 </div>
                 <div class="col-6">
                     <div class="row item-center " >
-                        <q-space/>
-                        <div class="col-2 q-ma-sm q-pt-sm" ref="quantityButon"  >  <!-- Dimmed cuando no hay stock -->
-                            <q-btn color="secondary" icon-right="add_shopping_cart" :disabled="!selectedProduct.stock" @click="addToCart"  />
+                        <div class="col-2 q-ma-sm q-pt-sm q-ml-md" ref="quantityButon"  >  <!-- Dimmed cuando no hay stock -->
+                            <!-- <q-btn color="secondary" icon-right="add_shopping_cart" :disabled="!selectedProduct.stock" @click="addToCart"  /> -->
+                            <img src="icons/cart.png" style="height:40px" :disabled="!selectedProduct.stock" @click="addToCart" class='cursor-pointer self-center item-center '>
                         </div>
                         <q-space></q-space>
-                        <div class="col-2 q-ml-sm q-ma-sm q-pt-sm" ref="quantityButon" >  <!-- Dimmed cuando no hay stock -->
+<!--                         <div class="col-2 q-ml-sm q-ma-sm q-pt-sm" ref="quantityButon" >
                             <q-btn color="secondary" icon-right="fas fa-truck" :disabled="!selectedProduct.stock" @click="orderNow" />
-                        </div>
-                        <q-space/>
+                        </div> -->
+<!--                         <q-space/> -->
                     </div>
                 </div>
                 <div class="col-12"  >

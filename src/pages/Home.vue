@@ -99,14 +99,6 @@
                             </div>
                         </div>                          
                     </div>
-                <div class="col-12"  >
-                    <div class="text-center text-h6 q-mt-md"> Productos Destacados</div>
-                </div>
-                <div class="row full-width q-mt-lg"  style="height:350px"><!-- style="height:30em;width:30em" -->
-                    <div class="col-12"  style="height:350px"  >
-                        <carrousel></carrousel>
-                    </div>
-                </div>
                     <div class="col-12 q-mb-lg q-mt-lg">
                         <div class="row full-width justify-center items-center" style="height:300px">
                             <div class=" col-10" style="height:95%">
@@ -120,6 +112,14 @@
                                 <banner-mobile :bannerNumber="2"></banner-mobile>
                             </div>
                         </div>                      
+                    </div>
+                    <div class="col-12"  >
+                        <div class="text-center text-h6 q-mt-md"> Productos Destacados</div>
+                    </div>
+                    <div class="row full-width q-mt-lg"  style="height:350px"><!-- style="height:30em;width:30em" -->
+                        <div class="col-12"  style="height:350px"  >
+                            <carrousel></carrousel>
+                        </div>
                     </div>
                     <div class="col-12">
                         <div class="row full-width justify-center items-center  q-mb-sm q-mt-md" style="height:200px">
@@ -201,7 +201,6 @@ export default {
     }
 }
 </script>
-
 
             <!-- Imagen Soporte, Si la quieren, esta. Pero no tengo relevado donde ponerla -->
             
