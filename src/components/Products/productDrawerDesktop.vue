@@ -1,6 +1,6 @@
 
 <template>
-    <q-scroll-area class="fit">
+    <div>
         <q-list padding class="menu-list">
             <q-item >
                 <q-item-section clickable @click="goToSection('productos')" class="cursor-pointer">
@@ -26,7 +26,7 @@
                 </q-list>
             </q-expansion-item>            
         </q-list>
-    </q-scroll-area>
+    </div>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <q-card class="my-card q-mt-md"  @click="goToProductWhenDimmed">
+    <q-card class="q-mt-md" style="width:260px" :style="`${$q.screen.gt.xs ? 'width:300px': ''}`" @click="goToProductWhenDimmed">
         <q-img @click="goToProduct" :ratio="1" :src="`https://api.pediapp.com.ar/images/${data.image_url}`" contain >
 <!--             <q-chip v-if="data.chip" :class="data.chip_class" :color="data.chip_color" :label="data.chip"></q-chip> -->
             <div v-if="!data.stock" class="absolute-top-left q-pa-none q-ml-md q-mt-md text-caption text-h6 bg-grey-5 opacityClass" style="bg-red">

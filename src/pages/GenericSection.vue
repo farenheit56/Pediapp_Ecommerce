@@ -8,9 +8,9 @@
                     <div class="col-12 q-mt-xl q-mb-lg text-h4 text-center">
                             {{selectedInternalSection.title}}
                     </div>
-                    <div class="row q-mt-xl q-mb-xl " style="height:22vw">
+                    <div class="row q-mt-xl q-mb-xl ">
                         <div class="col-2"></div>
-                        <div class="col-4 col-md-4 col-sm-5 item-end" style="height:22vw">
+                        <div class="col-4 col-md-4 col-sm-5 item-end" style="height:22vw; min-height:400px">
                             <q-img v-if="selectedInternalSection.support_image_url" :src="`https://api.pediapp.com.ar/images/${selectedInternalSection.support_image_url}`" style="width: 100%; height: 100%;" contain>
                             </q-img>
                         </div>

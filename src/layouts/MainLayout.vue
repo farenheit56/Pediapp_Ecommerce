@@ -176,10 +176,21 @@
     <div class="row q-mb-lg"></div>
     </q-footer>
 
-    <!-- SocialNetwork STICKY BTN-->
-    <q-page-sticky v-show="$route.name != 'cartCheckout'"  position="left" :offset="[5, 0]">
-      <q-btn flat round dense  color="blue-10" size="small" icon="fab fa-facebook" class="q-mb-xs shadow-1" @click="redirectToSocial(socialNetworks[0].url)" /><br>
-      <q-btn flat round dense  color="pink-3" size="small" icon="fab fa-instagram"  class="q-mb-xs shadow-1" @click="redirectToSocial(socialNetworks[1].url)" /><br>
+    <!-- SocialNetwork STICKY BTN Desktop-->
+    <q-page-sticky v-show="$route.name != 'cartCheckout' && $q.screen.gt.xs"  :position="routeIsProduct? 'right': 'left'" :offset="[5, 0]">
+<!--       <q-btn flat round dense  color="blue-10" size="small" icon="fab fa-facebook" class="q-mb-xs shadow-1" @click="redirectToSocial(socialNetworks[0].url)" /><br> -->
+      <q-img v-if="socialNetworks[0] && socialNetworks[0].url && socialNetworks[0].icon_url" width="40px" height="40px" :src="`${BASE_IMG_URLs}/${socialNetworks[0].icon_url}`" contain class="q-mb-xs cursor-pointer" @click="redirectToSocial(socialNetworks[0].url)" /><br>
+      <q-img v-if="socialNetworks[1] && socialNetworks[1].url && socialNetworks[1].icon_url" width="40px" height="40px" :src="`${BASE_IMG_URLs}/${socialNetworks[1].icon_url}`" contain class="q-mb-xs cursor-pointer" @click="redirectToSocial(socialNetworks[1].url)" /><br>
+      <q-img v-if="socialNetworks[2] && socialNetworks[2].url && socialNetworks[2].icon_url" width="40px" height="40px" :src="`${BASE_IMG_URLs}/${socialNetworks[2].icon_url}`" contain class="q-mb-xs cursor-pointer" @click="redirectToSocial(socialNetworks[2].url)" /><br>         
+      <q-img v-if="socialNetworks[3] && socialNetworks[3].url && socialNetworks[3].icon_url" width="40px" height="40px" :src="`${BASE_IMG_URLs}/${socialNetworks[3].icon_url}`" contain class="q-mb-xs cursor-pointer" @click="redirectToSocial(socialNetworks[3].url)" /><br>         
+    </q-page-sticky>
+        <!-- SocialNetwork STICKY BTN Mobile-->
+    <q-page-sticky v-show="$route.name != 'cartCheckout' && !$q.screen.gt.xs"  :position="routeIsProduct? 'right': 'left'" :offset="[5, 0]">
+<!--       <q-btn flat round dense  color="blue-10" size="small" icon="fab fa-facebook" class="q-mb-xs cursor-pointer shadow-1" @click="redirectToSocial(socialNetworks[0].url)" /><br> -->
+      <q-img v-if="socialNetworks[0] && socialNetworks[0].url && socialNetworks[0].icon_url" width="30px" height="30px" :src="`${BASE_IMG_URLs}/${socialNetworks[0].icon_url}`" contain class="q-mb-xs cursor-pointer" @click="redirectToSocial(socialNetworks[0].url)" /><br>
+      <q-img v-if="socialNetworks[1] && socialNetworks[1].url && socialNetworks[1].icon_url" width="30px" height="30px" :src="`${BASE_IMG_URLs}/${socialNetworks[1].icon_url}`" contain class="q-mb-xs cursor-pointer" @click="redirectToSocial(socialNetworks[1].url)" /><br>
+      <q-img v-if="socialNetworks[2] && socialNetworks[2].url && socialNetworks[2].icon_url" width="30px" height="30px" :src="`${BASE_IMG_URLs}/${socialNetworks[2].icon_url}`" contain class="q-mb-xs cursor-pointer" @click="redirectToSocial(socialNetworks[2].url)" /><br>         
+      <q-img v-if="socialNetworks[3] && socialNetworks[3].url && socialNetworks[3].icon_url" width="30px" height="30px" :src="`${BASE_IMG_URLs}/${socialNetworks[3].icon_url}`" contain class="q-mb-xs cursor-pointer" @click="redirectToSocial(socialNetworks[3].url)" /><br>         
     </q-page-sticky>
   </q-layout>
 </template>
@@ -202,6 +213,7 @@ import mapHome from 'src/mixins/mapHome.js'
 import CartLeftDrawer from 'components/cart/cartLeftDrawer.vue'
 import OrderNowModal from 'src/pages/orderNowModal'
 import CartLeftDialog from 'components/cart/cartLeftDialog.vue'
+import { BASE_IMG_URL} from 'src/env.js'
 
 export default {
     data () {
@@ -210,7 +222,8 @@ export default {
         openMenuLeftDrawer:false,
         openProductLeftDrawer: false,
         openCartLeftDrawer: false,
-        openCartLeftDialog:false
+        openCartLeftDialog:false,
+        BASE_IMG_URLs: BASE_IMG_URL
     }
     },
     preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
@@ -305,11 +318,23 @@ export default {
         let sectionToBeSelected = this.internalSections.find(section=>{
           return section.path == sectionPath
         })
+            if(sectionPath == '/'){
+              this.SetSelectedProduct(null)
+            }
             this.SetSelectedInternalSection(sectionToBeSelected)
             this.SetSelectedCategory(null)
             this.SetSelectedSubCategory(null)
             this.$router.push({ name: sectionPath })
       },
+    },
+    computed:{
+      routeIsProduct(){
+        if(this.$route.name == 'productsBySubcategory' || this.$route.name == 'productos' || this.$route.name == 'productsByCategory' ){
+          return true
+        }else{
+          return false
+        }
+      }
     },
     components:{
         ProductLeftDrawer,

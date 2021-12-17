@@ -9,12 +9,14 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-11 col-md-8 col-lg-8">
-                    <div class= "row">
+                    <div class= "row justify-center">
                         <div class="col-12 q-ml-md q-mt-md q-mb-md">
                             <categories-tags :fromProductScoped="false"></categories-tags>
                         </div>
                         <div v-for="(product, index) in productFilteredList.slice((ElementosPorPagina * current) - ElementosPorPagina , (ElementosPorPagina * current))" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 q-pa-sm q-pa-sm">
-                            <card-product @openCartDrawerFromPage="openCartDrawerFromPage" v-if="products" :data="product" class="cursor-pointer"/>
+                            <div class="row full-width justify-center">
+                                <card-product @openCartDrawerFromPage="openCartDrawerFromPage" v-if="products" :data="product" class="cursor-pointer"/>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -65,7 +67,6 @@ export default {
         ElementosPorPagina: 9,
         TotalPaginas: 1,
         current:1,
-
       }
     },
     mixins:[mapCategories, mapProducts, mapInternalSections],
@@ -78,11 +79,18 @@ export default {
         },
         //Pagination Logic
         CalcularTotalPaginas(){
-            let resto = this.products.length % this.ElementosPorPagina
+/*             let resto = this.products.length % this.ElementosPorPagina
             if(resto){
                 this.TotalPaginas = (this.products.length - resto) / this.ElementosPorPagina + 1
             }else{
                 this.TotalPaginas = this.products.length / this.ElementosPorPagina
+            } */
+
+            let resto = this.productFilteredList.length % this.ElementosPorPagina
+            if(resto){
+                this.TotalPaginas = (this.productFilteredList.length - resto) / this.ElementosPorPagina + 1
+            }else{
+                this.TotalPaginas = this.productFilteredList.length / this.ElementosPorPagina
             }
             
         },
@@ -126,7 +134,11 @@ export default {
             }
         }
     },
-
+    watch:{
+        $route (to, from){
+            this.CalcularTotalPaginas()
+        }
+    },
     components:{
         cardProduct,
         SectionPortrait,
