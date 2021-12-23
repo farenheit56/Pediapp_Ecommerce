@@ -57,7 +57,7 @@
                                 Total : <span class="text-green-10">${{parsePrice(GetCartProductsTotalPrice())}}</span>
                             </div>
                             <q-separator color="positive" class="q-mb-xs"/>
-                            <div v-show="$route.name != 'cartCheckout' && cartProducts.length != 0" class="row justify-center">
+                            <div v-show="$route.name != 'cartCheckout' && cartProducts && cartProducts.length != 0" class="row justify-center">
                                 <q-btn color="positive" class=" shadow-2" @click="goToCheckoutAndPay" no-caps style="min-width:100px">
                                     <div class="q-mr-sm">{{`¡Pedí ya!`}}</div>
                                     <img src="icons/cart.png" style="height:35px">
