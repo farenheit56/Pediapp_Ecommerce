@@ -12,7 +12,7 @@
                 </q-list>
             </div>
         </q-scroll-area>
-        <div class="absolute-bottom text-center">INSERT LOGO HERE?</div>  
+        <!-- <div class="absolute-bottom text-center">INSERT LOGO HERE?</div>   -->
     </q-drawer>
 </template>
 
