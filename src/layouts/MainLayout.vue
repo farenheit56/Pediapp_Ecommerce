@@ -294,7 +294,7 @@ export default {
       console.log(this.randomProducts, 'randomProducts')
       console.log(JSON.parse(localStorage.getItem('pediApp-currentCart')),'LocalStorage Cart')
       console.log('---------------')
-      this.SetCartFromLocalStorage(JSON.parse(localStorage.getItem('pediApp-currentCart')))
+      this.SetCartFromLocalStorage(JSON.parse(localStorage.getItem('pediApp-currentCart')) || [])
     },
     mixins: [mapCategories, mapInternalSections, mapProducts, mapExtra, mapCart,mapHome,mapEvents],
     methods:{
