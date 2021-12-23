@@ -1,11 +1,13 @@
 export function PushCartProduct(state,product) {
     let alreadyInList = false
     let index = null
-    for(const [i,productListed] of state.cartProducts.entries()){
-        if(productListed.id == product.id){
-            index = i            
-            alreadyInList = true
-            break
+    if(state.cartProducts){
+        for(const [i,productListed] of state.cartProducts.entries()){
+            if(productListed.id == product.id){
+                index = i            
+                alreadyInList = true
+                break
+            }
         }
     }
     if(!alreadyInList){

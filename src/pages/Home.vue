@@ -8,19 +8,19 @@
                     </div>
                     <div class="col-7 ">
                         <div class="row full-width justify-start items-center" style="height:44vw">    
-                            <div class="col-11" style="height:100%">
+                            <div class="col-11 cursor-pointer" style="height:100%">
                                 <slider-home/>
                             </div>
                         </div>                          
                     </div>
                     <div class="col-3 offset"  >
                         <div class="row full-width justify-end items-start" style="height:22vw">
-                            <div class=" col-12" style="height:97%">
+                            <div class=" col-12 cursor-pointer" style="height:97%">
                                 <banner :bannerNumber="1"></banner>
                             </div>
                         </div>
                         <div class="row full-width justify-end items-end" style="height:22vw">
-                            <div class="col-12" style="height:97%">
+                            <div class="col-12 cursor-pointer" style="height:97%">
                                 <banner :bannerNumber="2"></banner>
                             </div>
                         </div>                        
@@ -46,14 +46,14 @@
                     </div>
                     <div class="col-5 ">
                         <div class="row full-width justify-start items-center q-mr-sm" style="height:22vw">    
-                            <div class=" col-11 q-mr-sm" style="height:95%">
+                            <div class=" col-11 q-mr-sm cursor-pointer" style="height:95%">
                                 <banner :bannerNumber="3"></banner>
                             </div>
                         </div>                          
                     </div>
                     <div class="col-5">
                         <div class="row full-width justify-end items-center" style="height:22vw">    
-                            <div class="col-11 q-ml-sm"  style="height:95%">
+                            <div class="col-11 q-ml-sm cursor-pointer"  style="height:95%">
                                 <banner :bannerNumber="4"></banner>
                             </div>
                         </div>                          
