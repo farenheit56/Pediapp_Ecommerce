@@ -44,7 +44,7 @@
                             <div class="row">
                                 <div class="col-5 q-ml-lg" ref="quantityButon"  >  <!-- Dimmed cuando no hay stock -->
                                     <!-- <q-btn color="secondary" icon-right="add_shopping_cart" :disabled="!selectedProduct.stock" @click="addToCart"  /> -->
-                                    <img src="icons/cart.png" style="height:50px" :disabled="!selectedProduct.stock" @click="addToCart" class='cursor-pointer self-center item-center q-mt-xs'>
+                                    <img src="icons/cart.png" style="height:50px" :disabled="!selectedProduct.stock" @click="addToCart(!selectedProduct.stock)" class='cursor-pointer self-center item-center q-mt-xs'>
                                 </div>
 <!--                                 <div class="col-5" ref="quantityButon" >
                                     <q-btn color="secondary" icon-right="fas fa-truck" :disabled="!selectedProduct.stock" @click="orderNow" />
@@ -119,7 +119,7 @@
                     <div class="row item-center " >
                         <div class="col-2 q-ma-sm q-pt-sm q-ml-md" ref="quantityButon"  >  <!-- Dimmed cuando no hay stock -->
                             <!-- <q-btn color="secondary" icon-right="add_shopping_cart" :disabled="!selectedProduct.stock" @click="addToCart"  /> -->
-                            <img src="icons/cart.png" style="height:40px" :disabled="!selectedProduct.stock" @click="addToCart" class='cursor-pointer self-center item-center '>
+                            <img src="icons/cart.png" style="height:40px" :disabled="!selectedProduct.stock" @click="addToCart(!selectedProduct.stock)" class='cursor-pointer self-center item-center '>
                         </div>
                         <q-space></q-space>
 <!--                         <div class="col-2 q-ml-sm q-ma-sm q-pt-sm" ref="quantityButon" >
@@ -200,7 +200,10 @@ export default {
                 this.loadingSubCat = true
             }
         },
-        addToCart(){
+        addToCart(outOfStock){
+            if(outOfStock){
+                return
+            }
             let cartProductObj= {
                 id: this.selectedProduct.id,
                 name: this.selectedProduct.name,
