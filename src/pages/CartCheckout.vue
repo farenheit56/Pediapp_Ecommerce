@@ -121,8 +121,10 @@ export default {
 
             let trimedPhone= this.contact[0].phone.split(' ').join('').split('-').join('')
             let link = `https://api.whatsapp.com/send/?phone=${trimedPhone}&text=${text}&app_absent=0`
-
+            localStorage.setItem('pediApp-currentCart', JSON.stringify([]))
+            this.KillCartProduct(null)
             window.open(link, "_blank")
+            
         },
         sendOrderNowToWhatsapp(){
             this.$refs.nameField.validate()

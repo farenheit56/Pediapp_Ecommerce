@@ -61,3 +61,7 @@ export function PushCartOrderNow(state,product) {
 export function SetCartFromLocalStorage(state,cart) {
     state.cartProducts = cart    
 }
+
+export function KillCartProduct(state,cart) {
+    state.cartProducts = []    
+}
