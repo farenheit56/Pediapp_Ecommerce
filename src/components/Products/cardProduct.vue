@@ -1,5 +1,5 @@
 <template>
-    <q-card class="q-mt-md" style="width:260px" :style="`${$q.screen.gt.xs ? 'width:300px': ''}`" @click="goToProductWhenDimmed">
+    <q-card class="q-mt-md cardHoverEffects" :class="hoverCard? 'shadow-3':''" style="width:260px" :style="`${$q.screen.gt.xs ? 'width:300px': ''}`" @click="goToProductWhenDimmed" @mouseover="hoverIn" @mouseout="hoverOut">
         <q-img @click="goToProduct" :ratio="1" :src="`https://api.pediapp.com.ar/images/${data.image_url}`" contain >
 <!--             <q-chip v-if="data.chip" :class="data.chip_class" :color="data.chip_color" :label="data.chip"></q-chip> -->
             <div v-if="!data.stock" class="absolute-top-left q-pa-none q-ml-md q-mt-md text-caption text-h6 bg-grey-5 opacityClass" style="bg-red">
@@ -21,7 +21,7 @@
         <div class="row q-pa-none q-ma-none">
             <q-card-section @click="goToProduct" class="q-mt-none q-pt-none col-12 ">
                     <div class="text-h6">
-                    {{ data.name }}
+                    {{ cardNameParsed}}
                     </div>
                 </q-card-section>
             <q-card-section class="q-mt-none q-pt-none col-12">
@@ -47,6 +47,11 @@ import mapHelpers from 'src/mixins/mapHelpers.js'
 export default {
   name: "CardProduct",
   props: ['data'],
+  data(){
+      return {
+          hoverCard: false,
+      }
+  },
   mixins:[mapCategories,mapInternalSections,mapProducts, mapCart,mapHelpers],
   methods:{
       goToProduct(event){
@@ -75,6 +80,36 @@ export default {
             }
             this.PushCartProduct(cartProductObj)         
             this.$emit('openCartDrawerFromPage')
+      },
+    hoverIn(){
+        this.hoverCard= true
+      },
+    hoverOut(){
+        this.hoverCard= false
+      }
+  },
+  computed:{
+      cardNameParsed(){
+        let nameParsed;
+        if(!this.hoverCard && this.$q.screen.gt.xs){
+            if(this.data && this.data.name && this.data.name.length > 20 ){
+                nameParsed = this.data.name.substring(0,this.data.name.length - 3) + "..."
+            }else{
+                nameParsed = this.data.name
+            }        
+        }else{
+            nameParsed = this.data.name
+        }
+
+        if(!this.$q.screen.gt.xs){
+            if(this.data && this.data.name && this.data.name.length > 50 ){
+                nameParsed = this.data.name.substring(0,this.data.name.length - 3) + "..."
+            }else{
+                nameParsed = this.data.name
+            }       
+        }
+        
+        return nameParsed
       }
   }
 }
@@ -99,6 +134,13 @@ export default {
     background-size: cover;
     background-position: 50% 50%;
     background-color: rgb(0, 0, 0, 0.9);
+}
+
+.cardHoverEffects:hover {
+//   z-index: 1;
+//   position: absolute;
+  color: rgb(116, 116, 116);
+
 }
 //:class="`${!data.stock ? 'light-dimmed' : ''}` "
 </style>
