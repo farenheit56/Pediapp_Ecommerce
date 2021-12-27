@@ -120,8 +120,7 @@ export default {
             text += "%0D%0A"+ "------" + "%0D%0A"+ "Precio Total: " + `$ ${this.GetCartProductsTotalPrice()}`
 
             let trimedPhone= this.contact[0].phone.split(' ').join('').split('-').join('')
-            let link = `https://wa.me/${trimedPhone}?text=${text}`
-            //let link = `https://wa.me/${this.contact[0].phone}?text=${text}`
+            let link = `https://api.whatsapp.com/send/?phone=${trimedPhone}&text=${text}&app_absent=0`
 
             window.open(link, "_blank")
         },
@@ -147,8 +146,7 @@ export default {
             text += "%0D%0A" + "------"+ "%0D%0A"  +  "Detalles del pedido: " + "%0D%0A" + "%0D%0A"+ "Producto: " + this.cartOrderNow.name + "%0D%0A" + " Cantidad: " + `${this.cartOrderNow.quantitySelected}` + "%0D%0A" + "Precio : " + `$ ${this.cartOrderNow.price * this.cartOrderNow.quantitySelected}`
             
             let trimedPhone= this.contact[0].phone.split(' ').join('').split('-').join('')
-            let link = `https://wa.me/${trimedPhone}?text=${text}`
-            //let link = `https://wa.me/${this.contact[0].phone}?text=${text}`
+            let link = `https://api.whatsapp.com/send/?phone=${trimedPhone}&text=${text}&app_absent=0`
 
             window.open(link, "_blank")
         },
