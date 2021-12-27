@@ -21,7 +21,10 @@
                                     <q-img class="rounded-borders full-height q-pa-none q-ma-none " contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index].image_url}`" />  
                                 <div class=" q-pa-none q-ma-none">
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center q-mt-md">
-                                        <div class="col text-caption text-weight-bold ">
+                                        <div v-if="randomProducts[index].name.length > 50" class="col text-caption text-weight-bold ">
+                                            {{ randomProducts[index].name.substring(0,randomProducts[index].name.length -3) + '...' }}
+                                        </div>
+                                        <div v-if="randomProducts[index].name.length <= 50" class="col text-caption text-weight-bold ">
                                             {{ randomProducts[index].name }}
                                         </div>
                                     </q-card-section>
@@ -62,7 +65,10 @@
                                     <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index].image_url}`" />  
                                 <div class=" q-pa-none q-ma-none" >
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center q-mt-md">
-                                        <div class="col text-weight-bold " :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
+                                        <div v-if="randomProducts[index].name.length> 20" class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
+                                            {{ randomProducts[index].name.substring(0,randomProducts[index].name.length-3) +'...' }}
+                                        </div>
+                                        <div  v-if="randomProducts[index].name.length <= 20" class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
                                             {{ randomProducts[index].name }}
                                         </div>
                                     </q-card-section>
@@ -72,7 +78,10 @@
                                     <q-img class="rounded-borders full-height q-pa-none q-ma-none " style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index+1].image_url}`" />
                                 <div class=" q-pa-none q-ma-none">
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center  q-mt-md">
-                                        <div class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
+                                        <div v-if="randomProducts[index + 1].name.length> 20" class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
+                                            {{ randomProducts[index + 1].name.substring(0,randomProducts[index + 1].name.length-3) +'...' }}
+                                        </div>
+                                        <div  v-if="randomProducts[index + 1].name.length <= 20" class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
                                             {{ randomProducts[index + 1].name }}
                                         </div>
                                     </q-card-section>
@@ -82,7 +91,10 @@
                                     <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index+2].image_url}`" />
                                 <div class=" q-pa-none q-ma-none" >
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center  q-mt-md">
-                                        <div class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
+                                        <div v-if="randomProducts[index + 2].name.length> 20" class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
+                                            {{ randomProducts[index + 2].name.substring(0,randomProducts[index + 2].name.length-3) +'...' }}
+                                        </div>
+                                        <div  v-if="randomProducts[index + 2].name.length <= 20" class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
                                             {{ randomProducts[index + 2].name }}
                                         </div>
                                     </q-card-section>
@@ -92,7 +104,10 @@
                                     <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index+3].image_url}`" />
                                 <div class=" q-pa-none q-ma-none" >
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center  q-mt-md">
-                                        <div class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
+                                        <div v-if="randomProducts[index + 3].name.length> 20" class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
+                                            {{ randomProducts[index + 3].name.substring(0,randomProducts[index + 3].name.length-3) +'...' }}
+                                        </div>
+                                        <div  v-if="randomProducts[index + 3].name.length <= 20" class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
                                             {{ randomProducts[index + 3].name }}
                                         </div>
                                     </q-card-section>
