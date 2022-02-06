@@ -4,7 +4,7 @@
         <!-- Desktop Mode Toolbar -->
        <q-toolbar v-show="$route.name != 'cartCheckout' && $route.name != 'orderNow'" v-if="$q.screen.gt.xs" style="height: 64px">
       <q-avatar square style="width: 90px" class="q-ml-md">
-        <q-img src="logo-empresa-desktop.svg" contain />
+        <q-img src="logo-empresa-desktop.svg" @click="redirectToSocial('https://pediapp.com.ar/')" class="cursor-pointer" contain />
       </q-avatar>
         <q-space />
         <div v-for="(section,index) in internalSections" :key="index + 1017" @click="goToSection(section.path)">
@@ -59,7 +59,7 @@
             <q-space></q-space>
             <div class="col-4 text-center q-pa-none q-ma-none" >
               <q-avatar square style="width: 80px">
-                <q-img src="logo-empresa-desktop.svg" contain />
+                <q-img src="logo-empresa-desktop.svg" @click="redirectToSocial('https://pediapp.com.ar/')" class="cursor-pointer" contain />
               </q-avatar>
             </div>
             <q-space></q-space>

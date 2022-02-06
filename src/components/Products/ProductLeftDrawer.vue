@@ -85,6 +85,10 @@ export default {
             }
         },
         goToProducts(){
+            if(!this.selectedInternalSection || (this.selectedInternalSection && this.selectedInternalSection.path != 'productos')){
+                let scopedInternalSection = this.internalSections.find(section=> section.path == 'productos')
+                this.SetSelectedInternalSection(scopedInternalSection)
+            }
             this.SetSelectedCategory(null)
             this.SetSelectedSubCategory(null)
             this.$router.push({name: 'productos'})

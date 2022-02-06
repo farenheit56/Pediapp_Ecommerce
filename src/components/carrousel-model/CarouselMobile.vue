@@ -5,7 +5,7 @@
         </div>
         <div class="row full-width">
             <div class="card-img col-12">
-                <q-img :src="currentImage" alt="" style="height:200px" contain/>
+                <q-img :src="currentImage" alt="" style="height:280px" contain/>
                 <div class="actions">
                     <span @click="prevImage" class="prev">
                         &#8249;

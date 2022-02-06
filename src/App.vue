@@ -20,6 +20,11 @@ export default {
 
     // No access to "this" here
 
+    ssrContext['$q'].lang.isoName = 'es'
+    ssrContext['$q'].lang.nativeName = 'Español (ES)'
+    ssrContext.Q_HTML_ATTRS = 'lang=es dir=ltr'
+    ssrContext.Q_PREV_LANG = 'lang=es dir=ltr'
+
     // Return a Promise if you are running an async job
     return Promise.all([
       store.dispatch('internalSections/actionInternalSections'),
