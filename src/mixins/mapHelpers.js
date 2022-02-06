@@ -14,9 +14,8 @@
 } */
   
 function parsePrice(x){
-  let result = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(x)
-  let subtringResult = result.substring(0,result.length - 5)
-  return subtringResult
+  let result = new Intl.NumberFormat('de-DE').format(x)
+  return result
   /* return result.substring(0, result.length - 2) */
 }
   export default {
