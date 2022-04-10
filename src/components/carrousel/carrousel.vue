@@ -18,7 +18,7 @@
                     <q-carousel-slide :key="index" :name="index + 1" >
                         <div class="row fit items-center justify-center no-wrap ">
                             <q-card @click="goToProduct(randomProducts[index])" class="q-pa-none q-ma-none col-12 text-center" :style="'width:230px'" >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index].image_url}`" />  
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " contain :ratio="1"  :src="`https://api.laboutiquedelaflor.com.ar/images/${randomProducts[index].image_url}`" />  
                                 <div class=" q-pa-none q-ma-none">
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center q-mt-md">
                                         <div v-if="randomProducts[index].name.length > 50" class="col text-caption text-weight-bold ">
@@ -31,7 +31,7 @@
                                 </div>  
                             </q-card>
 <!--                             <q-card @click="goToProduct(randomProducts[index+1])" v-if="randomProducts[index+1]" class="q-pa-none q-ma-none q-ml-sm q-mt-sm col-6 text-center" :style="'width:120px'" >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index+1].image_url}`" />
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " contain :ratio="1"  :src="`https://api.laboutiquedelaflor.com.ar/images/${randomProducts[index+1].image_url}`" />
                                 <div class=" q-pa-none q-ma-none" >
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center  q-mt-md">
                                         <div class="col text-caption text-weight-bold">
@@ -62,7 +62,7 @@
                     <q-carousel-slide v-if="validIndex(index)" :key="index" :name="index + 1" >
                         <div v-if="validIndex(index)" class="row fit items-center justify-center no-wrap ">
                             <q-card @click="goToProduct(randomProducts[index])" class="q-pa-none q-ma-none col-3 text-center cursor-pointer" >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index].image_url}`" />  
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.laboutiquedelaflor.com.ar/images/${randomProducts[index].image_url}`" />  
                                 <div class=" q-pa-none q-ma-none" >
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center q-mt-md">
                                         <div v-if="randomProducts[index].name.length> 20" class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
@@ -75,7 +75,7 @@
                                 </div>  
                             </q-card>
                             <q-card @click="goToProduct(randomProducts[index+1])" v-if="randomProducts[index+1]" class="q-pa-none q-ma-none q-ml-sm col-3 text-center cursor-pointer"  >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index+1].image_url}`" />
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none " style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.laboutiquedelaflor.com.ar/images/${randomProducts[index+1].image_url}`" />
                                 <div class=" q-pa-none q-ma-none">
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center  q-mt-md">
                                         <div v-if="randomProducts[index + 1].name.length> 20" class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
@@ -88,7 +88,7 @@
                                 </div>  
                             </q-card>
                             <q-card @click="goToProduct(randomProducts[index+2])" v-if="randomProducts[index+2]" class="q-pa-none q-ma-none q-ml-sm  col-3 text-center cursor-pointer"  >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index+2].image_url}`" />
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.laboutiquedelaflor.com.ar/images/${randomProducts[index+2].image_url}`" />
                                 <div class=" q-pa-none q-ma-none" >
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center  q-mt-md">
                                         <div v-if="randomProducts[index + 2].name.length> 20" class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">
@@ -101,7 +101,7 @@
                                 </div>  
                             </q-card>
                             <q-card @click="goToProduct(randomProducts[index+3])" v-if="randomProducts[index+3]" class="q-pa-none q-ma-none q-ml-sm  col-3 text-center cursor-pointer"  >
-                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.pediapp.com.ar/images/${randomProducts[index+3].image_url}`" />
+                                    <q-img class="rounded-borders full-height q-pa-none q-ma-none "  style="width:90%; height:90%" contain :ratio="1"  :src="`https://api.laboutiquedelaflor.com.ar/images/${randomProducts[index+3].image_url}`" />
                                 <div class=" q-pa-none q-ma-none" >
                                     <q-card-section class="q-mt-sm q-pt-none row justify-center  q-mt-md">
                                         <div v-if="randomProducts[index + 3].name.length> 20" class="col  text-weight-bold" :class="$q.screen.gt.md ? 'text-h6':'text-h7'">

@@ -11,7 +11,7 @@
                     <div class="row q-mt-xl q-mb-xl ">
                         <div class="col-2"></div>
                         <div class="col-4 col-md-4 col-sm-5 item-end" style="height:22vw; min-height:400px">
-                            <q-img v-if="selectedInternalSection.support_image_url" :src="`https://api.pediapp.com.ar/images/${selectedInternalSection.support_image_url}`" style="width: 100%; height: 100%;" contain>
+                            <q-img v-if="selectedInternalSection.support_image_url" :src="`https://api.laboutiquedelaflor.com.ar/images/${selectedInternalSection.support_image_url}`" style="width: 100%; height: 100%;" contain>
                             </q-img>
                         </div>
                         <q-space></q-space>
@@ -34,7 +34,7 @@
                         <div v-if="selectedInternalSection" class="text-h7 q-mt-lg">{{selectedInternalSection.description}}</div>
                     </div>
                     <div class="col-12 q-pt-sm q-ml-sm text-primary text-left">
-                        <q-img v-if="selectedInternalSection.support_image_url" :src="`https://api.pediapp.com.ar/images/${selectedInternalSection.support_image_url}`" class="q-mt-md " style="min-width: 280px;">
+                        <q-img v-if="selectedInternalSection.support_image_url" :src="`https://api.laboutiquedelaflor.com.ar/images/${selectedInternalSection.support_image_url}`" class="q-mt-md " style="min-width: 280px;">
                         </q-img>
                     </div>
             </div>

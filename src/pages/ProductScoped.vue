@@ -80,7 +80,7 @@
                     <categories-tags :fromProductScoped="true" ></categories-tags>
                 </div>
                 <div class="col-12 q-pt-md"  >
-<!--                     <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://api.pediapp.com.ar/images/${selectedProduct.image_url}` " contain  >
+<!--                     <q-img v-if="selectedProduct" style="max-width: 400px; height: 300px;" :src="`https://api.laboutiquedelaflor.com.ar/images/${selectedProduct.image_url}` " contain  >
                     </q-img> -->
                     <carousel-mobile
                         :starting-image="0"

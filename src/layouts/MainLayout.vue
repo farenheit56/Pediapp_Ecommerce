@@ -4,7 +4,7 @@
         <!-- Desktop Mode Toolbar -->
        <q-toolbar v-show="$route.name != 'cartCheckout' && $route.name != 'orderNow'" v-if="$q.screen.gt.xs" style="height: 64px">
       <q-avatar square style="width: 90px" class="q-ml-md">
-        <q-img src="logo-empresa-desktop.svg" @click="redirectToSocial('https://pediapp.com.ar/')" class="cursor-pointer" contain />
+        <q-img src="logo-empresa-desktop.svg" @click="redirectToSocial('https://laboutiquedelaflor.com.ar/')" class="cursor-pointer" contain />
       </q-avatar>
         <q-space />
         <div v-for="(section,index) in internalSections" :key="index + 1017" @click="goToSection(section.path)">
@@ -59,7 +59,7 @@
             <q-space></q-space>
             <div class="col-4 text-center q-pa-none q-ma-none" >
               <q-avatar square style="width: 80px">
-                <q-img src="logo-empresa-desktop.svg" @click="redirectToSocial('https://pediapp.com.ar/')" class="cursor-pointer" contain />
+                <q-img src="logo-empresa-desktop.svg" @click="redirectToSocial('https://laboutiquedelaflor.com.ar/')" class="cursor-pointer" contain />
               </q-avatar>
             </div>
             <q-space></q-space>
@@ -119,15 +119,15 @@
       <q-toolbar>
         <q-toolbar-title class="text-center">
           <q-avatar>
-              <img src="icons/logo-pedi-app.png" @click="redirectToSocial('https://pediapp.com.ar/')" class="cursor-pointer">
+              <img src="icons/logo-pedi-app.png" @click="redirectToSocial('https://laboutiquedelaflor.com.ar/')" class="cursor-pointer">
           </q-avatar>
         </q-toolbar-title>
       </q-toolbar>
       <div class="row text-center">
           <div class="col-12  q-mt-md q-mb-sm text-h7 text-bold text-center ">Contacto </div>
-          <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Telefono: {{contact[0].phone}} </div>
+          <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Telefono: {{contact[0].phone || ''}} </div>
           <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Mail: {{contact[0].email || ''}} </div>
-          <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Dirección: {{contact[0].address}}</div>
+          <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Dirección: {{contact[0].address || ''}}</div>
       </div>
     </q-footer>
     
@@ -141,9 +141,9 @@
       <div class="col-3">
         <div class="row text-center">
             <div class="col-12  q-mt-md q-mb-sm text-h7 text-bold text-center ">Contacto </div>
-            <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Telefono: {{contact[0].phone}} </div>
+            <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Telefono: {{contact[0].phone || ''}} </div>
             <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Mail: {{contact[0].email || ''}} </div>
-            <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Dirección: {{contact[0].address}} </div>
+            <div class="col-12  q-mt-xs q-mb-xs  text-caption text-center">Dirección: {{contact[0].address || ''}} </div>
         </div>
       </div>
 <!--       <div class="col-3">
@@ -164,7 +164,7 @@
         <q-toolbar>
           <q-toolbar-title class="text-center">
             <q-avatar>
-              <img src="icons/logo-pedi-app.png" @click="redirectToSocial('https://pediapp.com.ar/')" class="cursor-pointer">
+              <img src="icons/logo-pedi-app.png" @click="redirectToSocial('https://laboutiquedelaflor.com.ar/')" class="cursor-pointer">
             </q-avatar>
           </q-toolbar-title>
         </q-toolbar>

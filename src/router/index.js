@@ -16,12 +16,14 @@ Vue.use(VueRouter)
  * with the Router instance.
  */
 
-export default async function ( { store, /*ssrContext */} ) {
-  //await store.dispatch('internalSections/actionInternalSections') //Only works in SPA 
+export default async function({ store /*ssrContext */ }) {
+  //await store.dispatch('internalSections/actionInternalSections') //Only works in SPA
   //const routes = makeRoutes(store) // Only works in SPA
-  const internalSections = await axios.get('https://api.pediapp.com.ar/api/internalSections')
-  //const categoriesAndSub = await axios.get('https://api.pediapp.com.ar/api/categories')
-  const routes = makeRoutes(internalSections.data)
+  const internalSections = await axios.get(
+    "https://api.laboutiquedelaflor.com.ar/api/internalSections"
+  );
+  //const categoriesAndSub = await axios.get('https://localhost:3001/api/categories')
+  const routes = makeRoutes(internalSections.data);
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
     routes,
@@ -29,9 +31,9 @@ export default async function ( { store, /*ssrContext */} ) {
     // Leave these as they are and change in quasar.conf.js instead!
     // quasar.conf.js -> build -> vueRouterMode
     // quasar.conf.js -> build -> publicPath
-    mode: process.env.VUE_ROUTER_MODE,  
+    mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
-  })
+  });
 
-  return Router
+  return Router;
 }

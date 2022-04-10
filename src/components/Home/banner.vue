@@ -1,35 +1,35 @@
 <template>
 <!--     <q-card :style="`height: 100%; width: 100%`">
-        <q-carousel-slide v-if="bannerNumber == 1" :name="1" :img-src="`https://api.pediapp.com.ar/images/${home.banner_image_1_url}`" >
+        <q-carousel-slide v-if="bannerNumber == 1" :name="1" :img-src="`https://api.laboutiquedelaflor.com.ar/images/${home.banner_image_1_url}`" >
         </q-carousel-slide>
-        <q-carousel-slide v-if="bannerNumber == 2" :name="1" :img-src="`https://api.pediapp.com.ar/images/${home.banner_image_2_url}`" >
+        <q-carousel-slide v-if="bannerNumber == 2" :name="1" :img-src="`https://api.laboutiquedelaflor.com.ar/images/${home.banner_image_2_url}`" >
         </q-carousel-slide>
     </q-card> -->
     <div :style="`height: 100%; width: 100%`">
         <q-img        
         v-if="bannerNumber == 1"   
-        :src="`https://api.pediapp.com.ar/images/${home.banner_image_1_url}`"
+        :src="`https://api.laboutiquedelaflor.com.ar/images/${home.banner_image_1_url}`"
         style="width: 100%; height: 100%;"
         href="www.gooogle.com"
-        @click="redirectToSocial('https://pediapp.com.ar/productos')"
+        @click="redirectToSocial('https://laboutiquedelaflor.com.ar/productos')"
         />
         <q-img    
         v-if="bannerNumber == 2"     
-        :src="`https://api.pediapp.com.ar/images/${home.banner_image_2_url}`"
+        :src="`https://api.laboutiquedelaflor.com.ar/images/${home.banner_image_2_url}`"
         style="width: 100%; height: 100%;"
-        @click="redirectToSocial('https://pediapp.com.ar/productos')"
+        @click="redirectToSocial('https://laboutiquedelaflor.com.ar/productos')"
         />
         <q-img    
         v-if="bannerNumber == 3"     
-        :src="`https://api.pediapp.com.ar/images/${home.body_banner_image_1_url}`"
+        :src="`https://api.laboutiquedelaflor.com.ar/images/${home.body_banner_image_1_url}`"
         style="width: 100%; height: 100%;"
-        @click="redirectToSocial('https://pediapp.com.ar/productos')"
+        @click="redirectToSocial('https://laboutiquedelaflor.com.ar/productos')"
         />
         <q-img    
         v-if="bannerNumber == 4"     
-        :src="`https://api.pediapp.com.ar/images/${home.body_banner_image_2_url}`"
+        :src="`https://api.laboutiquedelaflor.com.ar/images/${home.body_banner_image_2_url}`"
         style="width: 100%; height: 100%;"
-        @click="redirectToSocial('https://pediapp.com.ar/productos')"
+        @click="redirectToSocial('https://laboutiquedelaflor.com.ar/productos')"
         />
     </div>
     

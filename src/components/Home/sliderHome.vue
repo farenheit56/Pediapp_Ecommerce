@@ -1,10 +1,10 @@
 <template>
     <div  :style="`height: 100%; width: 100%`">
         <q-img        
-        :src="`https://api.pediapp.com.ar/images/${home.slider_url}`"
+        :src="`https://api.laboutiquedelaflor.com.ar/images/${home.slider_url}`"
         style="width: 100%; height: 100%;"
         :ratio="4/3"
-        @click="redirectToSocial('https://pediapp.com.ar/productos')"
+        @click="redirectToSocial('https://laboutiquedelaflor.com.ar/productos')"
         />
     </div>    
 </template>

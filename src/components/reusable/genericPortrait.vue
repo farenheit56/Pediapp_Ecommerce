@@ -7,7 +7,7 @@
       height="250px"
     >
 
-        <q-carousel-slide :name="1" :img-src="`https://api.pediapp.com.ar/images/${selectedInternalSection.slider_url}`" >
+        <q-carousel-slide :name="1" :img-src="`https://api.laboutiquedelaflor.com.ar/images/${selectedInternalSection.slider_url}`" >
             <div class="absolute-bottom custom-caption">
             <div class="text-h7">{{selectedInternalSection.title}}</div>
         </div>

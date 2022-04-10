@@ -1,7 +1,7 @@
-const LINKS_EXT={
-    slider: 'https://pediapp.com.ar/productos',
-    bannerPrincipalUno: 'https://pediapp.com.ar/productos',
-    bannerPrincipalDos:'https://pediapp.com.ar/productos',
-    bannerDestacadoUno: 'https://pediapp.com.ar/productos',
-    bannerDestacadoDos: 'https://pediapp.com.ar/productos',   
-}
+const LINKS_EXT = {
+  slider: "https://laboutiquedelaflor.com.ar/productos",
+  bannerPrincipalUno: "https://laboutiquedelaflor.com.ar/productos",
+  bannerPrincipalDos: "https://laboutiquedelaflor.com.ar/productos",
+  bannerDestacadoUno: "https://laboutiquedelaflor.com.ar/productos",
+  bannerDestacadoDos: "https://laboutiquedelaflor.com.ar/productos"
+};
